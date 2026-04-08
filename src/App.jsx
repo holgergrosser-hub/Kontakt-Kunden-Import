@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 const SCRIPT_URL =
-  "https://script.google.com/macros/s/AKfycbzPJQDh0T_YHAJeg1hwmDXJ2R7-rJmHeVuO7vwpXhNpPK1I3S0R0ABz23ug55LtxyJumg/exec";
+  "https://script.google.com/macros/s/AKfycbxcV-wb52T-ju4301RxBwXlZL2w0p3Uw1DxYplDuZbAXNoIRIUGg2XIvHzcd_UEfg8vSw/exec";
 
 const empty = {
   prefix: "", firstName: "", lastName: "",
