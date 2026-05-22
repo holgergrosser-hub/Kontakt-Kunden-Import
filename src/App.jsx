@@ -56,6 +56,7 @@ export default function App() {
   const [d, setD] = useState(empty);
   const [status, setStatus] = useState("idle");
   const [errorMessage, setErrorMessage] = useState("");
+  const [savedRowIndex, setSavedRowIndex] = useState(null);
   const [open, setOpen] = useState({
     Person: true, Firma: true, Kontakt: true, Adresse: true, Sonstiges: false,
   });
@@ -100,13 +101,17 @@ export default function App() {
     }
   };
 
-  /* ── Send to Google Contacts ── */
+  /* ── Send to Google Sheets ── */
   const send = async () => {
     setStatus("sending");
     setErrorMessage("");
+    setSavedRowIndex(null);
     try {
       if (!SCRIPT_URL) {
         throw new Error("VITE_GAS_URL ist nicht gesetzt.");
+      }
+      if (!SCRIPT_TOKEN) {
+        throw new Error("VITE_GAS_TOKEN ist nicht gesetzt.");
       }
 
       const customerName = d.customerName.trim() || d.company.trim() || fullName.trim();
@@ -144,6 +149,7 @@ export default function App() {
         throw new Error(result.message || "Fehler beim Speichern in Google Sheets.");
       }
 
+      setSavedRowIndex(result?.rowIndex ?? null);
       setStatus("done");
     } catch (error) {
       setErrorMessage(error.message || "Bitte Verbindung prüfen und erneut versuchen.");
@@ -155,6 +161,7 @@ export default function App() {
     setD(empty);
     setStatus("idle");
     setErrorMessage("");
+    setSavedRowIndex(null);
     setRawText("");
     setShowPaste(true);
     setParseError("");
@@ -369,6 +376,11 @@ export default function App() {
             <div style={{ fontSize: 13, color: "#999", marginTop: 4, lineHeight: 1.4 }}>
               {(d.customerName || d.company || fullName) || "Der Kontakt"} wurde in die Google-Tabelle geschrieben.
             </div>
+            {savedRowIndex && (
+              <div style={{ fontSize: 12, color: "#777", marginTop: 8 }}>
+                Gespeichert in Zeile {savedRowIndex}.
+              </div>
+            )}
             <button onClick={reset} style={{
               marginTop: 16, padding: "8px 28px", border: "1.5px solid #e8e8e6",
               borderRadius: 10, background: "none", fontFamily: font, fontSize: 13,

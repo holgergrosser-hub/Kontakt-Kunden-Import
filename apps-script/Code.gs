@@ -26,9 +26,6 @@ const COL_ON_SITE = 17;        // Q
 const COL_STREET = 71;         // BS
 const COL_CITY = 75;           // BW
 const COL_POSTAL_CODE = 79;    // CA
-const COL_DE = 109;            // DE
-const COL_DF = 110;            // DF
-const COL_DS = 123;            // DS
 const COL_FUNDING_DATE = 130;  // DZ
 
 function doPost(e) {
@@ -62,9 +59,6 @@ function doPost(e) {
     values[COL_STREET - 1] = String(params.street || '').trim();
     values[COL_CITY - 1] = String(params.city || '').trim();
     values[COL_POSTAL_CODE - 1] = String(params.postalCode || '').trim();
-    values[COL_DE - 1] = 'Ja';
-    values[COL_DF - 1] = projectLeader;
-    values[COL_DS - 1] = true;
     values[COL_FUNDING_DATE - 1] = offsetMonths(new Date(), -1);
 
     sheet.getRange(rowIndex, 1, 1, values.length).setValues([values]);
