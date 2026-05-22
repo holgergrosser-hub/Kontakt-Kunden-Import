@@ -9,15 +9,28 @@ const PROJECT_LEADERS = [
   "Holger Grosser",
 ];
 
-const empty = {
-  prefix: "", firstName: "", lastName: "",
-  customerName: "", website: "", projectLeader: "",
-  company: "", jobTitle: "",
-  emailWork: "", emailPersonal: "",
-  phoneMobile: "", phoneWork: "", phoneFax: "",
-  street: "", postalCode: "", city: "", country: "",
-  notes: "",
-};
+function formatDateInput(date) {
+  return date.toISOString().slice(0, 10);
+}
+
+function defaultFundingDate() {
+  const date = new Date();
+  date.setMonth(date.getMonth() + 5);
+  return formatDateInput(date);
+}
+
+function createEmpty() {
+  return {
+    prefix: "", firstName: "", lastName: "",
+    customerName: "", website: "", projectLeader: "",
+    company: "", jobTitle: "",
+    emailWork: "", emailPersonal: "",
+    phoneMobile: "", phoneWork: "", phoneFax: "",
+    street: "", postalCode: "", city: "", country: "",
+    fundingDate: defaultFundingDate(),
+    notes: "",
+  };
+}
 
 const sections = [
   { title: "Person", fields: [
@@ -46,6 +59,7 @@ const sections = [
     { key: "country", label: "Land" },
   ]},
   { title: "Sonstiges", fields: [
+    { key: "fundingDate", label: "Foerdergeldtermin", type: "date" },
     { key: "notes", label: "Notizen", multi: true },
   ]},
 ];
@@ -53,7 +67,7 @@ const sections = [
 const font = "'DM Sans', sans-serif";
 
 export default function App() {
-  const [d, setD] = useState(empty);
+  const [d, setD] = useState(createEmpty);
   const [status, setStatus] = useState("idle");
   const [errorMessage, setErrorMessage] = useState("");
   const [savedRowIndex, setSavedRowIndex] = useState(null);
@@ -88,7 +102,7 @@ export default function App() {
       if (parsed.error) throw new Error(parsed.error);
       setD((prev) => {
         const merged = { ...prev };
-        for (const key of Object.keys(empty)) {
+        for (const key of Object.keys(prev)) {
           if (parsed[key]) merged[key] = parsed[key];
         }
         return merged;
@@ -126,6 +140,7 @@ export default function App() {
         ...d,
         customerName,
         fullName,
+          fundingDate: d.fundingDate || defaultFundingDate(),
         phone: d.phoneWork.trim() || d.phoneMobile.trim(),
         token: SCRIPT_TOKEN,
       };
@@ -158,7 +173,7 @@ export default function App() {
   };
 
   const reset = () => {
-    setD(empty);
+    setD(createEmpty());
     setStatus("idle");
     setErrorMessage("");
     setSavedRowIndex(null);
@@ -341,7 +356,10 @@ export default function App() {
                         ))}
                       </select>
                     ) : (
-                      <input value={d[f.key]} onChange={(e) => set(f.key, e.target.value)}
+                      <input
+                        type={f.type || "text"}
+                        value={d[f.key]}
+                        onChange={(e) => set(f.key, e.target.value)}
                         placeholder={f.ph || ""}
                         style={{
                           width: "100%", padding: "8px 12px", fontSize: 14, fontFamily: font,

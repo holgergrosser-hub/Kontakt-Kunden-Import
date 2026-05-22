@@ -54,12 +54,12 @@ function doPost(e) {
     values[COL_EMAIL_WORK - 1] = String(params.emailWork || '').trim();
     values[COL_EMAIL_PERSONAL - 1] = String(params.emailPersonal || '').trim();
     values[COL_PROJECT_LEAD - 1] = projectLeader;
-    values[COL_RUNNING_CUSTOMER - 1] = 'Nein';
+    values[COL_RUNNING_CUSTOMER - 1] = 'Ja';
     values[COL_ON_SITE - 1] = 'Nein';
     values[COL_STREET - 1] = String(params.street || '').trim();
     values[COL_CITY - 1] = String(params.city || '').trim();
     values[COL_POSTAL_CODE - 1] = String(params.postalCode || '').trim();
-    values[COL_FUNDING_DATE - 1] = offsetMonths(new Date(), -1);
+    values[COL_FUNDING_DATE - 1] = parseFundingDate(params.fundingDate);
 
     sheet.getRange(rowIndex, 1, 1, values.length).setValues([values]);
 
@@ -94,6 +94,17 @@ function offsetMonths(date, monthOffset) {
   return result;
 }
 
+function parseFundingDate(rawValue) {
+  const value = String(rawValue || '').trim();
+  if (value) {
+    const date = new Date(value + 'T00:00:00');
+    if (!isNaN(date.getTime())) {
+      return date;
+    }
+  }
+  return offsetMonths(new Date(), 5);
+}
+
 function jsonResponse(obj) {
   return ContentService
     .createTextOutput(JSON.stringify(obj))
@@ -113,6 +124,7 @@ function testRun() {
       street: 'Musterstr. 1',
       city: 'Musterstadt',
       postalCode: '12345',
+      fundingDate: '2026-10-22',
     },
   };
   const result = doPost(fake);
