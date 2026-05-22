@@ -37,6 +37,8 @@ Die Felder sind:
 - prefix (Titel wie Dr., Prof.)
 - firstName
 - lastName
+- customerName (Kundenname oder Firmenname)
+- website
 - company
 - jobTitle
 - emailWork
@@ -52,6 +54,8 @@ Die Felder sind:
 
 Lasse unbekannte Felder als leeren String "".
 Formatiere Telefonnummern im internationalen Format +49 ... wenn möglich.
+Wenn ein Firmenname erkennbar ist, setze ihn bevorzugt in customerName.
+Wenn eine URL oder Domain erkennbar ist, setze sie in website.
 
 Text:
 ${text}`,

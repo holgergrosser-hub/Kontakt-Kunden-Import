@@ -1,10 +1,17 @@
 import { useState } from "react";
 
-const SCRIPT_URL =
-  "https://script.google.com/macros/s/AKfycbxcV-wb52T-ju4301RxBwXlZL2w0p3Uw1DxYplDuZbAXNoIRIUGg2XIvHzcd_UEfg8vSw/exec";
+const SCRIPT_URL = import.meta.env.VITE_GAS_URL || "";
+const SCRIPT_TOKEN = import.meta.env.VITE_GAS_TOKEN || "";
+const PROJECT_LEADERS = [
+  "Eudys Guevara",
+  "Stephan Schroeder",
+  "Nina Schroeder",
+  "Holger Grosser",
+];
 
 const empty = {
   prefix: "", firstName: "", lastName: "",
+  customerName: "", website: "", projectLeader: "",
   company: "", jobTitle: "",
   emailWork: "", emailPersonal: "",
   phoneMobile: "", phoneWork: "", phoneFax: "",
@@ -19,8 +26,11 @@ const sections = [
     { key: "lastName", label: "Nachname" },
   ]},
   { title: "Firma", fields: [
+    { key: "customerName", label: "Kundenname" },
     { key: "company", label: "Firma" },
     { key: "jobTitle", label: "Position" },
+    { key: "website", label: "Webseite", ph: "https://..." },
+    { key: "projectLeader", label: "Projektleiter", options: PROJECT_LEADERS },
   ]},
   { title: "Kontakt", fields: [
     { key: "emailWork", label: "E-Mail gesch." },
@@ -45,6 +55,7 @@ const font = "'DM Sans', sans-serif";
 export default function App() {
   const [d, setD] = useState(empty);
   const [status, setStatus] = useState("idle");
+  const [errorMessage, setErrorMessage] = useState("");
   const [open, setOpen] = useState({
     Person: true, Firma: true, Kontakt: true, Adresse: true, Sonstiges: false,
   });
@@ -92,13 +103,50 @@ export default function App() {
   /* ── Send to Google Contacts ── */
   const send = async () => {
     setStatus("sending");
+    setErrorMessage("");
     try {
-      const formData = new FormData();
-      const payload = { ...d, fullName };
-      Object.keys(payload).forEach((k) => formData.append(k, payload[k]));
-      await fetch(SCRIPT_URL, { method: "POST", body: formData });
+      if (!SCRIPT_URL) {
+        throw new Error("VITE_GAS_URL ist nicht gesetzt.");
+      }
+
+      const customerName = d.customerName.trim() || d.company.trim() || fullName.trim();
+      if (!customerName) {
+        throw new Error("Bitte einen Kundennamen eingeben.");
+      }
+      if (!d.projectLeader) {
+        throw new Error("Bitte einen Projektleiter auswählen.");
+      }
+
+      const payload = {
+        ...d,
+        customerName,
+        fullName,
+        phone: d.phoneWork.trim() || d.phoneMobile.trim(),
+        token: SCRIPT_TOKEN,
+      };
+
+      const body = new URLSearchParams();
+      Object.entries(payload).forEach(([key, value]) => {
+        body.append(key, value || "");
+      });
+
+      const response = await fetch(SCRIPT_URL, {
+        method: "POST",
+        body,
+      });
+
+      if (!response.ok) {
+        throw new Error("Apps Script antwortet nicht erfolgreich.");
+      }
+
+      const result = await response.json().catch(() => null);
+      if (result?.status === "error") {
+        throw new Error(result.message || "Fehler beim Speichern in Google Sheets.");
+      }
+
       setStatus("done");
-    } catch {
+    } catch (error) {
+      setErrorMessage(error.message || "Bitte Verbindung prüfen und erneut versuchen.");
       setStatus("error");
     }
   };
@@ -106,6 +154,7 @@ export default function App() {
   const reset = () => {
     setD(empty);
     setStatus("idle");
+    setErrorMessage("");
     setRawText("");
     setShowPaste(true);
     setParseError("");
@@ -115,6 +164,7 @@ export default function App() {
     d.emailWork && { i: "✉", v: d.emailWork },
     d.phoneMobile && { i: "📱", v: d.phoneMobile },
     d.phoneWork && { i: "☎", v: d.phoneWork },
+    d.website && { i: "🌐", v: d.website },
     d.city && { i: "📍", v: `${d.postalCode} ${d.city}`.trim() },
   ].filter(Boolean);
 
@@ -265,6 +315,24 @@ export default function App() {
                         onFocus={(e) => (e.target.style.borderColor = "#6366f1")}
                         onBlur={(e) => (e.target.style.borderColor = "#ebebea")}
                       />
+                    ) : f.options ? (
+                      <select
+                        value={d[f.key]}
+                        onChange={(e) => set(f.key, e.target.value)}
+                        style={{
+                          width: "100%", padding: "8px 12px", fontSize: 14, fontFamily: font,
+                          border: `1.5px solid ${d[f.key] ? "#ebebea" : "#e2e2e0"}`,
+                          borderRadius: 10, background: d[f.key] ? "#fafaf9" : "#fff",
+                          outline: "none", color: "#1a1a1a", boxSizing: "border-box",
+                        }}
+                        onFocus={(e) => (e.target.style.borderColor = "#6366f1")}
+                        onBlur={(e) => (e.target.style.borderColor = "#ebebea")}
+                      >
+                        <option value="">Bitte wählen</option>
+                        {f.options.map((option) => (
+                          <option key={option} value={option}>{option}</option>
+                        ))}
+                      </select>
                     ) : (
                       <input value={d[f.key]} onChange={(e) => set(f.key, e.target.value)}
                         placeholder={f.ph || ""}
@@ -297,9 +365,9 @@ export default function App() {
               display: "flex", alignItems: "center", justifyContent: "center",
               fontSize: 24, color: "#fff",
             }}>✓</div>
-            <div style={{ fontSize: 16, fontWeight: 700, color: "#1a1a1a" }}>Kontakt gesendet</div>
+            <div style={{ fontSize: 16, fontWeight: 700, color: "#1a1a1a" }}>Kontakt gespeichert</div>
             <div style={{ fontSize: 13, color: "#999", marginTop: 4, lineHeight: 1.4 }}>
-              {fullName} wurde an Google Kontakte übermittelt.
+              {(d.customerName || d.company || fullName) || "Der Kontakt"} wurde in die Google-Tabelle geschrieben.
             </div>
             <button onClick={reset} style={{
               marginTop: 16, padding: "8px 28px", border: "1.5px solid #e8e8e6",
@@ -319,7 +387,7 @@ export default function App() {
               fontSize: 22, color: "#fff",
             }}>✕</div>
             <div style={{ fontSize: 16, fontWeight: 700, color: "#1a1a1a" }}>Fehler beim Senden</div>
-            <div style={{ fontSize: 13, color: "#999", marginTop: 4 }}>Bitte Verbindung prüfen und erneut versuchen.</div>
+            <div style={{ fontSize: 13, color: "#999", marginTop: 4 }}>{errorMessage || "Bitte Verbindung prüfen und erneut versuchen."}</div>
             <button onClick={() => setStatus("idle")} style={{
               marginTop: 16, padding: "8px 28px", border: "1.5px solid #e8e8e6",
               borderRadius: 10, background: "none", fontFamily: font, fontSize: 13,
@@ -336,7 +404,7 @@ export default function App() {
             boxShadow: "0 4px 20px rgba(0,0,0,0.10)",
             transition: "background 0.2s",
           }}>
-            {status === "sending" ? "Wird gesendet …" : "In Google Kontakte importieren →"}
+            {status === "sending" ? "Wird gespeichert …" : "In Google Tabelle speichern →"}
           </button>
         )}
       </div>
