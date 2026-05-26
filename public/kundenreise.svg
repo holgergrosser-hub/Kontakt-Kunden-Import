@@ -1,0 +1,188 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1320" font-family="'DM Sans', system-ui, sans-serif">
+  <defs>
+    <linearGradient id="purple" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#4f46e5"/>
+      <stop offset="100%" stop-color="#7c3aed"/>
+    </linearGradient>
+    <linearGradient id="dark" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1f1f1f"/>
+      <stop offset="100%" stop-color="#3a3a3a"/>
+    </linearGradient>
+    <linearGradient id="green" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#22c55e"/>
+      <stop offset="100%" stop-color="#4ade80"/>
+    </linearGradient>
+    <linearGradient id="amber" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f59e0b"/>
+      <stop offset="100%" stop-color="#fbbf24"/>
+    </linearGradient>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#6366f1"/>
+    </marker>
+    <marker id="arrowDash" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#9ca3af"/>
+    </marker>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="3"/>
+      <feOffset dx="0" dy="2" result="off"/>
+      <feComponentTransfer><feFuncA type="linear" slope="0.12"/></feComponentTransfer>
+      <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <rect width="900" height="1320" fill="#f0f0ee"/>
+
+  <!-- Header -->
+  <text x="450" y="56" text-anchor="middle" font-size="26" font-weight="700" fill="#1a1a1a">Ihr Weg zur ISO-9001-Zertifizierung</text>
+  <text x="450" y="84" text-anchor="middle" font-size="14" fill="#6b6b6b">5 Schritte · klare Wahlmöglichkeiten · planbare Investition</text>
+
+  <!-- ───────── Schritt 1 ───────── -->
+  <g transform="translate(0,120)">
+    <circle cx="60" cy="70" r="22" fill="url(#purple)"/>
+    <text x="60" y="76" text-anchor="middle" font-size="18" font-weight="700" fill="#fff">1</text>
+    <text x="100" y="55" font-size="11" font-weight="700" fill="#7c3aed" letter-spacing="1.5">SCHRITT 1</text>
+    <text x="100" y="78" font-size="18" font-weight="700" fill="#1a1a1a">Angebote anfordern</text>
+    <text x="100" y="98" font-size="12" fill="#6b6b6b">Sie erhalten zwei getrennte Angebote – unverbindlich, transparent.</text>
+
+    <!-- Card A: Beratung -->
+    <g filter="url(#shadow)">
+      <rect x="100" y="118" width="340" height="120" rx="16" fill="#fff"/>
+      <rect x="100" y="118" width="6" height="120" rx="3" fill="url(#purple)"/>
+      <text x="124" y="148" font-size="11" font-weight="700" fill="#7c3aed" letter-spacing="1">ANGEBOT A</text>
+      <text x="124" y="172" font-size="17" font-weight="700" fill="#1a1a1a">QM-Beratung</text>
+      <text x="124" y="195" font-size="12" fill="#555">Aufbau Ihres Qualitätsmanagement-</text>
+      <text x="124" y="212" font-size="12" fill="#555">systems bis zur Zertifizierungsreife.</text>
+      <text x="124" y="230" font-size="11" fill="#9ca3af">Festpreis · 3–6 Monate</text>
+    </g>
+
+    <!-- Card B: Zertifizierung -->
+    <g filter="url(#shadow)">
+      <rect x="460" y="118" width="340" height="120" rx="16" fill="#fff"/>
+      <rect x="460" y="118" width="6" height="120" rx="3" fill="url(#dark)"/>
+      <text x="484" y="148" font-size="11" font-weight="700" fill="#1a1a1a" letter-spacing="1">ANGEBOT B</text>
+      <text x="484" y="172" font-size="17" font-weight="700" fill="#1a1a1a">Zertifizierung</text>
+      <text x="484" y="195" font-size="12" fill="#555">Externes Audit durch eine</text>
+      <text x="484" y="212" font-size="12" fill="#555">akkreditierte Zertifizierungsstelle.</text>
+      <text x="484" y="230" font-size="11" fill="#9ca3af">3 Jahre gültig · jährliche Überwachung</text>
+    </g>
+  </g>
+
+  <!-- Verbindungs-Linien zu Schritt 2 -->
+  <path d="M 270,378 C 270,410 450,410 450,440" fill="none" stroke="#6366f1" stroke-width="2"/>
+  <path d="M 630,378 C 630,410 450,410 450,440" fill="none" stroke="#6366f1" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- ───────── Schritt 2 ───────── -->
+  <g transform="translate(0,460)">
+    <circle cx="60" cy="60" r="22" fill="url(#purple)"/>
+    <text x="60" y="66" text-anchor="middle" font-size="18" font-weight="700" fill="#fff">2</text>
+    <text x="100" y="45" font-size="11" font-weight="700" fill="#7c3aed" letter-spacing="1.5">SCHRITT 2</text>
+    <text x="100" y="68" font-size="18" font-weight="700" fill="#1a1a1a">Auftrag QM-Beratung</text>
+
+    <g filter="url(#shadow)">
+      <rect x="100" y="90" width="700" height="74" rx="16" fill="url(#purple)"/>
+      <text x="125" y="120" font-size="14" font-weight="700" fill="#fff">Beratungsvertrag wird unterzeichnet</text>
+      <text x="125" y="142" font-size="12" fill="rgba(255,255,255,0.85)">Kick-off-Termin · Projektplan · fester Ansprechpartner</text>
+      <text x="125" y="158" font-size="11" fill="rgba(255,255,255,0.65)">Förderung über BAFA „Förderung unternehmerischen Know-hows" möglich</text>
+    </g>
+  </g>
+
+  <line x1="450" y1="634" x2="450" y2="676" stroke="#6366f1" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- ───────── Schritt 3 ───────── -->
+  <g transform="translate(0,690)">
+    <circle cx="60" cy="60" r="22" fill="url(#purple)"/>
+    <text x="60" y="66" text-anchor="middle" font-size="18" font-weight="700" fill="#fff">3</text>
+    <text x="100" y="45" font-size="11" font-weight="700" fill="#7c3aed" letter-spacing="1.5">SCHRITT 3</text>
+    <text x="100" y="68" font-size="18" font-weight="700" fill="#1a1a1a">Aufbau QM-System (Beratungsphase)</text>
+
+    <g filter="url(#shadow)">
+      <rect x="100" y="90" width="700" height="160" rx="16" fill="#fff"/>
+
+      <!-- 6 Bausteine in 2 Reihen -->
+      <g font-size="12" fill="#1a1a1a">
+        <g transform="translate(125,118)">
+          <rect width="200" height="48" rx="10" fill="#f5f3ff"/>
+          <text x="16" y="20" font-weight="700" fill="#4f46e5">QM-Handbuch</text>
+          <text x="16" y="36" font-size="10" fill="#6b6b6b">Kapitel 4–10 der ISO 9001</text>
+        </g>
+        <g transform="translate(345,118)">
+          <rect width="200" height="48" rx="10" fill="#f5f3ff"/>
+          <text x="16" y="20" font-weight="700" fill="#4f46e5">Prozessbeschreibungen</text>
+          <text x="16" y="36" font-size="10" fill="#6b6b6b">Kern-, Management-, Support</text>
+        </g>
+        <g transform="translate(565,118)">
+          <rect width="210" height="48" rx="10" fill="#f5f3ff"/>
+          <text x="16" y="20" font-weight="700" fill="#4f46e5">Risikobewertung</text>
+          <text x="16" y="36" font-size="10" fill="#6b6b6b">Chancen &amp; Risiken je Prozess</text>
+        </g>
+
+        <g transform="translate(125,180)">
+          <rect width="200" height="48" rx="10" fill="#f5f3ff"/>
+          <text x="16" y="20" font-weight="700" fill="#4f46e5">Schulung &amp; Nachweise</text>
+          <text x="16" y="36" font-size="10" fill="#6b6b6b">Mitarbeiter werden eingebunden</text>
+        </g>
+        <g transform="translate(345,180)">
+          <rect width="200" height="48" rx="10" fill="#f5f3ff"/>
+          <text x="16" y="20" font-weight="700" fill="#4f46e5">Internes Audit</text>
+          <text x="16" y="36" font-size="10" fill="#6b6b6b">Wir prüfen vor dem Zertifizierer</text>
+        </g>
+        <g transform="translate(565,180)">
+          <rect width="210" height="48" rx="10" fill="#f5f3ff"/>
+          <text x="16" y="20" font-weight="700" fill="#4f46e5">Managementbewertung</text>
+          <text x="16" y="36" font-size="10" fill="#6b6b6b">Ergebnis &amp; Maßnahmenplan</text>
+        </g>
+      </g>
+    </g>
+  </g>
+
+  <line x1="450" y1="950" x2="450" y2="990" stroke="#6366f1" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- ───────── Schritt 4 ───────── -->
+  <g transform="translate(0,1000)">
+    <circle cx="60" cy="60" r="22" fill="url(#green)"/>
+    <text x="60" y="66" text-anchor="middle" font-size="18" font-weight="700" fill="#fff">4</text>
+    <text x="100" y="45" font-size="11" font-weight="700" fill="#16a34a" letter-spacing="1.5">SCHRITT 4 · IHRE WAHL</text>
+    <text x="100" y="68" font-size="18" font-weight="700" fill="#1a1a1a">Zertifizierung durch externe Stelle</text>
+
+    <!-- OR-Badge mittig -->
+    <g transform="translate(427,160)">
+      <circle r="22" fill="#fff" stroke="#d4d4d4" stroke-width="2"/>
+      <text y="5" text-anchor="middle" font-size="12" font-weight="700" fill="#6b6b6b">ODER</text>
+    </g>
+
+    <!-- Onlinecert -->
+    <g filter="url(#shadow)">
+      <rect x="100" y="90" width="305" height="140" rx="16" fill="#fff"/>
+      <rect x="100" y="90" width="6" height="140" rx="3" fill="url(#green)"/>
+      <text x="124" y="120" font-size="11" font-weight="700" fill="#16a34a" letter-spacing="1">OPTION A</text>
+      <text x="124" y="146" font-size="18" font-weight="700" fill="#1a1a1a">Onlinecert</text>
+      <text x="124" y="172" font-size="12" fill="#555">Remote-Audit per Videokonferenz.</text>
+      <text x="124" y="190" font-size="12" fill="#555">Schneller, günstiger, papierarm.</text>
+      <text x="124" y="214" font-size="11" font-weight="700" fill="#16a34a">Empfohlen für KMU</text>
+    </g>
+
+    <!-- TÜV -->
+    <g filter="url(#shadow)">
+      <rect x="495" y="90" width="305" height="140" rx="16" fill="#fff"/>
+      <rect x="495" y="90" width="6" height="140" rx="3" fill="url(#dark)"/>
+      <text x="519" y="120" font-size="11" font-weight="700" fill="#1a1a1a" letter-spacing="1">OPTION B</text>
+      <text x="519" y="146" font-size="18" font-weight="700" fill="#1a1a1a">TÜV</text>
+      <text x="519" y="172" font-size="12" fill="#555">Klassisches Vor-Ort-Audit durch</text>
+      <text x="519" y="190" font-size="12" fill="#555">einen TÜV-Auditor.</text>
+      <text x="519" y="214" font-size="11" font-weight="700" fill="#1a1a1a">Bekannte Marke · höhere Investition</text>
+    </g>
+  </g>
+
+  <line x1="450" y1="1230" x2="450" y2="1262" stroke="#9ca3af" stroke-width="2" stroke-dasharray="6 4" marker-end="url(#arrowDash)"/>
+
+  <!-- ───────── Schritt 5 ───────── -->
+  <g transform="translate(0,1268)">
+    <g filter="url(#shadow)">
+      <rect x="60" y="0" width="780" height="44" rx="14" fill="#fffbeb" stroke="#fde68a" stroke-width="1.5"/>
+      <circle cx="92" cy="22" r="14" fill="url(#amber)"/>
+      <text x="92" y="27" text-anchor="middle" font-size="13" font-weight="700" fill="#fff">5</text>
+      <text x="120" y="20" font-size="12" font-weight="700" fill="#b45309" letter-spacing="1">SCHRITT 5 · OPTIONAL</text>
+      <text x="120" y="36" font-size="13" fill="#1a1a1a">Jährliche Betreuung: Überwachungsaudits vorbereiten, Doku aktuell halten, kontinuierlich verbessern.</text>
+    </g>
+  </g>
+</svg>
