@@ -1,0 +1,340 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ihr Weg zur ISO-9001-Zertifizierung</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f0f0ee;
+    --ink: #1a1a1a;
+    --muted: #6b6b6b;
+    --mute2: #9ca3af;
+    --line: #ebebea;
+    --card: #ffffff;
+    --tint: #f5f3ff;
+    --purple-1: #4f46e5;
+    --purple-2: #7c3aed;
+    --green-1: #22c55e;
+    --green-2: #4ade80;
+    --amber-1: #f59e0b;
+    --amber-2: #fbbf24;
+    --amber-bg: #fffbeb;
+    --amber-bd: #fde68a;
+    --shadow: 0 1px 2px rgba(0,0,0,0.04), 0 8px 24px rgba(0,0,0,0.05);
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    font-family: 'DM Sans', system-ui, -apple-system, sans-serif;
+    color: var(--ink);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+  .page {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 48px 24px 64px;
+  }
+  .head {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+  .head h1 {
+    margin: 0 0 8px;
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+  .head p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 15px;
+  }
+
+  .step {
+    position: relative;
+    padding-left: 64px;
+    margin-bottom: 16px;
+  }
+  .step + .step { margin-top: 16px; }
+  .badge {
+    position: absolute;
+    left: 0;
+    top: 4px;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-weight: 700;
+    font-size: 17px;
+    background: linear-gradient(135deg, var(--purple-1), var(--purple-2));
+  }
+  .badge.green { background: linear-gradient(135deg, var(--green-1), var(--green-2)); }
+  .badge.amber {
+    width: 28px; height: 28px; font-size: 13px;
+    background: linear-gradient(135deg, var(--amber-1), var(--amber-2));
+    top: 8px; left: 8px;
+  }
+  .eyebrow {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    color: var(--purple-2);
+    text-transform: uppercase;
+    margin: 0 0 4px;
+  }
+  .eyebrow.green { color: #16a34a; }
+  .step h2 {
+    margin: 0 0 6px;
+    font-size: 20px;
+    font-weight: 700;
+  }
+  .step .lede {
+    margin: 0 0 16px;
+    color: var(--muted);
+    font-size: 13px;
+  }
+
+  /* Cards */
+  .card {
+    background: var(--card);
+    border-radius: 16px;
+    box-shadow: var(--shadow);
+    padding: 22px 24px;
+    position: relative;
+    overflow: hidden;
+  }
+  .card .bar {
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 6px;
+    background: linear-gradient(135deg, var(--purple-1), var(--purple-2));
+  }
+  .card.dark .bar { background: linear-gradient(135deg, #1f1f1f, #3a3a3a); }
+  .card.green .bar { background: linear-gradient(135deg, var(--green-1), var(--green-2)); }
+  .card .tag {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: var(--purple-2);
+    text-transform: uppercase;
+  }
+  .card.dark .tag { color: var(--ink); }
+  .card.green .tag { color: #16a34a; }
+  .card h3 {
+    margin: 4px 0 8px;
+    font-size: 19px;
+    font-weight: 700;
+  }
+  .card p {
+    margin: 0;
+    color: #555;
+    font-size: 13.5px;
+  }
+  .card .meta {
+    margin-top: 10px;
+    color: var(--mute2);
+    font-size: 12px;
+  }
+
+  /* Hero block (Schritt 2) */
+  .hero {
+    background: linear-gradient(135deg, var(--purple-1), var(--purple-2));
+    color: #fff;
+    border-radius: 16px;
+    padding: 20px 24px;
+    box-shadow: var(--shadow);
+  }
+  .hero h3 { margin: 0 0 6px; font-size: 17px; font-weight: 700; }
+  .hero p { margin: 0; color: rgba(255,255,255,0.85); font-size: 13px; }
+  .hero .fine { margin-top: 6px; color: rgba(255,255,255,0.65); font-size: 11.5px; }
+
+  /* Building blocks grid */
+  .blocks {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    background: var(--card);
+    border-radius: 16px;
+    box-shadow: var(--shadow);
+    padding: 18px;
+  }
+  .block {
+    background: var(--tint);
+    border-radius: 10px;
+    padding: 12px 14px;
+  }
+  .block .ttl {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--purple-1);
+    margin-bottom: 2px;
+  }
+  .block .sub {
+    font-size: 11px;
+    color: var(--muted);
+  }
+
+  /* Choice (Schritt 4) */
+  .choice {
+    display: grid;
+    grid-template-columns: 1fr 56px 1fr;
+    align-items: center;
+    gap: 10px;
+  }
+  .or {
+    width: 44px; height: 44px; border-radius: 50%;
+    background: #fff; border: 2px solid #d4d4d4;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px; font-weight: 700; color: var(--muted);
+    margin: 0 auto;
+  }
+
+  /* Optional band */
+  .optional {
+    position: relative;
+    background: var(--amber-bg);
+    border: 1.5px solid var(--amber-bd);
+    border-radius: 14px;
+    padding: 14px 18px 14px 48px;
+    box-shadow: var(--shadow);
+    margin-top: 8px;
+  }
+  .optional .badge.amber { left: 14px; top: 50%; transform: translateY(-50%); }
+  .optional .eyebrow { color: #b45309; margin-bottom: 2px; font-size: 11px; }
+  .optional .body { font-size: 13px; color: var(--ink); }
+
+  /* Connector arrow between steps */
+  .arrow {
+    height: 36px;
+    margin: 0 auto;
+    width: 2px;
+    background: #c7d2fe;
+    position: relative;
+  }
+  .arrow::after {
+    content: "";
+    position: absolute;
+    bottom: -1px; left: 50%;
+    transform: translateX(-50%);
+    width: 0; height: 0;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 8px solid #6366f1;
+  }
+  .arrow.dashed {
+    background: repeating-linear-gradient(to bottom, #9ca3af 0 6px, transparent 6px 10px);
+  }
+  .arrow.dashed::after { border-top-color: #9ca3af; }
+
+  /* Responsive */
+  @media (max-width: 640px) {
+    .blocks { grid-template-columns: 1fr; }
+    .choice { grid-template-columns: 1fr; }
+    .or { margin: 4px auto; }
+    .head h1 { font-size: 23px; }
+    .page { padding: 32px 16px 48px; }
+  }
+
+  @media print {
+    body { background: #fff; }
+    .arrow { background: #c7d2fe !important; }
+  }
+</style>
+</head>
+<body>
+<main class="page">
+
+  <header class="head">
+    <h1>Ihr Weg zur ISO-9001-Zertifizierung</h1>
+    <p>5 Schritte &middot; klare Wahlmöglichkeiten &middot; planbare Investition</p>
+  </header>
+
+  <!-- Schritt 1 -->
+  <section class="step">
+    <div class="badge">1</div>
+    <p class="eyebrow">Schritt 1</p>
+    <h2>Angebot anfordern</h2>
+    <p class="lede">Sie erhalten ein transparentes Beratungsangebot &ndash; unverbindlich und mit Festpreis.</p>
+    <article class="card">
+      <span class="bar"></span>
+      <span class="tag">Angebot</span>
+      <h3>QM-Beratung</h3>
+      <p>Aufbau Ihres Qualitätsmanagementsystems bis zur Zertifizierungsreife.</p>
+      <div class="meta">Festpreis &middot; 3&ndash;6 Monate</div>
+    </article>
+  </section>
+
+  <div class="arrow"></div>
+
+  <!-- Schritt 2 -->
+  <section class="step">
+    <div class="badge">2</div>
+    <p class="eyebrow">Schritt 2</p>
+    <h2>Auftrag QM-Beratung</h2>
+    <div class="hero">
+      <h3>Beratungsvertrag wird unterzeichnet</h3>
+      <p>Kick-off-Termin &middot; Projektplan &middot; fester Ansprechpartner</p>
+      <div class="fine">Förderung über BAFA &bdquo;Förderung unternehmerischen Know-hows&ldquo; möglich</div>
+    </div>
+  </section>
+
+  <div class="arrow"></div>
+
+  <!-- Schritt 3 -->
+  <section class="step">
+    <div class="badge">3</div>
+    <p class="eyebrow">Schritt 3</p>
+    <h2>Aufbau QM-System (Beratungsphase)</h2>
+    <div class="blocks">
+      <div class="block"><div class="ttl">QM-Handbuch</div><div class="sub">Kapitel 4&ndash;10 der ISO 9001</div></div>
+      <div class="block"><div class="ttl">Prozessbeschreibungen</div><div class="sub">Kern-, Management-, Support</div></div>
+      <div class="block"><div class="ttl">Risikobewertung</div><div class="sub">Chancen &amp; Risiken je Prozess</div></div>
+      <div class="block"><div class="ttl">Schulung &amp; Nachweise</div><div class="sub">Mitarbeiter werden eingebunden</div></div>
+      <div class="block"><div class="ttl">Internes Audit</div><div class="sub">Wir prüfen vor dem Zertifizierer</div></div>
+      <div class="block"><div class="ttl">Managementbewertung</div><div class="sub">Ergebnis &amp; Maßnahmenplan</div></div>
+    </div>
+  </section>
+
+  <div class="arrow"></div>
+
+  <!-- Schritt 4 -->
+  <section class="step">
+    <div class="badge green">4</div>
+    <p class="eyebrow green">Schritt 4 &middot; Ihre Wahl</p>
+    <h2>Zertifizierung durch externe Stelle</h2>
+    <div class="choice">
+      <article class="card green">
+        <span class="bar"></span>
+        <span class="tag">Option A</span>
+        <h3>Onlinecert</h3>
+        <p>Remote-Audit per Videokonferenz. Schneller, günstiger, papierarm.</p>
+      </article>
+      <div class="or">ODER</div>
+      <article class="card dark">
+        <span class="bar"></span>
+        <span class="tag">Option B</span>
+        <h3>TÜV</h3>
+        <p>Klassisches Vor-Ort-Audit durch einen TÜV-Auditor.</p>
+      </article>
+    </div>
+  </section>
+
+  <div class="arrow dashed"></div>
+
+  <!-- Schritt 5 -->
+  <section class="optional">
+    <div class="badge amber">5</div>
+    <p class="eyebrow">Schritt 5 &middot; Optional</p>
+    <div class="body">Jährliche Betreuung: Überwachungsaudits vorbereiten, Doku aktuell halten, kontinuierlich verbessern.</div>
+  </section>
+
+</main>
+</body>
+</html>
