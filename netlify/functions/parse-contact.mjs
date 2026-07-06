@@ -1,3 +1,5 @@
+import { parseContactText } from "../../contact-parser.mjs";
+
 export default async (req) => {
   if (req.method === "OPTIONS") {
     return new Response(null, {
@@ -10,66 +12,9 @@ export default async (req) => {
     });
   }
 
-  const apiKey = process.env.ANTHROPIC_API_KEY;
-  if (!apiKey) {
-    return Response.json({ error: "ANTHROPIC_API_KEY not configured" }, { status: 500 });
-  }
-
   try {
     const { text } = await req.json();
-
-    const res = await fetch("https://api.anthropic.com/v1/messages", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "x-api-key": apiKey,
-        "anthropic-version": "2023-06-01",
-      },
-      body: JSON.stringify({
-        model: "claude-sonnet-5",
-        max_tokens: 1024,
-        messages: [
-          {
-            role: "user",
-            content: `Extrahiere Kontaktdaten aus folgendem Text. Antworte NUR mit einem JSON-Objekt, keine Erklärung, kein Markdown.
-
-Die Felder sind:
-- prefix (Titel wie Dr., Prof.)
-- firstName
-- lastName
-- customerName (Kundenname oder Firmenname)
-- website
-- company
-- jobTitle
-- emailWork
-- emailPersonal
-- phoneMobile
-- phoneWork
-- phoneFax
-- street
-- postalCode
-- city
-- country
-- notes
-
-Lasse unbekannte Felder als leeren String "".
-Formatiere Telefonnummern im internationalen Format +49 ... wenn möglich.
-Wenn ein Firmenname erkennbar ist, setze ihn bevorzugt in customerName.
-Wenn eine URL oder Domain erkennbar ist, setze sie in website.
-
-Text:
-${text}`,
-          },
-        ],
-      }),
-    });
-
-    const data = await res.json();
-    const content = data.content?.[0]?.text || "{}";
-
-    // Parse JSON from response, stripping markdown fences if present
-    const clean = content.replace(/```json\s*|```/g, "").trim();
-    const parsed = JSON.parse(clean);
+    const parsed = await parseContactText(text, process.env.ANTHROPIC_API_KEY);
 
     return Response.json(parsed);
   } catch (err) {

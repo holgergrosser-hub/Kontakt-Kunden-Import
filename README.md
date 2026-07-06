@@ -11,6 +11,24 @@ Kontaktdaten per KI-Texterkennung oder manuell erfassen und als neue Zeile in Go
 
 ## Setup
 
+### Lokal entwickeln
+
+1. Abhaengigkeiten installieren:
+
+```bash
+npm install
+```
+
+2. `.env` oder `.env.local` anlegen und die Werte aus `.env.example` eintragen.
+
+3. Entwicklungsserver starten:
+
+```bash
+npm run dev
+```
+
+Wichtig: Der KI-Import ruft lokal denselben Pfad `/api/parse-contact` auf wie spaeter in Netlify. Im Entwicklungsserver wird dieser Pfad direkt von Vite bereitgestellt; ohne diese API-Antwort lief der KI-Import lokal vorher auf einen 404.
+
 ### 1. GitHub → Netlify verbinden
 
 1. Repo auf GitHub erstellen und Code pushen
