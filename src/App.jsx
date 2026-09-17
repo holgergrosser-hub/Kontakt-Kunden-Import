@@ -97,9 +97,21 @@ export default function App() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ text: rawText }),
       });
-      if (!res.ok) throw new Error("API Fehler");
-      const parsed = await res.json();
-      if (parsed.error) throw new Error(parsed.error);
+      // Antwort immer als JSON lesen, auch bei Fehlerstatus - sonst geht die
+      // eigentliche Fehlermeldung vom Backend (z.B. fehlender API-Key,
+      // Anthropic-Fehler) verloren und es wird nur "API Fehler" angezeigt.
+      const parsed = await res.json().catch(() => ({}));
+      if (!res.ok || parsed.error) {
+        throw new Error(parsed.error || `Fehler bei der KI-Erkennung (Status ${res.status}).`);
+      }
+
+      const anyFieldFound = Object.keys(d).some((key) => parsed[key]);
+      if (!anyFieldFound) {
+        throw new Error(
+          "Es konnten keine Kontaktdaten aus dem Text erkannt werden. Bitte Text prüfen oder Felder manuell ausfüllen."
+        );
+      }
+
       setD((prev) => {
         const merged = { ...prev };
         for (const key of Object.keys(prev)) {
