@@ -86,6 +86,8 @@ Die Apps-Script-Datei schreibt folgende Felder in die Zieltabelle:
 
 ## Anforderungskatalog Zertifikatsverwaltungssystem
 
+**Einstieg:** [docs/zertifikatssystem/START-HIER.md](docs/zertifikatssystem/START-HIER.md) (drei Etappen, heute 30 Minuten).
+
 Der dreistufige Anforderungskatalog (Bedarf, Marktanalyse, Bewertung) für das mandantenfähige Zertifikatssystem nach dem Vorbild virtualbadge liegt unter [docs/zertifikatssystem/anforderungskatalog.md](docs/zertifikatssystem/anforderungskatalog.md).
 
 Ergänzungen:
