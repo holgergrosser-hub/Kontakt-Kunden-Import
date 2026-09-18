@@ -10,7 +10,7 @@ Stand: 18.09.2026 · Verfasser: Claude (Fable) im Auftrag von Holger Grosser · 
 3. Stufe 1: Was brauchen wir (Bedarfsanalyse, Module M1 bis M12)
 4. Stufe 2: Was bieten andere (virtualbadge, Credential-Plattformen, Zertifizierungsstellen-Software, Normen)
 5. Stufe 3: Bewertung (gut für die Verwaltung, top für den Kunden, MoSCoW, Risiken)
-6. Lösungsarchitektur (Datenmodell, Nummernschema, Seite 2, Trigger, Sicherheit)
+6. Lösungsarchitektur (Datenmodell, Nummernschema, Seite 2, Trigger, Systemkarte, Sicherheit)
 7. Roadmap, Phasen und Aufwand
 8. Offene Entscheidungen
 9. Vorschläge zur Optimierung der bestehenden Projekte
@@ -589,7 +589,23 @@ Vorlagen liegen als Google Docs je Mandant × Sprache. Platzhalter im Format `##
 
 Quotenprüfung: 1000 Kunden erzeugen pro Tag im Schnitt weniger als 50 Mails und weniger als 20 PDFs; Reserve gegenüber 1500 Mails und 1500 Docs pro Tag ist zehnfach. Harte Grenze bleibt 6 Minuten je Lauf, daher Checkpoints in `PropertiesService` und Fortsetzungs-Trigger.
 
-### 6.6 Sicherheit und Datenschutz
+### 6.6 Systemkarte (Bilder aus der interaktiven Karte)
+
+Interaktiv mit Zoom in die Abhängigkeiten: [systemkarte.html](systemkarte.html). Die Bilder unten sind Exporte derselben Datenquelle (Stand 18.09.2026); Detailversionen mit allen Pfeilen liegen daneben als `…-detail.svg`.
+
+**Systemlandschaft** (Rollen, Frontends, Backend, Daten, externe Dienste)
+
+![Systemlandschaft](systemkarte-systemlandschaft-uebersicht.svg)
+
+**Datenmodell** (Tabellenblätter und Schlüsselverweise)
+
+![Datenmodell](systemkarte-datenmodell-uebersicht.svg)
+
+**Regelkette** (Phasen A bis G und Querschnitt, Regeln R01 bis R33)
+
+![Regelkette](systemkarte-regelkette-uebersicht.svg)
+
+### 6.7 Sicherheit und Datenschutz
 
 - Alle Geheimnisse in `PropertiesService` (Apps Script) und Netlify-Env. Repo enthält nur `.env.example`.
 - Magic Links: Token = 32 Byte Zufall, Base64url, Ablauf 72 h, Einmalverwendung für Voten, Mehrfachverwendung für Portal bis Ablauf; Token-Hash im Sheet, nie Klartext.

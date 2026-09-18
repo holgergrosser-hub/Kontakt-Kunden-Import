@@ -1,0 +1,159 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 4250 366" width="4250" height="366" font-family="'IBM Plex Sans','Segoe UI',Helvetica,Arial,sans-serif" font-size="12">
+<title>OnlineCert Systemkarte · Regelkette · Übersicht</title>
+<defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#AEB8C4"/></marker></defs>
+<rect width="4250" height="366" fill="#FFFFFF"/>
+<text x="40" y="34" font-size="22" font-weight="600" fill="#1B2430">OnlineCert Systemkarte · Regelkette</text>
+<text x="40" y="56" font-size="12" fill="#5B6675">Übersicht: Gruppen, Bausteine als Liste, gebündelte Pfeile · Stand 18.09.2026 · Quelle: docs/zertifikatssystem/systemkarte.html</text>
+<g transform="translate(40,104)">
+<path d="M380,94 C440,94 430,94 490,94" fill="none" stroke="#AEB8C4" stroke-width="2" stroke-linecap="round" marker-end="url(#a)"/>
+<text x="435" y="89" text-anchor="middle" font-size="10" fill="#5B6675" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">1 Pfeile</text>
+<path d="M870,94 C930,94 920,94 980,94" fill="none" stroke="#AEB8C4" stroke-width="2" stroke-linecap="round" marker-end="url(#a)"/>
+<text x="925" y="89" text-anchor="middle" font-size="10" fill="#5B6675" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">1 Pfeile</text>
+<path d="M1360,94 C1420,94 1410,94 1470,94" fill="none" stroke="#AEB8C4" stroke-width="2" stroke-linecap="round" marker-end="url(#a)"/>
+<text x="1415" y="89" text-anchor="middle" font-size="10" fill="#5B6675" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">1 Pfeile</text>
+<path d="M2030,94 C2090,94 2080,94 2140,94" fill="none" stroke="#AEB8C4" stroke-width="2" stroke-linecap="round" marker-end="url(#a)"/>
+<text x="2085" y="89" text-anchor="middle" font-size="10" fill="#5B6675" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">1 Pfeile</text>
+<path d="M2520,94 C2580,94 2570,94 2630,94" fill="none" stroke="#AEB8C4" stroke-width="2" stroke-linecap="round" marker-end="url(#a)"/>
+<text x="2575" y="89" text-anchor="middle" font-size="10" fill="#5B6675" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">1 Pfeile</text>
+<path d="M2630,94 C2570,94 2580,94 2520,94" fill="none" stroke="#AEB8C4" stroke-width="2" stroke-linecap="round" marker-end="url(#a)"/>
+<text x="2575" y="89" text-anchor="middle" font-size="10" fill="#5B6675" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">1 Pfeile</text>
+<path d="M2520,94 C2820,94 2820,94 3120,94" fill="none" stroke="#AEB8C4" stroke-width="2" stroke-linecap="round" marker-end="url(#a)"/>
+<text x="2820" y="89" text-anchor="middle" font-size="10" fill="#5B6675" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">1 Pfeile</text>
+<path d="M3120,94 C2240,94 2240,94 1360,94" fill="none" stroke="#AEB8C4" stroke-width="2.5" stroke-linecap="round" marker-end="url(#a)"/>
+<text x="2240" y="89" text-anchor="middle" font-size="10" fill="#5B6675" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">2 Pfeile</text>
+<path d="M3120,94 C3060,94 3070,94 3010,94" fill="none" stroke="#AEB8C4" stroke-width="2" stroke-linecap="round" marker-end="url(#a)"/>
+<text x="3065" y="89" text-anchor="middle" font-size="10" fill="#5B6675" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">1 Pfeile</text>
+<path d="M3120,94 C2820,94 2820,94 2520,94" fill="none" stroke="#AEB8C4" stroke-width="2" stroke-linecap="round" marker-end="url(#a)"/>
+<text x="2820" y="89" text-anchor="middle" font-size="10" fill="#5B6675" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">1 Pfeile</text>
+<path d="M3790,94 C2085,94 2085,94 380,94" fill="none" stroke="#AEB8C4" stroke-width="2" stroke-linecap="round" marker-end="url(#a)"/>
+<text x="2085" y="89" text-anchor="middle" font-size="10" fill="#5B6675" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">1 Pfeile</text>
+<rect x="0" y="0" width="380" height="188" rx="14" fill="#F6E3EE" stroke="#8A3F6A" stroke-width="1.4"/>
+<text x="16" y="26" font-size="17" font-weight="600" fill="#1B2430">A · Anfrage bis Auftrag</text>
+<text x="16" y="43" font-size="11.5" fill="#5B6675">Prozessphase · 3 Bausteine</text>
+<circle cx="22" cy="67" r="3" fill="#8A3F6A"/>
+<text x="32" y="71" font-size="12" fill="#1B2430">Anfrage → Angebot</text>
+<text x="32" y="86" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="9.5" fill="#5B6675">R01</text>
+<circle cx="202" cy="67" r="3" fill="#8A3F6A"/>
+<text x="212" y="71" font-size="12" fill="#1B2430">Annahme → Auftrag</text>
+<text x="212" y="86" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="9.5" fill="#5B6675">R02</text>
+<circle cx="22" cy="125" r="3" fill="#8A3F6A"/>
+<text x="32" y="129" font-size="12" fill="#1B2430">Sonderwunsch</text>
+<text x="32" y="144" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="9.5" fill="#5B6675">R03</text>
+<rect x="490" y="0" width="380" height="188" rx="14" fill="#F6E3EE" stroke="#8A3F6A" stroke-width="1.4"/>
+<text x="506" y="26" font-size="17" font-weight="600" fill="#1B2430">B · Unterlagen &amp; Stufe 1</text>
+<text x="506" y="43" font-size="11.5" fill="#5B6675">Prozessphase · 4 Bausteine</text>
+<circle cx="512" cy="67" r="3" fill="#8A3F6A"/>
+<text x="522" y="71" font-size="12" fill="#1B2430">Datei im Drive-Ordner</text>
+<text x="522" y="86" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="9.5" fill="#5B6675">R04</text>
+<circle cx="692" cy="67" r="3" fill="#8A3F6A"/>
+<text x="702" y="71" font-size="12" fill="#1B2430">Checkliste vollständig</text>
+<text x="702" y="86" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="9.5" fill="#5B6675">R05</text>
+<circle cx="512" cy="125" r="3" fill="#8A3F6A"/>
+<text x="522" y="129" font-size="12" fill="#1B2430">Stufe 1 bereit</text>
+<text x="522" y="144" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="9.5" fill="#5B6675">R06</text>
+<circle cx="692" cy="125" r="3" fill="#8A3F6A"/>
+<text x="702" y="129" font-size="12" fill="#1B2430">Stufe 1 nicht bereit</text>
+<text x="702" y="144" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="9.5" fill="#5B6675">R07</text>
+<rect x="980" y="0" width="380" height="188" rx="14" fill="#F6E3EE" stroke="#8A3F6A" stroke-width="1.4"/>
+<text x="996" y="26" font-size="17" font-weight="600" fill="#1B2430">C · Terminierung</text>
+<text x="996" y="43" font-size="11.5" fill="#5B6675">Prozessphase · 3 Bausteine</text>
+<circle cx="1002" cy="67" r="3" fill="#8A3F6A"/>
+<text x="1012" y="71" font-size="12" fill="#1B2430">Auditor vereinbart Term…</text>
+<text x="1012" y="86" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="9.5" fill="#5B6675">R08</text>
+<circle cx="1182" cy="67" r="3" fill="#8A3F6A"/>
+<text x="1192" y="71" font-size="12" fill="#1B2430">Termin eingetragen</text>
+<text x="1192" y="86" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="9.5" fill="#5B6675">R09</text>
+<circle cx="1002" cy="125" r="3" fill="#8A3F6A"/>
+<text x="1012" y="129" font-size="12" fill="#1B2430">Termin ändern</text>
+<text x="1012" y="144" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="9.5" fill="#5B6675">R10</text>
+<rect x="1470" y="0" width="560" height="188" rx="14" fill="#F6E3EE" stroke="#8A3F6A" stroke-width="1.4"/>
+<text x="1486" y="26" font-size="17" font-weight="600" fill="#1B2430">D · Audit &amp; Bericht</text>
+<text x="1486" y="43" font-size="11.5" fill="#5B6675">Prozessphase · 6 Bausteine</text>
+<circle cx="1492" cy="67" r="3" fill="#8A3F6A"/>
+<text x="1502" y="71" font-size="12" fill="#1B2430">Audittermin erreicht</text>
+<text x="1502" y="86" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="9.5" fill="#5B6675">R11</text>
+<circle cx="1672" cy="67" r="3" fill="#8A3F6A"/>
+<text x="1682" y="71" font-size="12" fill="#1B2430">Audit abschließen</text>
+<text x="1682" y="86" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="9.5" fill="#5B6675">R12</text>
+<circle cx="1852" cy="67" r="3" fill="#8A3F6A"/>
+<text x="1862" y="71" font-size="12" fill="#1B2430">Bericht frei, keine Hau…</text>
+<text x="1862" y="86" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="9.5" fill="#5B6675">R13</text>
+<circle cx="1492" cy="125" r="3" fill="#8A3F6A"/>
+<text x="1502" y="129" font-size="12" fill="#1B2430">Bericht frei, mit Abwei…</text>
+<text x="1502" y="144" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="9.5" fill="#5B6675">R14</text>
+<circle cx="1672" cy="125" r="3" fill="#8A3F6A"/>
+<text x="1682" y="129" font-size="12" fill="#1B2430">Nachweis hochgeladen</text>
+<text x="1682" y="144" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="9.5" fill="#5B6675">R15</text>
+<circle cx="1852" cy="125" r="3" fill="#8A3F6A"/>
+<text x="1862" y="129" font-size="12" fill="#1B2430">Hauptabweichungen gesch…</text>
+<text x="1862" y="144" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="9.5" fill="#5B6675">R16</text>
+<rect x="2140" y="0" width="380" height="188" rx="14" fill="#F6E3EE" stroke="#8A3F6A" stroke-width="1.4"/>
+<text x="2156" y="26" font-size="17" font-weight="600" fill="#1B2430">E · Entscheidung &amp; Zertifikat</text>
+<text x="2156" y="43" font-size="11.5" fill="#5B6675">Prozessphase · 4 Bausteine</text>
+<circle cx="2162" cy="67" r="3" fill="#8A3F6A"/>
+<text x="2172" y="71" font-size="12" fill="#1B2430">Ausschussvorgang</text>
+<text x="2172" y="86" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="9.5" fill="#5B6675">R17</text>
+<circle cx="2342" cy="67" r="3" fill="#8A3F6A"/>
+<text x="2352" y="71" font-size="12" fill="#1B2430">Quorum positiv</text>
+<text x="2352" y="86" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="9.5" fill="#5B6675">R18</text>
+<circle cx="2162" cy="125" r="3" fill="#8A3F6A"/>
+<text x="2172" y="129" font-size="12" fill="#1B2430">Quorum negativ / Rückfr…</text>
+<text x="2172" y="144" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="9.5" fill="#5B6675">R19</text>
+<circle cx="2342" cy="125" r="3" fill="#8A3F6A"/>
+<text x="2352" y="129" font-size="12" fill="#1B2430">Zertifikat versendet</text>
+<text x="2352" y="144" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="9.5" fill="#5B6675">R20</text>
+<rect x="2630" y="0" width="380" height="188" rx="14" fill="#F6E3EE" stroke="#8A3F6A" stroke-width="1.4"/>
+<text x="2646" y="26" font-size="17" font-weight="600" fill="#1B2430">F · Geldfluss (Billomat)</text>
+<text x="2646" y="43" font-size="11.5" fill="#5B6675">Prozessphase · 3 Bausteine</text>
+<circle cx="2652" cy="67" r="3" fill="#8A3F6A"/>
+<text x="2662" y="71" font-size="12" fill="#1B2430">Rechnungstermin</text>
+<text x="2662" y="86" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="9.5" fill="#5B6675">R21</text>
+<circle cx="2832" cy="67" r="3" fill="#8A3F6A"/>
+<text x="2842" y="71" font-size="12" fill="#1B2430">Zahlung gebucht</text>
+<text x="2842" y="86" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="9.5" fill="#5B6675">R22</text>
+<circle cx="2652" cy="125" r="3" fill="#8A3F6A"/>
+<text x="2662" y="129" font-size="12" fill="#1B2430">60 Tage überfällig</text>
+<text x="2662" y="144" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="9.5" fill="#5B6675">R23</text>
+<rect x="3120" y="0" width="560" height="188" rx="14" fill="#F6E3EE" stroke="#8A3F6A" stroke-width="1.4"/>
+<text x="3136" y="26" font-size="17" font-weight="600" fill="#1B2430">G · Überwachung &amp; Rezert</text>
+<text x="3136" y="43" font-size="11.5" fill="#5B6675">Prozessphase · 6 Bausteine</text>
+<circle cx="3142" cy="67" r="3" fill="#8A3F6A"/>
+<text x="3152" y="71" font-size="12" fill="#1B2430">ÜA fällig in 120 Tagen</text>
+<text x="3152" y="86" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="9.5" fill="#5B6675">R24</text>
+<circle cx="3322" cy="67" r="3" fill="#8A3F6A"/>
+<text x="3332" y="71" font-size="12" fill="#1B2430">ÜA durchgeführt</text>
+<text x="3332" y="86" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="9.5" fill="#5B6675">R25</text>
+<circle cx="3502" cy="67" r="3" fill="#8A3F6A"/>
+<text x="3512" y="71" font-size="12" fill="#1B2430">ÜA-Frist überschritten</text>
+<text x="3512" y="86" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="9.5" fill="#5B6675">R26</text>
+<circle cx="3142" cy="125" r="3" fill="#8A3F6A"/>
+<text x="3152" y="129" font-size="12" fill="#1B2430">Rezert fällig in 180 Ta…</text>
+<text x="3152" y="144" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="9.5" fill="#5B6675">R27</text>
+<circle cx="3322" cy="125" r="3" fill="#8A3F6A"/>
+<text x="3332" y="129" font-size="12" fill="#1B2430">Rezert positiv</text>
+<text x="3332" y="144" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="9.5" fill="#5B6675">R28</text>
+<circle cx="3502" cy="125" r="3" fill="#8A3F6A"/>
+<text x="3512" y="129" font-size="12" fill="#1B2430">Gültig-bis ohne Rezert</text>
+<text x="3512" y="144" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="9.5" fill="#5B6675">R29</text>
+<rect x="3790" y="0" width="380" height="188" rx="14" fill="#ECE5F9" stroke="#6D4BB5" stroke-width="1.4"/>
+<text x="3806" y="26" font-size="17" font-weight="600" fill="#1B2430">Querschnitt</text>
+<text x="3806" y="43" font-size="11.5" fill="#5B6675">Daten (Google Workspace) · 4 Bausteine</text>
+<circle cx="3812" cy="67" r="3" fill="#6D4BB5"/>
+<text x="3822" y="71" font-size="12" fill="#1B2430">Mail-Bounce</text>
+<text x="3822" y="86" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="9.5" fill="#5B6675">R30</text>
+<circle cx="3992" cy="67" r="3" fill="#6D4BB5"/>
+<text x="4002" y="71" font-size="12" fill="#1B2430">Kunde antwortet auf Sys…</text>
+<text x="4002" y="86" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="9.5" fill="#5B6675">R31</text>
+<circle cx="3812" cy="125" r="3" fill="#6D4BB5"/>
+<text x="3822" y="129" font-size="12" fill="#1B2430">Standort/Name geändert</text>
+<text x="3822" y="144" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="9.5" fill="#5B6675">R32</text>
+<circle cx="3992" cy="125" r="3" fill="#6D4BB5"/>
+<text x="4002" y="129" font-size="12" fill="#1B2430">Trigger-Fehler</text>
+<text x="4002" y="144" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="9.5" fill="#5B6675">R33</text>
+</g>
+<rect x="40" y="320" width="10" height="10" rx="2" fill="#8A3F6A"/>
+<text x="55" y="329" font-size="11" fill="#5B6675">Prozessphase</text>
+<rect x="151.4" y="320" width="10" height="10" rx="2" fill="#6D4BB5"/>
+<text x="166.4" y="329" font-size="11" fill="#5B6675">Daten (Google Workspace)</text>
+<text x="337.20000000000005" y="329" font-size="11" fill="#5B6675">Pfeil = Abhängigkeit / löst aus</text>
+</svg>

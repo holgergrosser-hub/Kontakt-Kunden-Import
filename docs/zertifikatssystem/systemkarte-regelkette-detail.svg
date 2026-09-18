@@ -1,0 +1,207 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 4250 366" width="4250" height="366" font-family="'IBM Plex Sans','Segoe UI',Helvetica,Arial,sans-serif" font-size="12">
+<title>OnlineCert Systemkarte · Regelkette · Detail</title>
+<defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#AEB8C4"/></marker></defs>
+<rect width="4250" height="366" fill="#FFFFFF"/>
+<text x="40" y="34" font-size="22" font-weight="600" fill="#1B2430">OnlineCert Systemkarte · Regelkette</text>
+<text x="40" y="56" font-size="12" fill="#5B6675">Detail: alle Bausteine und Abhängigkeiten · Stand 18.09.2026 · Quelle: docs/zertifikatssystem/systemkarte.html</text>
+<g transform="translate(40,104)">
+<rect x="0" y="0" width="380" height="188" rx="14" fill="#F6E3EE" stroke="#8A3F6A" stroke-width="1.2"/>
+<text x="16" y="24" font-size="15" font-weight="600" fill="#1B2430">A · Anfrage bis Auftrag</text>
+<text x="16" y="41" font-size="11.5" fill="#5B6675">Prozessphase</text>
+<rect x="490" y="0" width="380" height="188" rx="14" fill="#F6E3EE" stroke="#8A3F6A" stroke-width="1.2"/>
+<text x="506" y="24" font-size="15" font-weight="600" fill="#1B2430">B · Unterlagen &amp; Stufe 1</text>
+<text x="506" y="41" font-size="11.5" fill="#5B6675">Prozessphase</text>
+<rect x="980" y="0" width="380" height="188" rx="14" fill="#F6E3EE" stroke="#8A3F6A" stroke-width="1.2"/>
+<text x="996" y="24" font-size="15" font-weight="600" fill="#1B2430">C · Terminierung</text>
+<text x="996" y="41" font-size="11.5" fill="#5B6675">Prozessphase</text>
+<rect x="1470" y="0" width="560" height="188" rx="14" fill="#F6E3EE" stroke="#8A3F6A" stroke-width="1.2"/>
+<text x="1486" y="24" font-size="15" font-weight="600" fill="#1B2430">D · Audit &amp; Bericht</text>
+<text x="1486" y="41" font-size="11.5" fill="#5B6675">Prozessphase</text>
+<rect x="2140" y="0" width="380" height="188" rx="14" fill="#F6E3EE" stroke="#8A3F6A" stroke-width="1.2"/>
+<text x="2156" y="24" font-size="15" font-weight="600" fill="#1B2430">E · Entscheidung &amp; Zertifikat</text>
+<text x="2156" y="41" font-size="11.5" fill="#5B6675">Prozessphase</text>
+<rect x="2630" y="0" width="380" height="188" rx="14" fill="#F6E3EE" stroke="#8A3F6A" stroke-width="1.2"/>
+<text x="2646" y="24" font-size="15" font-weight="600" fill="#1B2430">F · Geldfluss (Billomat)</text>
+<text x="2646" y="41" font-size="11.5" fill="#5B6675">Prozessphase</text>
+<rect x="3120" y="0" width="560" height="188" rx="14" fill="#F6E3EE" stroke="#8A3F6A" stroke-width="1.2"/>
+<text x="3136" y="24" font-size="15" font-weight="600" fill="#1B2430">G · Überwachung &amp; Rezert</text>
+<text x="3136" y="41" font-size="11.5" fill="#5B6675">Prozessphase</text>
+<rect x="3790" y="0" width="380" height="188" rx="14" fill="#ECE5F9" stroke="#6D4BB5" stroke-width="1.2"/>
+<text x="3806" y="24" font-size="15" font-weight="600" fill="#1B2430">Querschnitt</text>
+<text x="3806" y="41" font-size="11.5" fill="#5B6675">Daten (Google Workspace)</text>
+<path d="M184,75 C224,75 156,75 196,75" fill="none" stroke="#AEB8C4" stroke-width="1.2" marker-end="url(#a)"/>
+<text x="190" y="71" text-anchor="middle" font-size="10" fill="#5B6675" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">Annahme</text>
+<path d="M100,98 C100,128 100,80 100,110" fill="none" stroke="#AEB8C4" stroke-width="1.2" marker-end="url(#a)"/>
+<text x="100" y="100" text-anchor="middle" font-size="10" fill="#5B6675" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">Freitext</text>
+<path d="M364,75 C435,75 435,75 506,75" fill="none" stroke="#AEB8C4" stroke-width="1.2" marker-end="url(#a)"/>
+<text x="435" y="71" text-anchor="middle" font-size="10" fill="#5B6675" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">Checkliste</text>
+<path d="M674,75 C714,75 646,75 686,75" fill="none" stroke="#AEB8C4" stroke-width="1.2" marker-end="url(#a)"/>
+<text x="680" y="71" text-anchor="middle" font-size="10" fill="#5B6675" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">vollständig</text>
+<path d="M686,75 C646,75 714,133 674,133" fill="none" stroke="#AEB8C4" stroke-width="1.2" marker-end="url(#a)"/>
+<text x="680" y="100" text-anchor="middle" font-size="10" fill="#5B6675" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">bereit</text>
+<path d="M770,98 C770,128 770,80 770,110" fill="none" stroke="#AEB8C4" stroke-width="1.2" marker-end="url(#a)"/>
+<text x="770" y="100" text-anchor="middle" font-size="10" fill="#5B6675" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">nicht bereit</text>
+<path d="M686,133 C646,133 714,75 674,75" fill="none" stroke="#AEB8C4" stroke-width="1.2" marker-end="url(#a)"/>
+<text x="680" y="100" text-anchor="middle" font-size="10" fill="#5B6675" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">Upload</text>
+<path d="M674,133 C835,133 835,75 996,75" fill="none" stroke="#AEB8C4" stroke-width="1.2" marker-end="url(#a)"/>
+<path d="M1164,75 C1204,75 1136,75 1176,75" fill="none" stroke="#AEB8C4" stroke-width="1.2" marker-end="url(#a)"/>
+<text x="1170" y="71" text-anchor="middle" font-size="10" fill="#5B6675" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">Eintrag</text>
+<path d="M1176,75 C1136,75 1204,133 1164,133" fill="none" stroke="#AEB8C4" stroke-width="1.2" marker-end="url(#a)"/>
+<text x="1170" y="100" text-anchor="middle" font-size="10" fill="#5B6675" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">ändern</text>
+<path d="M1080,110 C1080,80 1080,128 1080,98" fill="none" stroke="#AEB8C4" stroke-width="1.2" marker-end="url(#a)"/>
+<path d="M1344,75 C1415,75 1415,75 1486,75" fill="none" stroke="#AEB8C4" stroke-width="1.2" marker-end="url(#a)"/>
+<text x="1415" y="71" text-anchor="middle" font-size="10" fill="#5B6675" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">Termin</text>
+<path d="M1654,75 C1694,75 1626,75 1666,75" fill="none" stroke="#AEB8C4" stroke-width="1.2" marker-end="url(#a)"/>
+<text x="1660" y="71" text-anchor="middle" font-size="10" fill="#5B6675" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">abschließen</text>
+<path d="M1834,75 C1874,75 1806,75 1846,75" fill="none" stroke="#AEB8C4" stroke-width="1.2" marker-end="url(#a)"/>
+<text x="1840" y="71" text-anchor="middle" font-size="10" fill="#5B6675" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">ohne Haupt</text>
+<path d="M1666,75 C1626,75 1694,133 1654,133" fill="none" stroke="#AEB8C4" stroke-width="1.2" marker-end="url(#a)"/>
+<text x="1660" y="100" text-anchor="middle" font-size="10" fill="#5B6675" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">mit Abw.</text>
+<path d="M1654,133 C1694,133 1626,133 1666,133" fill="none" stroke="#AEB8C4" stroke-width="1.2" marker-end="url(#a)"/>
+<text x="1660" y="129" text-anchor="middle" font-size="10" fill="#5B6675" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">Nachweis</text>
+<path d="M1834,133 C1874,133 1806,133 1846,133" fill="none" stroke="#AEB8C4" stroke-width="1.2" marker-end="url(#a)"/>
+<text x="1840" y="129" text-anchor="middle" font-size="10" fill="#5B6675" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">akzeptiert</text>
+<path d="M1930,110 C1930,80 1930,128 1930,98" fill="none" stroke="#AEB8C4" stroke-width="1.2" marker-end="url(#a)"/>
+<path d="M2014,75 C2085,75 2085,75 2156,75" fill="none" stroke="#AEB8C4" stroke-width="1.2" marker-end="url(#a)"/>
+<path d="M2324,75 C2364,75 2296,75 2336,75" fill="none" stroke="#AEB8C4" stroke-width="1.2" marker-end="url(#a)"/>
+<text x="2330" y="71" text-anchor="middle" font-size="10" fill="#5B6675" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">positiv</text>
+<path d="M2240,98 C2240,128 2240,80 2240,110" fill="none" stroke="#AEB8C4" stroke-width="1.2" marker-end="url(#a)"/>
+<text x="2240" y="100" text-anchor="middle" font-size="10" fill="#5B6675" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">negativ</text>
+<path d="M2420,98 C2420,128 2420,80 2420,110" fill="none" stroke="#AEB8C4" stroke-width="1.2" marker-end="url(#a)"/>
+<path d="M2504,75 C2575,75 2575,75 2646,75" fill="none" stroke="#AEB8C4" stroke-width="1.2" marker-end="url(#a)"/>
+<text x="2575" y="71" text-anchor="middle" font-size="10" fill="#5B6675" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">Erstrechnung</text>
+<path d="M2814,75 C2854,75 2786,75 2826,75" fill="none" stroke="#AEB8C4" stroke-width="1.2" marker-end="url(#a)"/>
+<text x="2820" y="71" text-anchor="middle" font-size="10" fill="#5B6675" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">Zahlung</text>
+<path d="M2730,98 C2730,128 2730,80 2730,110" fill="none" stroke="#AEB8C4" stroke-width="1.2" marker-end="url(#a)"/>
+<text x="2730" y="100" text-anchor="middle" font-size="10" fill="#5B6675" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">überfällig</text>
+<path d="M2826,75 C2665,75 2665,75 2504,75" fill="none" stroke="#AEB8C4" stroke-width="1.2" marker-end="url(#a)"/>
+<text x="2665" y="71" text-anchor="middle" font-size="10" fill="#5B6675" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">freigeben</text>
+<path d="M2504,133 C2820,133 2820,75 3136,75" fill="none" stroke="#AEB8C4" stroke-width="1.2" marker-end="url(#a)"/>
+<text x="2820" y="100" text-anchor="middle" font-size="10" fill="#5B6675" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">ÜA1 setzen</text>
+<path d="M3136,75 C2150,75 2150,75 1164,75" fill="none" stroke="#AEB8C4" stroke-width="1.2" marker-end="url(#a)"/>
+<text x="2150" y="71" text-anchor="middle" font-size="10" fill="#5B6675" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">Termin</text>
+<path d="M3304,75 C3344,75 3276,75 3316,75" fill="none" stroke="#AEB8C4" stroke-width="1.2" marker-end="url(#a)"/>
+<text x="3310" y="71" text-anchor="middle" font-size="10" fill="#5B6675" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">durchgeführt</text>
+<path d="M3304,75 C3400,75 3400,75 3496,75" fill="none" stroke="#AEB8C4" stroke-width="1.2" marker-end="url(#a)"/>
+<text x="3400" y="71" text-anchor="middle" font-size="10" fill="#5B6675" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">überschritten</text>
+<path d="M3316,75 C3065,75 3065,75 2814,75" fill="none" stroke="#AEB8C4" stroke-width="1.2" marker-end="url(#a)"/>
+<text x="3065" y="71" text-anchor="middle" font-size="10" fill="#5B6675" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">ÜA-Rechnung</text>
+<path d="M3316,75 C3276,75 3344,133 3304,133" fill="none" stroke="#AEB8C4" stroke-width="1.2" marker-end="url(#a)"/>
+<text x="3310" y="100" text-anchor="middle" font-size="10" fill="#5B6675" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">Jahr 3</text>
+<path d="M3136,133 C2150,133 2150,75 1164,75" fill="none" stroke="#AEB8C4" stroke-width="1.2" marker-end="url(#a)"/>
+<path d="M3304,133 C3344,133 3276,133 3316,133" fill="none" stroke="#AEB8C4" stroke-width="1.2" marker-end="url(#a)"/>
+<text x="3310" y="129" text-anchor="middle" font-size="10" fill="#5B6675" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">positiv</text>
+<path d="M3304,133 C3400,133 3400,133 3496,133" fill="none" stroke="#AEB8C4" stroke-width="1.2" marker-end="url(#a)"/>
+<text x="3400" y="129" text-anchor="middle" font-size="10" fill="#5B6675" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">keine Rezert</text>
+<path d="M3316,133 C2910,133 2910,133 2504,133" fill="none" stroke="#AEB8C4" stroke-width="1.2" marker-end="url(#a)"/>
+<path d="M3806,133 C1995,133 1995,75 184,75" fill="none" stroke="#AEB8C4" stroke-width="1.2" marker-end="url(#a)"/>
+<text x="1995" y="100" text-anchor="middle" font-size="10" fill="#5B6675" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">Angebot</text>
+<path d="M3986,75 C3946,75 4014,133 3974,133" fill="none" stroke="#AEB8C4" stroke-width="1.2" marker-end="url(#a)"/>
+<text x="3980" y="100" text-anchor="middle" font-size="10" fill="#5B6675" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">Standort</text>
+<path d="M3974,75 C4014,75 3946,75 3986,75" fill="none" stroke="#AEB8C4" stroke-width="1.2" marker-end="url(#a)"/>
+<rect x="16" y="52" width="168" height="46" rx="8" fill="#FFFFFF" stroke="#8A3F6A" stroke-width="1.2"/>
+<text x="26" y="71" font-size="11.5" fill="#1B2430">Anfrage → Angebot</text>
+<text x="26" y="87" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="10" fill="#5B6675">R01</text>
+<rect x="196" y="52" width="168" height="46" rx="8" fill="#FFFFFF" stroke="#8A3F6A" stroke-width="1.2"/>
+<text x="206" y="71" font-size="11.5" fill="#1B2430">Annahme → Auftrag</text>
+<text x="206" y="87" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="10" fill="#5B6675">R02</text>
+<rect x="16" y="110" width="168" height="46" rx="8" fill="#FFFFFF" stroke="#8A3F6A" stroke-width="1.2"/>
+<text x="26" y="129" font-size="11.5" fill="#1B2430">Sonderwunsch</text>
+<text x="26" y="145" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="10" fill="#5B6675">R03</text>
+<rect x="506" y="52" width="168" height="46" rx="8" fill="#FFFFFF" stroke="#8A3F6A" stroke-width="1.2"/>
+<text x="516" y="71" font-size="11.5" fill="#1B2430">Datei im Drive-Ordner</text>
+<text x="516" y="87" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="10" fill="#5B6675">R04</text>
+<rect x="686" y="52" width="168" height="46" rx="8" fill="#FFFFFF" stroke="#8A3F6A" stroke-width="1.2"/>
+<text x="696" y="71" font-size="11.5" fill="#1B2430">Checkliste vollständig</text>
+<text x="696" y="87" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="10" fill="#5B6675">R05</text>
+<rect x="506" y="110" width="168" height="46" rx="8" fill="#FFFFFF" stroke="#8A3F6A" stroke-width="1.2"/>
+<text x="516" y="129" font-size="11.5" fill="#1B2430">Stufe 1 bereit</text>
+<text x="516" y="145" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="10" fill="#5B6675">R06</text>
+<rect x="686" y="110" width="168" height="46" rx="8" fill="#FFFFFF" stroke="#8A3F6A" stroke-width="1.2"/>
+<text x="696" y="129" font-size="11.5" fill="#1B2430">Stufe 1 nicht bereit</text>
+<text x="696" y="145" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="10" fill="#5B6675">R07</text>
+<rect x="996" y="52" width="168" height="46" rx="8" fill="#FFFFFF" stroke="#8A3F6A" stroke-width="1.2"/>
+<text x="1006" y="71" font-size="11.5" fill="#1B2430">Auditor vereinbart Term…</text>
+<text x="1006" y="87" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="10" fill="#5B6675">R08</text>
+<rect x="1176" y="52" width="168" height="46" rx="8" fill="#FFFFFF" stroke="#8A3F6A" stroke-width="1.2"/>
+<text x="1186" y="71" font-size="11.5" fill="#1B2430">Termin eingetragen</text>
+<text x="1186" y="87" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="10" fill="#5B6675">R09</text>
+<rect x="996" y="110" width="168" height="46" rx="8" fill="#FFFFFF" stroke="#8A3F6A" stroke-width="1.2"/>
+<text x="1006" y="129" font-size="11.5" fill="#1B2430">Termin ändern</text>
+<text x="1006" y="145" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="10" fill="#5B6675">R10</text>
+<rect x="1486" y="52" width="168" height="46" rx="8" fill="#FFFFFF" stroke="#8A3F6A" stroke-width="1.2"/>
+<text x="1496" y="71" font-size="11.5" fill="#1B2430">Audittermin erreicht</text>
+<text x="1496" y="87" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="10" fill="#5B6675">R11</text>
+<rect x="1666" y="52" width="168" height="46" rx="8" fill="#FFFFFF" stroke="#8A3F6A" stroke-width="1.2"/>
+<text x="1676" y="71" font-size="11.5" fill="#1B2430">Audit abschließen</text>
+<text x="1676" y="87" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="10" fill="#5B6675">R12</text>
+<rect x="1846" y="52" width="168" height="46" rx="8" fill="#FFFFFF" stroke="#8A3F6A" stroke-width="1.2"/>
+<text x="1856" y="71" font-size="11.5" fill="#1B2430">Bericht frei, keine Hau…</text>
+<text x="1856" y="87" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="10" fill="#5B6675">R13</text>
+<rect x="1486" y="110" width="168" height="46" rx="8" fill="#FFFFFF" stroke="#8A3F6A" stroke-width="1.2"/>
+<text x="1496" y="129" font-size="11.5" fill="#1B2430">Bericht frei, mit Abwei…</text>
+<text x="1496" y="145" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="10" fill="#5B6675">R14</text>
+<rect x="1666" y="110" width="168" height="46" rx="8" fill="#FFFFFF" stroke="#8A3F6A" stroke-width="1.2"/>
+<text x="1676" y="129" font-size="11.5" fill="#1B2430">Nachweis hochgeladen</text>
+<text x="1676" y="145" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="10" fill="#5B6675">R15</text>
+<rect x="1846" y="110" width="168" height="46" rx="8" fill="#FFFFFF" stroke="#8A3F6A" stroke-width="1.2"/>
+<text x="1856" y="129" font-size="11.5" fill="#1B2430">Hauptabweichungen gesch…</text>
+<text x="1856" y="145" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="10" fill="#5B6675">R16</text>
+<rect x="2156" y="52" width="168" height="46" rx="8" fill="#FFFFFF" stroke="#8A3F6A" stroke-width="1.2"/>
+<text x="2166" y="71" font-size="11.5" fill="#1B2430">Ausschussvorgang</text>
+<text x="2166" y="87" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="10" fill="#5B6675">R17</text>
+<rect x="2336" y="52" width="168" height="46" rx="8" fill="#FFFFFF" stroke="#8A3F6A" stroke-width="1.2"/>
+<text x="2346" y="71" font-size="11.5" fill="#1B2430">Quorum positiv</text>
+<text x="2346" y="87" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="10" fill="#5B6675">R18</text>
+<rect x="2156" y="110" width="168" height="46" rx="8" fill="#FFFFFF" stroke="#8A3F6A" stroke-width="1.2"/>
+<text x="2166" y="129" font-size="11.5" fill="#1B2430">Quorum negativ / Rückfr…</text>
+<text x="2166" y="145" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="10" fill="#5B6675">R19</text>
+<rect x="2336" y="110" width="168" height="46" rx="8" fill="#FFFFFF" stroke="#8A3F6A" stroke-width="1.2"/>
+<text x="2346" y="129" font-size="11.5" fill="#1B2430">Zertifikat versendet</text>
+<text x="2346" y="145" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="10" fill="#5B6675">R20</text>
+<rect x="2646" y="52" width="168" height="46" rx="8" fill="#FFFFFF" stroke="#8A3F6A" stroke-width="1.2"/>
+<text x="2656" y="71" font-size="11.5" fill="#1B2430">Rechnungstermin</text>
+<text x="2656" y="87" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="10" fill="#5B6675">R21</text>
+<rect x="2826" y="52" width="168" height="46" rx="8" fill="#FFFFFF" stroke="#8A3F6A" stroke-width="1.2"/>
+<text x="2836" y="71" font-size="11.5" fill="#1B2430">Zahlung gebucht</text>
+<text x="2836" y="87" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="10" fill="#5B6675">R22</text>
+<rect x="2646" y="110" width="168" height="46" rx="8" fill="#FFFFFF" stroke="#8A3F6A" stroke-width="1.2"/>
+<text x="2656" y="129" font-size="11.5" fill="#1B2430">60 Tage überfällig</text>
+<text x="2656" y="145" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="10" fill="#5B6675">R23</text>
+<rect x="3136" y="52" width="168" height="46" rx="8" fill="#FFFFFF" stroke="#8A3F6A" stroke-width="1.2"/>
+<text x="3146" y="71" font-size="11.5" fill="#1B2430">ÜA fällig in 120 Tagen</text>
+<text x="3146" y="87" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="10" fill="#5B6675">R24</text>
+<rect x="3316" y="52" width="168" height="46" rx="8" fill="#FFFFFF" stroke="#8A3F6A" stroke-width="1.2"/>
+<text x="3326" y="71" font-size="11.5" fill="#1B2430">ÜA durchgeführt</text>
+<text x="3326" y="87" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="10" fill="#5B6675">R25</text>
+<rect x="3496" y="52" width="168" height="46" rx="8" fill="#FFFFFF" stroke="#8A3F6A" stroke-width="1.2"/>
+<text x="3506" y="71" font-size="11.5" fill="#1B2430">ÜA-Frist überschritten</text>
+<text x="3506" y="87" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="10" fill="#5B6675">R26</text>
+<rect x="3136" y="110" width="168" height="46" rx="8" fill="#FFFFFF" stroke="#8A3F6A" stroke-width="1.2"/>
+<text x="3146" y="129" font-size="11.5" fill="#1B2430">Rezert fällig in 180 Ta…</text>
+<text x="3146" y="145" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="10" fill="#5B6675">R27</text>
+<rect x="3316" y="110" width="168" height="46" rx="8" fill="#FFFFFF" stroke="#8A3F6A" stroke-width="1.2"/>
+<text x="3326" y="129" font-size="11.5" fill="#1B2430">Rezert positiv</text>
+<text x="3326" y="145" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="10" fill="#5B6675">R28</text>
+<rect x="3496" y="110" width="168" height="46" rx="8" fill="#FFFFFF" stroke="#8A3F6A" stroke-width="1.2"/>
+<text x="3506" y="129" font-size="11.5" fill="#1B2430">Gültig-bis ohne Rezert</text>
+<text x="3506" y="145" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="10" fill="#5B6675">R29</text>
+<rect x="3806" y="52" width="168" height="46" rx="8" fill="#FFFFFF" stroke="#6D4BB5" stroke-width="1.2"/>
+<text x="3816" y="71" font-size="11.5" fill="#1B2430">Mail-Bounce</text>
+<text x="3816" y="87" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="10" fill="#5B6675">R30</text>
+<rect x="3986" y="52" width="168" height="46" rx="8" fill="#FFFFFF" stroke="#6D4BB5" stroke-width="1.2"/>
+<text x="3996" y="71" font-size="11.5" fill="#1B2430">Kunde antwortet auf Sys…</text>
+<text x="3996" y="87" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="10" fill="#5B6675">R31</text>
+<rect x="3806" y="110" width="168" height="46" rx="8" fill="#FFFFFF" stroke="#6D4BB5" stroke-width="1.2"/>
+<text x="3816" y="129" font-size="11.5" fill="#1B2430">Standort/Name geändert</text>
+<text x="3816" y="145" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="10" fill="#5B6675">R32</text>
+<rect x="3986" y="110" width="168" height="46" rx="8" fill="#FFFFFF" stroke="#6D4BB5" stroke-width="1.2"/>
+<text x="3996" y="129" font-size="11.5" fill="#1B2430">Trigger-Fehler</text>
+<text x="3996" y="145" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="10" fill="#5B6675">R33</text>
+</g>
+<rect x="40" y="320" width="10" height="10" rx="2" fill="#8A3F6A"/>
+<text x="55" y="329" font-size="11" fill="#5B6675">Prozessphase</text>
+<rect x="151.4" y="320" width="10" height="10" rx="2" fill="#6D4BB5"/>
+<text x="166.4" y="329" font-size="11" fill="#5B6675">Daten (Google Workspace)</text>
+<text x="337.20000000000005" y="329" font-size="11" fill="#5B6675">Pfeil = Abhängigkeit / löst aus</text>
+</svg>

@@ -1,0 +1,243 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3140 482" width="3140" height="482" font-family="'IBM Plex Sans','Segoe UI',Helvetica,Arial,sans-serif" font-size="12">
+<title>OnlineCert Systemkarte · Systemlandschaft · Detail</title>
+<defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#AEB8C4"/></marker></defs>
+<rect width="3140" height="482" fill="#FFFFFF"/>
+<text x="40" y="34" font-size="22" font-weight="600" fill="#1B2430">OnlineCert Systemkarte · Systemlandschaft</text>
+<text x="40" y="56" font-size="12" fill="#5B6675">Detail: alle Bausteine und Abhängigkeiten · Stand 18.09.2026 · Quelle: docs/zertifikatssystem/systemkarte.html</text>
+<g transform="translate(40,104)">
+<rect x="0" y="58" width="560" height="188" rx="14" fill="#FFF4DC" stroke="#B7791F" stroke-width="1.2"/>
+<text x="16" y="82" font-size="15" font-weight="600" fill="#1B2430">Rollen</text>
+<text x="16" y="99" font-size="11.5" fill="#5B6675">Rollen</text>
+<rect x="670" y="29" width="560" height="246" rx="14" fill="#DDF4F1" stroke="#0F766E" stroke-width="1.2"/>
+<text x="686" y="53" font-size="15" font-weight="600" fill="#1B2430">Frontends auf Netlify</text>
+<text x="686" y="70" font-size="11.5" fill="#5B6675">Frontends (Netlify)</text>
+<rect x="1340" y="0" width="560" height="304" rx="14" fill="#DEE8F7" stroke="#1B4F94" stroke-width="1.2"/>
+<text x="1356" y="24" font-size="15" font-weight="600" fill="#1B2430">Backend Apps Script</text>
+<text x="1356" y="41" font-size="11.5" fill="#5B6675">Backend (Apps Script)</text>
+<rect x="2010" y="29" width="560" height="246" rx="14" fill="#ECE5F9" stroke="#6D4BB5" stroke-width="1.2"/>
+<text x="2026" y="53" font-size="15" font-weight="600" fill="#1B2430">Daten in Google Workspace</text>
+<text x="2026" y="70" font-size="11.5" fill="#5B6675">Daten (Google Workspace)</text>
+<rect x="2680" y="58" width="380" height="188" rx="14" fill="#E2F1DC" stroke="#3F7D2F" stroke-width="1.2"/>
+<text x="2696" y="82" font-size="15" font-weight="600" fill="#1B2430">Externe Dienste</text>
+<text x="2696" y="99" font-size="11.5" fill="#5B6675">Externe Dienste</text>
+<path d="M184,133 C525,133 525,104 866,104" fill="none" stroke="#AEB8C4" stroke-width="1.2" marker-end="url(#a)"/>
+<text x="525" y="114.5" text-anchor="middle" font-size="10" fill="#5B6675" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">nutzt</text>
+<path d="M184,133 C1105,133 1105,162 2026,162" fill="none" stroke="#AEB8C4" stroke-width="1.2" marker-end="url(#a)"/>
+<text x="1105" y="143.5" text-anchor="middle" font-size="10" fill="#5B6675" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">legt Unterlagen ab</text>
+<path d="M184,133 C435,133 435,104 686,104" fill="none" stroke="#AEB8C4" stroke-width="1.2" marker-end="url(#a)"/>
+<text x="435" y="114.5" text-anchor="middle" font-size="10" fill="#5B6675" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">Link anfordern</text>
+<path d="M364,133 C705,133 705,104 1046,104" fill="none" stroke="#AEB8C4" stroke-width="1.2" marker-end="url(#a)"/>
+<text x="705" y="114.5" text-anchor="middle" font-size="10" fill="#5B6675" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">nutzt</text>
+<path d="M364,133 C1195,133 1195,162 2026,162" fill="none" stroke="#AEB8C4" stroke-width="1.2" marker-end="url(#a)"/>
+<text x="1195" y="143.5" text-anchor="middle" font-size="10" fill="#5B6675" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">prüft Unterlagen</text>
+<path d="M544,133 C615,133 615,162 686,162" fill="none" stroke="#AEB8C4" stroke-width="1.2" marker-end="url(#a)"/>
+<text x="615" y="143.5" text-anchor="middle" font-size="10" fill="#5B6675" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">Votum</text>
+<path d="M184,191 C525,191 525,162 866,162" fill="none" stroke="#AEB8C4" stroke-width="1.2" marker-end="url(#a)"/>
+<text x="525" y="172.5" text-anchor="middle" font-size="10" fill="#5B6675" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">Tagesliste</text>
+<path d="M364,191 C525,191 525,104 686,104" fill="none" stroke="#AEB8C4" stroke-width="1.2" marker-end="url(#a)"/>
+<text x="525" y="143.5" text-anchor="middle" font-size="10" fill="#5B6675" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">prüft</text>
+<path d="M544,191 C795,191 795,162 1046,162" fill="none" stroke="#AEB8C4" stroke-width="1.2" marker-end="url(#a)"/>
+<text x="795" y="172.5" text-anchor="middle" font-size="10" fill="#5B6675" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">erfasst Kunden</text>
+<path d="M544,191 C1285,191 1285,104 2026,104" fill="none" stroke="#AEB8C4" stroke-width="1.2" marker-end="url(#a)"/>
+<text x="1285" y="143.5" text-anchor="middle" font-size="10" fill="#5B6675" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">liest Status</text>
+<path d="M1046,162 C950,162 950,220 854,220" fill="none" stroke="#AEB8C4" stroke-width="1.2" marker-end="url(#a)"/>
+<text x="950" y="187" text-anchor="middle" font-size="10" fill="#5B6675" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">Claude-Aufruf</text>
+<path d="M1214,162 C1620,162 1620,104 2026,104" fill="none" stroke="#AEB8C4" stroke-width="1.2" marker-end="url(#a)"/>
+<text x="1620" y="129" text-anchor="middle" font-size="10" fill="#5B6675" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">schreibt Zeile</text>
+<path d="M854,104 C1285,104 1285,191 1716,191" fill="none" stroke="#AEB8C4" stroke-width="1.2" marker-end="url(#a)"/>
+<text x="1285" y="143.5" text-anchor="middle" font-size="10" fill="#5B6675" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">liest JSON</text>
+<path d="M854,104 C1285,104 1285,133 1716,133" fill="none" stroke="#AEB8C4" stroke-width="1.2" marker-end="url(#a)"/>
+<text x="1285" y="114.5" text-anchor="middle" font-size="10" fill="#5B6675" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">Live-Status</text>
+<path d="M1034,104 C1375,104 1375,133 1716,133" fill="none" stroke="#AEB8C4" stroke-width="1.2" marker-end="url(#a)"/>
+<text x="1375" y="114.5" text-anchor="middle" font-size="10" fill="#5B6675" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">Token, Daten</text>
+<path d="M1214,104 C1465,104 1465,133 1716,133" fill="none" stroke="#AEB8C4" stroke-width="1.2" marker-end="url(#a)"/>
+<text x="1465" y="114.5" text-anchor="middle" font-size="10" fill="#5B6675" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">Termin, Bericht</text>
+<path d="M854,162 C1285,162 1285,133 1716,133" fill="none" stroke="#AEB8C4" stroke-width="1.2" marker-end="url(#a)"/>
+<text x="1285" y="143.5" text-anchor="middle" font-size="10" fill="#5B6675" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">Votum</text>
+<path d="M1034,162 C1375,162 1375,133 1716,133" fill="none" stroke="#AEB8C4" stroke-width="1.2" marker-end="url(#a)"/>
+<text x="1375" y="143.5" text-anchor="middle" font-size="10" fill="#5B6675" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">Aufgaben</text>
+<path d="M854,220 C1865,220 1865,133 2876,133" fill="none" stroke="#AEB8C4" stroke-width="1.2" marker-end="url(#a)"/>
+<text x="1865" y="172.5" text-anchor="middle" font-size="10" fill="#5B6675" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">API-Key</text>
+<path d="M854,220 C1775,220 1775,133 2696,133" fill="none" stroke="#AEB8C4" stroke-width="1.2" marker-end="url(#a)"/>
+<text x="1775" y="172.5" text-anchor="middle" font-size="10" fill="#5B6675" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">Dashboard (lesen)</text>
+<path d="M1716,133 C1620,133 1620,75 1524,75" fill="none" stroke="#AEB8C4" stroke-width="1.2" marker-end="url(#a)"/>
+<text x="1620" y="100" text-anchor="middle" font-size="10" fill="#5B6675" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">löst Klick-Regeln aus</text>
+<path d="M1884,133 C2045,133 2045,104 2206,104" fill="none" stroke="#AEB8C4" stroke-width="1.2" marker-end="url(#a)"/>
+<text x="2045" y="114.5" text-anchor="middle" font-size="10" fill="#5B6675" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">liest/schreibt</text>
+<path d="M1884,133 C2135,133 2135,104 2386,104" fill="none" stroke="#AEB8C4" stroke-width="1.2" marker-end="url(#a)"/>
+<text x="2135" y="114.5" text-anchor="middle" font-size="10" fill="#5B6675" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">liest</text>
+<path d="M1524,75 C1865,75 1865,104 2206,104" fill="none" stroke="#AEB8C4" stroke-width="1.2" marker-end="url(#a)"/>
+<text x="1865" y="85.5" text-anchor="middle" font-size="10" fill="#5B6675" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">Regelwerk-Blatt</text>
+<path d="M1524,75 C1620,75 1620,75 1716,75" fill="none" stroke="#AEB8C4" stroke-width="1.2" marker-end="url(#a)"/>
+<path d="M1524,75 C1564,75 1496,133 1536,133" fill="none" stroke="#AEB8C4" stroke-width="1.2" marker-end="url(#a)"/>
+<path d="M1440,98 C1440,128 1440,80 1440,110" fill="none" stroke="#AEB8C4" stroke-width="1.2" marker-end="url(#a)"/>
+<path d="M1704,75 C1955,75 1955,104 2206,104" fill="none" stroke="#AEB8C4" stroke-width="1.2" marker-end="url(#a)"/>
+<text x="1955" y="85.5" text-anchor="middle" font-size="10" fill="#5B6675" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">Status, Historie</text>
+<path d="M1704,75 C2045,75 2045,104 2386,104" fill="none" stroke="#AEB8C4" stroke-width="1.2" marker-end="url(#a)"/>
+<text x="2045" y="85.5" text-anchor="middle" font-size="10" fill="#5B6675" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">befüllt</text>
+<path d="M1884,191 C2135,191 2135,104 2386,104" fill="none" stroke="#AEB8C4" stroke-width="1.2" marker-end="url(#a)"/>
+<text x="2135" y="143.5" text-anchor="middle" font-size="10" fill="#5B6675" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">liest</text>
+<path d="M1884,191 C2290,191 2290,191 2696,191" fill="none" stroke="#AEB8C4" stroke-width="1.2" marker-end="url(#a)"/>
+<text x="2290" y="187" text-anchor="middle" font-size="10" fill="#5B6675" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">JSON-Deploy</text>
+<path d="M1884,75 C2045,75 2045,220 2206,220" fill="none" stroke="#AEB8C4" stroke-width="1.2" marker-end="url(#a)"/>
+<text x="2045" y="143.5" text-anchor="middle" font-size="10" fill="#5B6675" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">sendet</text>
+<path d="M1884,75 C2045,75 2045,104 2206,104" fill="none" stroke="#AEB8C4" stroke-width="1.2" marker-end="url(#a)"/>
+<text x="2045" y="85.5" text-anchor="middle" font-size="10" fill="#5B6675" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">Log</text>
+<path d="M1620,156 C1620,186 1620,138 1620,168" fill="none" stroke="#AEB8C4" stroke-width="1.2" marker-end="url(#a)"/>
+<path d="M1704,133 C1955,133 1955,220 2206,220" fill="none" stroke="#AEB8C4" stroke-width="1.2" marker-end="url(#a)"/>
+<text x="1955" y="172.5" text-anchor="middle" font-size="10" fill="#5B6675" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">Zertifikatsmail</text>
+<path d="M1704,191 C1955,191 1955,162 2206,162" fill="none" stroke="#AEB8C4" stroke-width="1.2" marker-end="url(#a)"/>
+<text x="1955" y="172.5" text-anchor="middle" font-size="10" fill="#5B6675" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">Vorlage</text>
+<path d="M1704,191 C2045,191 2045,162 2386,162" fill="none" stroke="#AEB8C4" stroke-width="1.2" marker-end="url(#a)"/>
+<text x="2045" y="172.5" text-anchor="middle" font-size="10" fill="#5B6675" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">Logo, QR</text>
+<path d="M1704,191 C1865,191 1865,162 2026,162" fill="none" stroke="#AEB8C4" stroke-width="1.2" marker-end="url(#a)"/>
+<text x="1865" y="172.5" text-anchor="middle" font-size="10" fill="#5B6675" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">PDF ablegen</text>
+<path d="M1536,191 C1496,191 1564,191 1524,191" fill="none" stroke="#AEB8C4" stroke-width="1.2" marker-end="url(#a)"/>
+<text x="1530" y="187" text-anchor="middle" font-size="10" fill="#5B6675" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">Zert-Nr.</text>
+<path d="M1524,133 C2110,133 2110,133 2696,133" fill="none" stroke="#AEB8C4" stroke-width="1.2" marker-end="url(#a)"/>
+<text x="2110" y="129" text-anchor="middle" font-size="10" fill="#5B6675" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">Rechnung, Zahlung</text>
+<path d="M1524,133 C1865,133 1865,104 2206,104" fill="none" stroke="#AEB8C4" stroke-width="1.2" marker-end="url(#a)"/>
+<text x="1865" y="114.5" text-anchor="middle" font-size="10" fill="#5B6675" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">Rechnungsplan</text>
+<path d="M2696,133 C2290,133 2290,133 1884,133" fill="none" stroke="#AEB8C4" stroke-width="1.2" marker-end="url(#a)"/>
+<text x="2290" y="129" text-anchor="middle" font-size="10" fill="#5B6675" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">Webhook Zahlung</text>
+<path d="M1884,133 C1955,133 1955,220 2026,220" fill="none" stroke="#AEB8C4" stroke-width="1.2" marker-end="url(#a)"/>
+<text x="1955" y="172.5" text-anchor="middle" font-size="10" fill="#5B6675" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">Termineintrag</text>
+<path d="M1884,133 C1955,133 1955,162 2026,162" fill="none" stroke="#AEB8C4" stroke-width="1.2" marker-end="url(#a)"/>
+<text x="1955" y="143.5" text-anchor="middle" font-size="10" fill="#5B6675" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">Ordner-Scan</text>
+<path d="M1884,133 C2380,133 2380,133 2876,133" fill="none" stroke="#AEB8C4" stroke-width="1.2" marker-end="url(#a)"/>
+<text x="2380" y="129" text-anchor="middle" font-size="10" fill="#5B6675" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">via Function</text>
+<path d="M1704,249 C2200,249 2200,133 2696,133" fill="none" stroke="#AEB8C4" stroke-width="1.2" marker-end="url(#a)"/>
+<text x="2200" y="187" text-anchor="middle" font-size="10" fill="#5B6675" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">Export</text>
+<path d="M1704,249 C1865,249 1865,104 2026,104" fill="none" stroke="#AEB8C4" stroke-width="1.2" marker-end="url(#a)"/>
+<text x="1865" y="172.5" text-anchor="middle" font-size="10" fill="#5B6675" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">Billomat-ID</text>
+<path d="M1704,249 C2290,249 2290,191 2876,191" fill="none" stroke="#AEB8C4" stroke-width="1.2" marker-end="url(#a)"/>
+<text x="2290" y="216" text-anchor="middle" font-size="10" fill="#5B6675" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">Altbestand</text>
+<path d="M2206,104 C2166,104 2234,104 2194,104" fill="none" stroke="#AEB8C4" stroke-width="1.2" marker-end="url(#a)"/>
+<text x="2200" y="100" text-anchor="middle" font-size="10" fill="#5B6675" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">K-Nr. (Referenz)</text>
+<path d="M1524,249 C1865,249 1865,104 2206,104" fill="none" stroke="#AEB8C4" stroke-width="1.2" marker-end="url(#a)"/>
+<text x="1865" y="172.5" text-anchor="middle" font-size="10" fill="#5B6675" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">Log</text>
+<path d="M1524,249 C1865,249 1865,220 2206,220" fill="none" stroke="#AEB8C4" stroke-width="1.2" marker-end="url(#a)"/>
+<text x="1865" y="230.5" text-anchor="middle" font-size="10" fill="#5B6675" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">Alarm</text>
+<path d="M2696,191 C1775,191 1775,220 854,220" fill="none" stroke="#AEB8C4" stroke-width="1.2" marker-end="url(#a)"/>
+<text x="1775" y="201.5" text-anchor="middle" font-size="10" fill="#5B6675" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">Deploy</text>
+<rect x="16" y="110" width="168" height="46" rx="8" fill="#FFFFFF" stroke="#B7791F" stroke-width="1.2"/>
+<text x="26" y="129" font-size="11.5" fill="#1B2430">Kunde</text>
+<text x="26" y="145" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="10" fill="#5B6675">Magic Link</text>
+<rect x="196" y="110" width="168" height="46" rx="8" fill="#FFFFFF" stroke="#B7791F" stroke-width="1.2"/>
+<text x="206" y="129" font-size="11.5" fill="#1B2430">Auditor</text>
+<text x="206" y="145" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="10" fill="#5B6675">Google-Login</text>
+<rect x="376" y="110" width="168" height="46" rx="8" fill="#FFFFFF" stroke="#B7791F" stroke-width="1.2"/>
+<text x="386" y="129" font-size="11.5" fill="#1B2430">Zertifizierungsausschuss</text>
+<text x="386" y="145" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="10" fill="#5B6675">Einmal-Link</text>
+<rect x="16" y="168" width="168" height="46" rx="8" fill="#FFFFFF" stroke="#B7791F" stroke-width="1.2"/>
+<text x="26" y="187" font-size="11.5" fill="#1B2430">Backoffice</text>
+<text x="26" y="203" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="10" fill="#5B6675">2 h/Tag</text>
+<rect x="196" y="168" width="168" height="46" rx="8" fill="#FFFFFF" stroke="#B7791F" stroke-width="1.2"/>
+<text x="206" y="187" font-size="11.5" fill="#1B2430">Öffentlichkeit</text>
+<text x="206" y="203" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="10" fill="#5B6675">ohne Login</text>
+<rect x="376" y="168" width="168" height="46" rx="8" fill="#FFFFFF" stroke="#B7791F" stroke-width="1.2"/>
+<text x="386" y="187" font-size="11.5" fill="#1B2430">Projektleiter (Beratung)</text>
+<text x="386" y="203" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="10" fill="#5B6675">CRM</text>
+<rect x="686" y="81" width="168" height="46" rx="8" fill="#FFFFFF" stroke="#0F766E" stroke-width="1.2"/>
+<text x="696" y="100" font-size="11.5" fill="#1B2430">Verifizierungsseite</text>
+<text x="696" y="116" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="10" fill="#5B6675">verify.{mandant}/v/{nr}</text>
+<rect x="866" y="81" width="168" height="46" rx="8" fill="#FFFFFF" stroke="#0F766E" stroke-width="1.2"/>
+<text x="876" y="100" font-size="11.5" fill="#1B2430">Kundenportal „Mein Zert…</text>
+<text x="876" y="116" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="10" fill="#5B6675">/portal/{token}</text>
+<rect x="1046" y="81" width="168" height="46" rx="8" fill="#FFFFFF" stroke="#0F766E" stroke-width="1.2"/>
+<text x="1056" y="100" font-size="11.5" fill="#1B2430">Auditor-App</text>
+<text x="1056" y="116" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="10" fill="#5B6675">Meine Audits / Audit</text>
+<rect x="686" y="139" width="168" height="46" rx="8" fill="#FFFFFF" stroke="#0F766E" stroke-width="1.2"/>
+<text x="696" y="158" font-size="11.5" fill="#1B2430">Ausschuss-Seite</text>
+<text x="696" y="174" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="10" fill="#5B6675">drei Knöpfe</text>
+<rect x="866" y="139" width="168" height="46" rx="8" fill="#FFFFFF" stroke="#0F766E" stroke-width="1.2"/>
+<text x="876" y="158" font-size="11.5" fill="#1B2430">Tagesliste &amp; Kundenakte</text>
+<text x="876" y="174" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="10" fill="#5B6675">/admin</text>
+<rect x="1046" y="139" width="168" height="46" rx="8" fill="#FFFFFF" stroke="#0F766E" stroke-width="1.2"/>
+<text x="1056" y="158" font-size="11.5" fill="#1B2430">Erfassungs-App (CRM-Imp…</text>
+<text x="1056" y="174" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="10" fill="#5B6675">Kontakt-Kunden-Import</text>
+<rect x="686" y="197" width="168" height="46" rx="8" fill="#FFFFFF" stroke="#0F766E" stroke-width="1.2"/>
+<text x="696" y="216" font-size="11.5" fill="#1B2430">Netlify Functions</text>
+<text x="696" y="232" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="10" fill="#5B6675">Token-Proxy</text>
+<rect x="1356" y="52" width="168" height="46" rx="8" fill="#FFFFFF" stroke="#1B4F94" stroke-width="1.2"/>
+<text x="1366" y="71" font-size="11.5" fill="#1B2430">Regelwerk-Engine</text>
+<text x="1366" y="87" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="10" fill="#5B6675">Regelwerk-Blatt R01–R33</text>
+<rect x="1536" y="52" width="168" height="46" rx="8" fill="#FFFFFF" stroke="#1B4F94" stroke-width="1.2"/>
+<text x="1546" y="71" font-size="11.5" fill="#1B2430">Statuslauf 05:30</text>
+<text x="1546" y="87" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="10" fill="#5B6675">täglich</text>
+<rect x="1716" y="52" width="168" height="46" rx="8" fill="#FFFFFF" stroke="#1B4F94" stroke-width="1.2"/>
+<text x="1726" y="71" font-size="11.5" fill="#1B2430">Erinnerungslauf 06:00</text>
+<text x="1726" y="87" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="10" fill="#5B6675">täglich</text>
+<rect x="1356" y="110" width="168" height="46" rx="8" fill="#FFFFFF" stroke="#1B4F94" stroke-width="1.2"/>
+<text x="1366" y="129" font-size="11.5" fill="#1B2430">Rechnungslauf 06:30</text>
+<text x="1366" y="145" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="10" fill="#5B6675">täglich</text>
+<rect x="1536" y="110" width="168" height="46" rx="8" fill="#FFFFFF" stroke="#1B4F94" stroke-width="1.2"/>
+<text x="1546" y="129" font-size="11.5" fill="#1B2430">Warteschlange PDF/Mail</text>
+<text x="1546" y="145" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="10" fill="#5B6675">stündlich</text>
+<rect x="1716" y="110" width="168" height="46" rx="8" fill="#FFFFFF" stroke="#1B4F94" stroke-width="1.2"/>
+<text x="1726" y="129" font-size="11.5" fill="#1B2430">Web-App doGet/doPost</text>
+<text x="1726" y="145" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="10" fill="#5B6675">verify, portal, decide, upl…</text>
+<rect x="1356" y="168" width="168" height="46" rx="8" fill="#FFFFFF" stroke="#1B4F94" stroke-width="1.2"/>
+<text x="1366" y="187" font-size="11.5" fill="#1B2430">Nummernvergabe</text>
+<text x="1366" y="203" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="10" fill="#5B6675">LockService</text>
+<rect x="1536" y="168" width="168" height="46" rx="8" fill="#FFFFFF" stroke="#1B4F94" stroke-width="1.2"/>
+<text x="1546" y="187" font-size="11.5" fill="#1B2430">Zertifikatserzeugung</text>
+<text x="1546" y="203" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="10" fill="#5B6675">Docs → PDF + Hash</text>
+<rect x="1716" y="168" width="168" height="46" rx="8" fill="#FFFFFF" stroke="#1B4F94" stroke-width="1.2"/>
+<text x="1726" y="187" font-size="11.5" fill="#1B2430">Register-Snapshot 06:45</text>
+<text x="1726" y="203" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="10" fill="#5B6675">JSON</text>
+<rect x="1356" y="226" width="168" height="46" rx="8" fill="#FFFFFF" stroke="#1B4F94" stroke-width="1.2"/>
+<text x="1366" y="245" font-size="11.5" fill="#1B2430">Health-Check 08:00</text>
+<text x="1366" y="261" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="10" fill="#5B6675">Heartbeat</text>
+<rect x="1536" y="226" width="168" height="46" rx="8" fill="#FFFFFF" stroke="#1B4F94" stroke-width="1.2"/>
+<text x="1546" y="245" font-size="11.5" fill="#1B2430">Importlauf Billomat</text>
+<text x="1546" y="261" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="10" fill="#5B6675">einmalig</text>
+<rect x="2026" y="81" width="168" height="46" rx="8" fill="#FFFFFF" stroke="#6D4BB5" stroke-width="1.2"/>
+<text x="2036" y="100" font-size="11.5" fill="#1B2430">CRM-Sheet</text>
+<text x="2036" y="116" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="10" fill="#5B6675">K-00123 · einziger Kundenst…</text>
+<rect x="2206" y="81" width="168" height="46" rx="8" fill="#FFFFFF" stroke="#6D4BB5" stroke-width="1.2"/>
+<text x="2216" y="100" font-size="11.5" fill="#1B2430">Mandantendatei (Sheets)</text>
+<text x="2216" y="116" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="10" fill="#5B6675">je Mandant</text>
+<rect x="2386" y="81" width="168" height="46" rx="8" fill="#FFFFFF" stroke="#6D4BB5" stroke-width="1.2"/>
+<text x="2396" y="100" font-size="11.5" fill="#1B2430">Register_oeffentlich</text>
+<text x="2396" y="116" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="10" fill="#5B6675">minimale Felder</text>
+<rect x="2026" y="139" width="168" height="46" rx="8" fill="#FFFFFF" stroke="#6D4BB5" stroke-width="1.2"/>
+<text x="2036" y="158" font-size="11.5" fill="#1B2430">Drive-Kundenordner</text>
+<text x="2036" y="174" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="10" fill="#5B6675">Kunden/{K-Nr}/…</text>
+<rect x="2206" y="139" width="168" height="46" rx="8" fill="#FFFFFF" stroke="#6D4BB5" stroke-width="1.2"/>
+<text x="2216" y="158" font-size="11.5" fill="#1B2430">Docs-Vorlagen</text>
+<text x="2216" y="174" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="10" fill="#5B6675">##platzhalter##</text>
+<rect x="2386" y="139" width="168" height="46" rx="8" fill="#FFFFFF" stroke="#6D4BB5" stroke-width="1.2"/>
+<text x="2396" y="158" font-size="11.5" fill="#1B2430">Logos</text>
+<text x="2396" y="174" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="10" fill="#5B6675">Mandant × Norm × Sprache</text>
+<rect x="2026" y="197" width="168" height="46" rx="8" fill="#FFFFFF" stroke="#6D4BB5" stroke-width="1.2"/>
+<text x="2036" y="216" font-size="11.5" fill="#1B2430">Google Kalender</text>
+<text x="2036" y="232" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="10" fill="#5B6675">Auditor + Kunde</text>
+<rect x="2206" y="197" width="168" height="46" rx="8" fill="#FFFFFF" stroke="#6D4BB5" stroke-width="1.2"/>
+<text x="2216" y="216" font-size="11.5" fill="#1B2430">Gmail / MailApp</text>
+<text x="2216" y="232" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="10" fill="#5B6675">1.500 Empfänger/Tag</text>
+<rect x="2696" y="110" width="168" height="46" rx="8" fill="#FFFFFF" stroke="#3F7D2F" stroke-width="1.2"/>
+<text x="2706" y="129" font-size="11.5" fill="#1B2430">Billomat</text>
+<text x="2706" y="145" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="10" fill="#5B6675">REST-API, Business-Tarif</text>
+<rect x="2876" y="110" width="168" height="46" rx="8" fill="#FFFFFF" stroke="#3F7D2F" stroke-width="1.2"/>
+<text x="2886" y="129" font-size="11.5" fill="#1B2430">Claude API</text>
+<text x="2886" y="145" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="10" fill="#5B6675">über Netlify Function</text>
+<rect x="2696" y="168" width="168" height="46" rx="8" fill="#FFFFFF" stroke="#3F7D2F" stroke-width="1.2"/>
+<text x="2706" y="187" font-size="11.5" fill="#1B2430">GitHub</text>
+<text x="2706" y="203" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="10" fill="#5B6675">Monorepo onlinecert-system</text>
+<rect x="2876" y="168" width="168" height="46" rx="8" fill="#FFFFFF" stroke="#3F7D2F" stroke-width="1.2"/>
+<text x="2886" y="187" font-size="11.5" fill="#1B2430">virtualbadge (Altbestan…</text>
+<text x="2886" y="203" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="10" fill="#5B6675">Migration</text>
+</g>
+<rect x="40" y="436" width="10" height="10" rx="2" fill="#B7791F"/>
+<text x="55" y="445" font-size="11" fill="#5B6675">Rollen</text>
+<rect x="114.2" y="436" width="10" height="10" rx="2" fill="#0F766E"/>
+<text x="129.2" y="445" font-size="11" fill="#5B6675">Frontends (Netlify)</text>
+<rect x="269" y="436" width="10" height="10" rx="2" fill="#1B4F94"/>
+<text x="284" y="445" font-size="11" fill="#5B6675">Backend (Apps Script)</text>
+<rect x="436.20000000000005" y="436" width="10" height="10" rx="2" fill="#6D4BB5"/>
+<text x="451.20000000000005" y="445" font-size="11" fill="#5B6675">Daten (Google Workspace)</text>
+<rect x="622" y="436" width="10" height="10" rx="2" fill="#3F7D2F"/>
+<text x="637" y="445" font-size="11" fill="#5B6675">Externe Dienste</text>
+<text x="752" y="445" font-size="11" fill="#5B6675">Pfeil = Abhängigkeit / löst aus</text>
+</svg>

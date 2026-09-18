@@ -1,0 +1,231 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3450 424" width="3450" height="424" font-family="'IBM Plex Sans','Segoe UI',Helvetica,Arial,sans-serif" font-size="12">
+<title>OnlineCert Systemkarte · Datenmodell · Detail</title>
+<defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#AEB8C4"/></marker></defs>
+<rect width="3450" height="424" fill="#FFFFFF"/>
+<text x="40" y="34" font-size="22" font-weight="600" fill="#1B2430">OnlineCert Systemkarte · Datenmodell</text>
+<text x="40" y="56" font-size="12" fill="#5B6675">Detail: alle Bausteine und Abhängigkeiten · Stand 18.09.2026 · Quelle: docs/zertifikatssystem/systemkarte.html</text>
+<g transform="translate(40,104)">
+<rect x="0" y="29" width="380" height="188" rx="14" fill="#FFF4DC" stroke="#B7791F" stroke-width="1.2"/>
+<text x="16" y="53" font-size="15" font-weight="600" fill="#1B2430">Kunden</text>
+<text x="16" y="70" font-size="11.5" fill="#5B6675">Rollen</text>
+<rect x="490" y="29" width="380" height="188" rx="14" fill="#E2F1DC" stroke="#3F7D2F" stroke-width="1.2"/>
+<text x="506" y="53" font-size="15" font-weight="600" fill="#1B2430">Vertrieb &amp; Geld</text>
+<text x="506" y="70" font-size="11.5" fill="#5B6675">Externe Dienste</text>
+<rect x="980" y="0" width="560" height="246" rx="14" fill="#DDF4F1" stroke="#0F766E" stroke-width="1.2"/>
+<text x="996" y="24" font-size="15" font-weight="600" fill="#1B2430">Audit</text>
+<text x="996" y="41" font-size="11.5" fill="#5B6675">Frontends (Netlify)</text>
+<rect x="1650" y="29" width="380" height="188" rx="14" fill="#F6E3EE" stroke="#8A3F6A" stroke-width="1.2"/>
+<text x="1666" y="53" font-size="15" font-weight="600" fill="#1B2430">Entscheidung</text>
+<text x="1666" y="70" font-size="11.5" fill="#5B6675">Prozessphase</text>
+<rect x="2140" y="0" width="560" height="246" rx="14" fill="#DEE8F7" stroke="#1B4F94" stroke-width="1.2"/>
+<text x="2156" y="24" font-size="15" font-weight="600" fill="#1B2430">Zertifikat</text>
+<text x="2156" y="41" font-size="11.5" fill="#5B6675">Backend (Apps Script)</text>
+<rect x="2810" y="0" width="560" height="246" rx="14" fill="#ECE5F9" stroke="#6D4BB5" stroke-width="1.2"/>
+<text x="2826" y="24" font-size="15" font-weight="600" fill="#1B2430">Steuerung &amp; Protokoll</text>
+<text x="2826" y="41" font-size="11.5" fill="#5B6675">Daten (Google Workspace)</text>
+<path d="M196,104 C156,104 224,104 184,104" fill="none" stroke="#AEB8C4" stroke-width="1.2" marker-end="url(#a)"/>
+<text x="190" y="100" text-anchor="middle" font-size="10" fill="#5B6675" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">kunden_nr</text>
+<path d="M100,139 C100,109 100,157 100,127" fill="none" stroke="#AEB8C4" stroke-width="1.2" marker-end="url(#a)"/>
+<text x="100" y="129" text-anchor="middle" font-size="10" fill="#5B6675" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">kunden_nr</text>
+<path d="M196,162 C156,162 224,104 184,104" fill="none" stroke="#AEB8C4" stroke-width="1.2" marker-end="url(#a)"/>
+<text x="190" y="129" text-anchor="middle" font-size="10" fill="#5B6675" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">kunden_nr</text>
+<path d="M506,104 C345,104 345,104 184,104" fill="none" stroke="#AEB8C4" stroke-width="1.2" marker-end="url(#a)"/>
+<text x="345" y="100" text-anchor="middle" font-size="10" fill="#5B6675" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">kunden_nr</text>
+<path d="M590,127 C590,157 590,109 590,139" fill="none" stroke="#AEB8C4" stroke-width="1.2" marker-end="url(#a)"/>
+<text x="590" y="129" text-anchor="middle" font-size="10" fill="#5B6675" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">paket</text>
+<path d="M686,104 C646,104 714,104 674,104" fill="none" stroke="#AEB8C4" stroke-width="1.2" marker-end="url(#a)"/>
+<text x="680" y="100" text-anchor="middle" font-size="10" fill="#5B6675" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">angebot_nr</text>
+<path d="M770,139 C770,109 770,157 770,127" fill="none" stroke="#AEB8C4" stroke-width="1.2" marker-end="url(#a)"/>
+<text x="770" y="129" text-anchor="middle" font-size="10" fill="#5B6675" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">auftrag_nr</text>
+<path d="M686,162 C646,162 714,162 674,162" fill="none" stroke="#AEB8C4" stroke-width="1.2" marker-end="url(#a)"/>
+<text x="680" y="158" text-anchor="middle" font-size="10" fill="#5B6675" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">artikel_nr</text>
+<path d="M996,75 C925,75 925,104 854,104" fill="none" stroke="#AEB8C4" stroke-width="1.2" marker-end="url(#a)"/>
+<text x="925" y="85.5" text-anchor="middle" font-size="10" fill="#5B6675" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">auftrag_nr</text>
+<path d="M1164,75 C1204,75 1136,75 1176,75" fill="none" stroke="#AEB8C4" stroke-width="1.2" marker-end="url(#a)"/>
+<text x="1170" y="71" text-anchor="middle" font-size="10" fill="#5B6675" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">auditor_id</text>
+<path d="M1176,133 C1136,133 1204,75 1164,75" fill="none" stroke="#AEB8C4" stroke-width="1.2" marker-end="url(#a)"/>
+<text x="1170" y="100" text-anchor="middle" font-size="10" fill="#5B6675" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">audit_nr</text>
+<path d="M1260,110 C1260,80 1260,128 1260,98" fill="none" stroke="#AEB8C4" stroke-width="1.2" marker-end="url(#a)"/>
+<text x="1260" y="100" text-anchor="middle" font-size="10" fill="#5B6675" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">auditor_id</text>
+<path d="M1356,75 C1316,75 1384,75 1344,75" fill="none" stroke="#AEB8C4" stroke-width="1.2" marker-end="url(#a)"/>
+<text x="1350" y="71" text-anchor="middle" font-size="10" fill="#5B6675" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">auditor_id</text>
+<path d="M1164,133 C1204,133 1136,75 1176,75" fill="none" stroke="#AEB8C4" stroke-width="1.2" marker-end="url(#a)"/>
+<text x="1170" y="100" text-anchor="middle" font-size="10" fill="#5B6675" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">auditor_id</text>
+<path d="M996,133 C590,133 590,104 184,104" fill="none" stroke="#AEB8C4" stroke-width="1.2" marker-end="url(#a)"/>
+<text x="590" y="114.5" text-anchor="middle" font-size="10" fill="#5B6675" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">kunden_nr</text>
+<path d="M1356,133 C1260,133 1260,75 1164,75" fill="none" stroke="#AEB8C4" stroke-width="1.2" marker-end="url(#a)"/>
+<text x="1260" y="100" text-anchor="middle" font-size="10" fill="#5B6675" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">audit_nr</text>
+<path d="M1164,191 C1840,191 1840,75 2516,75" fill="none" stroke="#AEB8C4" stroke-width="1.2" marker-end="url(#a)"/>
+<text x="1840" y="129" text-anchor="middle" font-size="10" fill="#5B6675" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">norm_code</text>
+<path d="M1176,191 C1136,191 1204,75 1164,75" fill="none" stroke="#AEB8C4" stroke-width="1.2" marker-end="url(#a)"/>
+<text x="1170" y="129" text-anchor="middle" font-size="10" fill="#5B6675" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">audit_nr</text>
+<path d="M1666,104 C1415,104 1415,75 1164,75" fill="none" stroke="#AEB8C4" stroke-width="1.2" marker-end="url(#a)"/>
+<text x="1415" y="85.5" text-anchor="middle" font-size="10" fill="#5B6675" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">audit_nr</text>
+<path d="M1834,104 C1874,104 1806,104 1846,104" fill="none" stroke="#AEB8C4" stroke-width="1.2" marker-end="url(#a)"/>
+<text x="1840" y="100" text-anchor="middle" font-size="10" fill="#5B6675" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">voten</text>
+<path d="M1750,139 C1750,109 1750,157 1750,127" fill="none" stroke="#AEB8C4" stroke-width="1.2" marker-end="url(#a)"/>
+<text x="1750" y="129" text-anchor="middle" font-size="10" fill="#5B6675" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">entscheidung_nr</text>
+<path d="M1846,162 C1806,162 1874,104 1834,104" fill="none" stroke="#AEB8C4" stroke-width="1.2" marker-end="url(#a)"/>
+<text x="1840" y="129" text-anchor="middle" font-size="10" fill="#5B6675" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">bezug</text>
+<path d="M2014,162 C2085,162 2085,75 2156,75" fill="none" stroke="#AEB8C4" stroke-width="1.2" marker-end="url(#a)"/>
+<text x="2085" y="114.5" text-anchor="middle" font-size="10" fill="#5B6675" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">bezug</text>
+<path d="M2156,75 C1995,75 1995,104 1834,104" fill="none" stroke="#AEB8C4" stroke-width="1.2" marker-end="url(#a)"/>
+<text x="1995" y="85.5" text-anchor="middle" font-size="10" fill="#5B6675" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">entscheidung_nr</text>
+<path d="M2156,75 C1505,75 1505,104 854,104" fill="none" stroke="#AEB8C4" stroke-width="1.2" marker-end="url(#a)"/>
+<text x="1505" y="85.5" text-anchor="middle" font-size="10" fill="#5B6675" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">auftrag_nr</text>
+<path d="M2324,75 C2420,75 2420,75 2516,75" fill="none" stroke="#AEB8C4" stroke-width="1.2" marker-end="url(#a)"/>
+<text x="2420" y="71" text-anchor="middle" font-size="10" fill="#5B6675" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">norm_code</text>
+<path d="M2156,75 C1260,75 1260,162 364,162" fill="none" stroke="#AEB8C4" stroke-width="1.2" marker-end="url(#a)"/>
+<text x="1260" y="114.5" text-anchor="middle" font-size="10" fill="#5B6675" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">standorte</text>
+<path d="M2336,75 C2296,75 2364,75 2324,75" fill="none" stroke="#AEB8C4" stroke-width="1.2" marker-end="url(#a)"/>
+<text x="2330" y="71" text-anchor="middle" font-size="10" fill="#5B6675" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">zert_nr</text>
+<path d="M2336,75 C2296,75 2364,133 2324,133" fill="none" stroke="#AEB8C4" stroke-width="1.2" marker-end="url(#a)"/>
+<text x="2330" y="100" text-anchor="middle" font-size="10" fill="#5B6675" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">vorlage_id</text>
+<path d="M2336,75 C1350,75 1350,162 364,162" fill="none" stroke="#AEB8C4" stroke-width="1.2" marker-end="url(#a)"/>
+<text x="1350" y="114.5" text-anchor="middle" font-size="10" fill="#5B6675" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">standort_id</text>
+<path d="M2504,133 C2544,133 2476,75 2516,75" fill="none" stroke="#AEB8C4" stroke-width="1.2" marker-end="url(#a)"/>
+<text x="2510" y="100" text-anchor="middle" font-size="10" fill="#5B6675" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">norm_code</text>
+<path d="M2516,133 C2420,133 2420,75 2324,75" fill="none" stroke="#AEB8C4" stroke-width="1.2" marker-end="url(#a)"/>
+<text x="2420" y="100" text-anchor="middle" font-size="10" fill="#5B6675" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">zert_nr (nur öffentliche Felder)</text>
+<path d="M2240,168 C2240,133 2240,133 2240,98" fill="none" stroke="#AEB8C4" stroke-width="1.2" marker-end="url(#a)"/>
+<text x="2240" y="129" text-anchor="middle" font-size="10" fill="#5B6675" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">zert_nr</text>
+<path d="M3006,75 C2966,75 3034,75 2994,75" fill="none" stroke="#AEB8C4" stroke-width="1.2" marker-end="url(#a)"/>
+<text x="3000" y="71" text-anchor="middle" font-size="10" fill="#5B6675" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">mandant</text>
+<path d="M3186,75 C3090,75 3090,75 2994,75" fill="none" stroke="#AEB8C4" stroke-width="1.2" marker-end="url(#a)"/>
+<text x="3090" y="71" text-anchor="middle" font-size="10" fill="#5B6675" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">mandant</text>
+<path d="M2324,133 C2575,133 2575,75 2826,75" fill="none" stroke="#AEB8C4" stroke-width="1.2" marker-end="url(#a)"/>
+<text x="2575" y="100" text-anchor="middle" font-size="10" fill="#5B6675" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">mandant</text>
+<path d="M2504,133 C2665,133 2665,75 2826,75" fill="none" stroke="#AEB8C4" stroke-width="1.2" marker-end="url(#a)"/>
+<text x="2665" y="100" text-anchor="middle" font-size="10" fill="#5B6675" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">mandant</text>
+<path d="M2014,104 C2420,104 2420,75 2826,75" fill="none" stroke="#AEB8C4" stroke-width="1.2" marker-end="url(#a)"/>
+<text x="2420" y="85.5" text-anchor="middle" font-size="10" fill="#5B6675" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">mandant</text>
+<path d="M3006,133 C1595,133 1595,104 184,104" fill="none" stroke="#AEB8C4" stroke-width="1.2" marker-end="url(#a)"/>
+<text x="1595" y="114.5" text-anchor="middle" font-size="10" fill="#5B6675" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">kunden_nr</text>
+<path d="M3186,133 C2755,133 2755,75 2324,75" fill="none" stroke="#AEB8C4" stroke-width="1.2" marker-end="url(#a)"/>
+<text x="2755" y="100" text-anchor="middle" font-size="10" fill="#5B6675" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">zert_nr</text>
+<path d="M3186,133 C3146,133 3214,75 3174,75" fill="none" stroke="#AEB8C4" stroke-width="1.2" marker-end="url(#a)"/>
+<text x="3180" y="100" text-anchor="middle" font-size="10" fill="#5B6675" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">regel_nr</text>
+<path d="M2994,191 C3034,191 2966,75 3006,75" fill="none" stroke="#AEB8C4" stroke-width="1.2" marker-end="url(#a)"/>
+<text x="3000" y="129" text-anchor="middle" font-size="10" fill="#5B6675" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">regel_nr</text>
+<path d="M686,162 C435,162 435,104 184,104" fill="none" stroke="#AEB8C4" stroke-width="1.2" marker-end="url(#a)"/>
+<text x="435" y="129" text-anchor="middle" font-size="10" fill="#5B6675" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">kunden_nr</text>
+<rect x="16" y="81" width="168" height="46" rx="8" fill="#FFFFFF" stroke="#B7791F" stroke-width="1.2"/>
+<text x="26" y="100" font-size="11.5" fill="#1B2430">CRM-Sheet</text>
+<text x="26" y="116" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="10" fill="#5B6675">kunden_nr K-00123</text>
+<rect x="196" y="81" width="168" height="46" rx="8" fill="#FFFFFF" stroke="#B7791F" stroke-width="1.2"/>
+<text x="206" y="100" font-size="11.5" fill="#1B2430">Kunden (Referenz)</text>
+<text x="206" y="116" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="10" fill="#5B6675">kunden_nr</text>
+<rect x="16" y="139" width="168" height="46" rx="8" fill="#FFFFFF" stroke="#B7791F" stroke-width="1.2"/>
+<text x="26" y="158" font-size="11.5" fill="#1B2430">Ansprechpartner</text>
+<text x="26" y="174" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="10" fill="#5B6675">K-00123-01</text>
+<rect x="196" y="139" width="168" height="46" rx="8" fill="#FFFFFF" stroke="#B7791F" stroke-width="1.2"/>
+<text x="206" y="158" font-size="11.5" fill="#1B2430">Standorte</text>
+<text x="206" y="174" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="10" fill="#5B6675">K-00123-S01</text>
+<rect x="506" y="81" width="168" height="46" rx="8" fill="#FFFFFF" stroke="#3F7D2F" stroke-width="1.2"/>
+<text x="516" y="100" font-size="11.5" fill="#1B2430">Angebote</text>
+<text x="516" y="116" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="10" fill="#5B6675">AN-2026-0001</text>
+<rect x="686" y="81" width="168" height="46" rx="8" fill="#FFFFFF" stroke="#3F7D2F" stroke-width="1.2"/>
+<text x="696" y="100" font-size="11.5" fill="#1B2430">Auftraege</text>
+<text x="696" y="116" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="10" fill="#5B6675">AU-2026-0001</text>
+<rect x="506" y="139" width="168" height="46" rx="8" fill="#FFFFFF" stroke="#3F7D2F" stroke-width="1.2"/>
+<text x="516" y="158" font-size="11.5" fill="#1B2430">Preise</text>
+<text x="516" y="174" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="10" fill="#5B6675">artikel_nr</text>
+<rect x="686" y="139" width="168" height="46" rx="8" fill="#FFFFFF" stroke="#3F7D2F" stroke-width="1.2"/>
+<text x="696" y="158" font-size="11.5" fill="#1B2430">Rechnungen</text>
+<text x="696" y="174" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="10" fill="#5B6675">rechnung_ref</text>
+<rect x="996" y="52" width="168" height="46" rx="8" fill="#FFFFFF" stroke="#0F766E" stroke-width="1.2"/>
+<text x="1006" y="71" font-size="11.5" fill="#1B2430">Audits</text>
+<text x="1006" y="87" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="10" fill="#5B6675">AD-2026-0001</text>
+<rect x="1176" y="52" width="168" height="46" rx="8" fill="#FFFFFF" stroke="#0F766E" stroke-width="1.2"/>
+<text x="1186" y="71" font-size="11.5" fill="#1B2430">Auditoren</text>
+<text x="1186" y="87" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="10" fill="#5B6675">auditor_id</text>
+<rect x="1356" y="52" width="168" height="46" rx="8" fill="#FFFFFF" stroke="#0F766E" stroke-width="1.2"/>
+<text x="1366" y="71" font-size="11.5" fill="#1B2430">Kompetenzen</text>
+<text x="1366" y="87" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="10" fill="#5B6675">Auditor × Norm × Code</text>
+<rect x="996" y="110" width="168" height="46" rx="8" fill="#FFFFFF" stroke="#0F766E" stroke-width="1.2"/>
+<text x="1006" y="129" font-size="11.5" fill="#1B2430">Konflikte</text>
+<text x="1006" y="145" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="10" fill="#5B6675">KF-0001</text>
+<rect x="1176" y="110" width="168" height="46" rx="8" fill="#FFFFFF" stroke="#0F766E" stroke-width="1.2"/>
+<text x="1186" y="129" font-size="11.5" fill="#1B2430">Einsaetze</text>
+<text x="1186" y="145" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="10" fill="#5B6675">Audit × Auditor</text>
+<rect x="1356" y="110" width="168" height="46" rx="8" fill="#FFFFFF" stroke="#0F766E" stroke-width="1.2"/>
+<text x="1366" y="129" font-size="11.5" fill="#1B2430">Abweichungen</text>
+<text x="1366" y="145" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="10" fill="#5B6675">AB-2026-0001</text>
+<rect x="996" y="168" width="168" height="46" rx="8" fill="#FFFFFF" stroke="#0F766E" stroke-width="1.2"/>
+<text x="1006" y="187" font-size="11.5" fill="#1B2430">Checklisten</text>
+<text x="1006" y="203" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="10" fill="#5B6675">Norm × Kapitel</text>
+<rect x="1176" y="168" width="168" height="46" rx="8" fill="#FFFFFF" stroke="#0F766E" stroke-width="1.2"/>
+<text x="1186" y="187" font-size="11.5" fill="#1B2430">Bewertungen</text>
+<text x="1186" y="203" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="10" fill="#5B6675">Audit</text>
+<rect x="1666" y="81" width="168" height="46" rx="8" fill="#FFFFFF" stroke="#8A3F6A" stroke-width="1.2"/>
+<text x="1676" y="100" font-size="11.5" fill="#1B2430">Entscheidungen</text>
+<text x="1676" y="116" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="10" fill="#5B6675">ZE-2026-0001</text>
+<rect x="1846" y="81" width="168" height="46" rx="8" fill="#FFFFFF" stroke="#8A3F6A" stroke-width="1.2"/>
+<text x="1856" y="100" font-size="11.5" fill="#1B2430">ZFA_Mitglieder</text>
+<text x="1856" y="116" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="10" fill="#5B6675">Mitglied</text>
+<rect x="1666" y="139" width="168" height="46" rx="8" fill="#FFFFFF" stroke="#8A3F6A" stroke-width="1.2"/>
+<text x="1676" y="158" font-size="11.5" fill="#1B2430">ZFA_Sitzungen</text>
+<text x="1676" y="174" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="10" fill="#5B6675">SI-2026-01</text>
+<rect x="1846" y="139" width="168" height="46" rx="8" fill="#FFFFFF" stroke="#8A3F6A" stroke-width="1.2"/>
+<text x="1856" y="158" font-size="11.5" fill="#1B2430">Beschwerden</text>
+<text x="1856" y="174" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="10" fill="#5B6675">BE-2026-0001</text>
+<rect x="2156" y="52" width="168" height="46" rx="8" fill="#FFFFFF" stroke="#1B4F94" stroke-width="1.2"/>
+<text x="2166" y="71" font-size="11.5" fill="#1B2430">Zertifikate (Register)</text>
+<text x="2166" y="87" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="10" fill="#5B6675">OC-2026-00123-7</text>
+<rect x="2336" y="52" width="168" height="46" rx="8" fill="#FFFFFF" stroke="#1B4F94" stroke-width="1.2"/>
+<text x="2346" y="71" font-size="11.5" fill="#1B2430">Ausfertigungen</text>
+<text x="2346" y="87" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="10" fill="#5B6675">…/EN, …/S02</text>
+<rect x="2516" y="52" width="168" height="46" rx="8" fill="#FFFFFF" stroke="#1B4F94" stroke-width="1.2"/>
+<text x="2526" y="71" font-size="11.5" fill="#1B2430">Normen</text>
+<text x="2526" y="87" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="10" fill="#5B6675">9001</text>
+<rect x="2156" y="110" width="168" height="46" rx="8" fill="#FFFFFF" stroke="#1B4F94" stroke-width="1.2"/>
+<text x="2166" y="129" font-size="11.5" fill="#1B2430">Vorlagen</text>
+<text x="2166" y="145" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="10" fill="#5B6675">OC-zert-DE</text>
+<rect x="2336" y="110" width="168" height="46" rx="8" fill="#FFFFFF" stroke="#1B4F94" stroke-width="1.2"/>
+<text x="2346" y="129" font-size="11.5" fill="#1B2430">Logos</text>
+<text x="2346" y="145" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="10" fill="#5B6675">OC-9001-DE-zert</text>
+<rect x="2516" y="110" width="168" height="46" rx="8" fill="#FFFFFF" stroke="#1B4F94" stroke-width="1.2"/>
+<text x="2526" y="129" font-size="11.5" fill="#1B2430">Register_oeffentlich</text>
+<text x="2526" y="145" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="10" fill="#5B6675">zert_nr</text>
+<rect x="2156" y="168" width="168" height="46" rx="8" fill="#FFFFFF" stroke="#1B4F94" stroke-width="1.2"/>
+<text x="2166" y="187" font-size="11.5" fill="#1B2430">Abonnenten</text>
+<text x="2166" y="203" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="10" fill="#5B6675">E-Mail × zert_nr</text>
+<rect x="2826" y="52" width="168" height="46" rx="8" fill="#FFFFFF" stroke="#6D4BB5" stroke-width="1.2"/>
+<text x="2836" y="71" font-size="11.5" fill="#1B2430">Mandanten</text>
+<text x="2836" y="87" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="10" fill="#5B6675">OC</text>
+<rect x="3006" y="52" width="168" height="46" rx="8" fill="#FFFFFF" stroke="#6D4BB5" stroke-width="1.2"/>
+<text x="3016" y="71" font-size="11.5" fill="#1B2430">Regelwerk</text>
+<text x="3016" y="87" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="10" fill="#5B6675">R01–R33</text>
+<rect x="3186" y="52" width="168" height="46" rx="8" fill="#FFFFFF" stroke="#6D4BB5" stroke-width="1.2"/>
+<text x="3196" y="71" font-size="11.5" fill="#1B2430">Mailvorlagen</text>
+<text x="3196" y="87" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="10" fill="#5B6675">ereignis-Sprache</text>
+<rect x="2826" y="110" width="168" height="46" rx="8" fill="#FFFFFF" stroke="#6D4BB5" stroke-width="1.2"/>
+<text x="2836" y="129" font-size="11.5" fill="#1B2430">Texte</text>
+<text x="2836" y="145" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="10" fill="#5B6675">key → de/en/es/fr</text>
+<rect x="3006" y="110" width="168" height="46" rx="8" fill="#FFFFFF" stroke="#6D4BB5" stroke-width="1.2"/>
+<text x="3016" y="129" font-size="11.5" fill="#1B2430">Aufgaben (Tagesliste)</text>
+<text x="3016" y="145" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="10" fill="#5B6675">aufgabe_id</text>
+<rect x="3186" y="110" width="168" height="46" rx="8" fill="#FFFFFF" stroke="#6D4BB5" stroke-width="1.2"/>
+<text x="3196" y="129" font-size="11.5" fill="#1B2430">Erinnerungen_Log</text>
+<text x="3196" y="145" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="10" fill="#5B6675">lfd</text>
+<rect x="2826" y="168" width="168" height="46" rx="8" fill="#FFFFFF" stroke="#6D4BB5" stroke-width="1.2"/>
+<text x="2836" y="187" font-size="11.5" fill="#1B2430">Historie</text>
+<text x="2836" y="203" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="10" fill="#5B6675">append-only</text>
+<rect x="3006" y="168" width="168" height="46" rx="8" fill="#FFFFFF" stroke="#6D4BB5" stroke-width="1.2"/>
+<text x="3016" y="187" font-size="11.5" fill="#1B2430">Log + Heartbeat</text>
+<text x="3016" y="203" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="10" fill="#5B6675">lfd</text>
+</g>
+<rect x="40" y="378" width="10" height="10" rx="2" fill="#B7791F"/>
+<text x="55" y="387" font-size="11" fill="#5B6675">Rollen</text>
+<rect x="114.2" y="378" width="10" height="10" rx="2" fill="#3F7D2F"/>
+<text x="129.2" y="387" font-size="11" fill="#5B6675">Externe Dienste</text>
+<rect x="244.2" y="378" width="10" height="10" rx="2" fill="#0F766E"/>
+<text x="259.2" y="387" font-size="11" fill="#5B6675">Frontends (Netlify)</text>
+<rect x="399" y="378" width="10" height="10" rx="2" fill="#8A3F6A"/>
+<text x="414" y="387" font-size="11" fill="#5B6675">Prozessphase</text>
+<rect x="510.4" y="378" width="10" height="10" rx="2" fill="#1B4F94"/>
+<text x="525.4" y="387" font-size="11" fill="#5B6675">Backend (Apps Script)</text>
+<rect x="677.6" y="378" width="10" height="10" rx="2" fill="#6D4BB5"/>
+<text x="692.6" y="387" font-size="11" fill="#5B6675">Daten (Google Workspace)</text>
+<text x="863.4000000000001" y="387" font-size="11" fill="#5B6675">Pfeil = Abhängigkeit / löst aus</text>
+</svg>

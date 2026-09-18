@@ -1,0 +1,171 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3450 424" width="3450" height="424" font-family="'IBM Plex Sans','Segoe UI',Helvetica,Arial,sans-serif" font-size="12">
+<title>OnlineCert Systemkarte · Datenmodell · Übersicht</title>
+<defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#AEB8C4"/></marker></defs>
+<rect width="3450" height="424" fill="#FFFFFF"/>
+<text x="40" y="34" font-size="22" font-weight="600" fill="#1B2430">OnlineCert Systemkarte · Datenmodell</text>
+<text x="40" y="56" font-size="12" fill="#5B6675">Übersicht: Gruppen, Bausteine als Liste, gebündelte Pfeile · Stand 18.09.2026 · Quelle: docs/zertifikatssystem/systemkarte.html</text>
+<g transform="translate(40,104)">
+<path d="M490,123 C430,123 440,123 380,123" fill="none" stroke="#AEB8C4" stroke-width="2.5" stroke-linecap="round" marker-end="url(#a)"/>
+<text x="435" y="118" text-anchor="middle" font-size="10" fill="#5B6675" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">2 Pfeile</text>
+<path d="M980,123 C920,123 930,123 870,123" fill="none" stroke="#AEB8C4" stroke-width="2" stroke-linecap="round" marker-end="url(#a)"/>
+<text x="925" y="118" text-anchor="middle" font-size="10" fill="#5B6675" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">1 Pfeile</text>
+<path d="M980,123 C680,123 680,123 380,123" fill="none" stroke="#AEB8C4" stroke-width="2" stroke-linecap="round" marker-end="url(#a)"/>
+<text x="680" y="118" text-anchor="middle" font-size="10" fill="#5B6675" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">1 Pfeile</text>
+<path d="M1540,123 C1840,123 1840,123 2140,123" fill="none" stroke="#AEB8C4" stroke-width="2" stroke-linecap="round" marker-end="url(#a)"/>
+<text x="1840" y="118" text-anchor="middle" font-size="10" fill="#5B6675" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">1 Pfeile</text>
+<path d="M1650,123 C1590,123 1600,123 1540,123" fill="none" stroke="#AEB8C4" stroke-width="2" stroke-linecap="round" marker-end="url(#a)"/>
+<text x="1595" y="118" text-anchor="middle" font-size="10" fill="#5B6675" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">1 Pfeile</text>
+<path d="M2030,123 C2090,123 2080,123 2140,123" fill="none" stroke="#AEB8C4" stroke-width="2" stroke-linecap="round" marker-end="url(#a)"/>
+<text x="2085" y="118" text-anchor="middle" font-size="10" fill="#5B6675" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">1 Pfeile</text>
+<path d="M2140,123 C2080,123 2090,123 2030,123" fill="none" stroke="#AEB8C4" stroke-width="2" stroke-linecap="round" marker-end="url(#a)"/>
+<text x="2085" y="118" text-anchor="middle" font-size="10" fill="#5B6675" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">1 Pfeile</text>
+<path d="M2140,123 C1505,123 1505,123 870,123" fill="none" stroke="#AEB8C4" stroke-width="2" stroke-linecap="round" marker-end="url(#a)"/>
+<text x="1505" y="118" text-anchor="middle" font-size="10" fill="#5B6675" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">1 Pfeile</text>
+<path d="M2140,123 C1260,123 1260,123 380,123" fill="none" stroke="#AEB8C4" stroke-width="2.5" stroke-linecap="round" marker-end="url(#a)"/>
+<text x="1260" y="118" text-anchor="middle" font-size="10" fill="#5B6675" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">2 Pfeile</text>
+<path d="M2700,123 C2760,123 2750,123 2810,123" fill="none" stroke="#AEB8C4" stroke-width="2.5" stroke-linecap="round" marker-end="url(#a)"/>
+<text x="2755" y="118" text-anchor="middle" font-size="10" fill="#5B6675" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">2 Pfeile</text>
+<path d="M2030,123 C2420,123 2420,123 2810,123" fill="none" stroke="#AEB8C4" stroke-width="2" stroke-linecap="round" marker-end="url(#a)"/>
+<text x="2420" y="118" text-anchor="middle" font-size="10" fill="#5B6675" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">1 Pfeile</text>
+<path d="M2810,123 C1595,123 1595,123 380,123" fill="none" stroke="#AEB8C4" stroke-width="2" stroke-linecap="round" marker-end="url(#a)"/>
+<text x="1595" y="118" text-anchor="middle" font-size="10" fill="#5B6675" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">1 Pfeile</text>
+<path d="M2810,123 C2750,123 2760,123 2700,123" fill="none" stroke="#AEB8C4" stroke-width="2" stroke-linecap="round" marker-end="url(#a)"/>
+<text x="2755" y="118" text-anchor="middle" font-size="10" fill="#5B6675" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">1 Pfeile</text>
+<rect x="0" y="29" width="380" height="188" rx="14" fill="#FFF4DC" stroke="#B7791F" stroke-width="1.4"/>
+<text x="16" y="55" font-size="17" font-weight="600" fill="#1B2430">Kunden</text>
+<text x="16" y="72" font-size="11.5" fill="#5B6675">Rollen · 4 Bausteine</text>
+<circle cx="22" cy="96" r="3" fill="#B7791F"/>
+<text x="32" y="100" font-size="12" fill="#1B2430">CRM-Sheet</text>
+<text x="32" y="115" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="9.5" fill="#5B6675">kunden_nr K-00123</text>
+<circle cx="202" cy="96" r="3" fill="#B7791F"/>
+<text x="212" y="100" font-size="12" fill="#1B2430">Kunden (Referenz)</text>
+<text x="212" y="115" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="9.5" fill="#5B6675">kunden_nr</text>
+<circle cx="22" cy="154" r="3" fill="#B7791F"/>
+<text x="32" y="158" font-size="12" fill="#1B2430">Ansprechpartner</text>
+<text x="32" y="173" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="9.5" fill="#5B6675">K-00123-01</text>
+<circle cx="202" cy="154" r="3" fill="#B7791F"/>
+<text x="212" y="158" font-size="12" fill="#1B2430">Standorte</text>
+<text x="212" y="173" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="9.5" fill="#5B6675">K-00123-S01</text>
+<rect x="490" y="29" width="380" height="188" rx="14" fill="#E2F1DC" stroke="#3F7D2F" stroke-width="1.4"/>
+<text x="506" y="55" font-size="17" font-weight="600" fill="#1B2430">Vertrieb &amp; Geld</text>
+<text x="506" y="72" font-size="11.5" fill="#5B6675">Externe Dienste · 4 Bausteine</text>
+<circle cx="512" cy="96" r="3" fill="#3F7D2F"/>
+<text x="522" y="100" font-size="12" fill="#1B2430">Angebote</text>
+<text x="522" y="115" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="9.5" fill="#5B6675">AN-2026-0001</text>
+<circle cx="692" cy="96" r="3" fill="#3F7D2F"/>
+<text x="702" y="100" font-size="12" fill="#1B2430">Auftraege</text>
+<text x="702" y="115" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="9.5" fill="#5B6675">AU-2026-0001</text>
+<circle cx="512" cy="154" r="3" fill="#3F7D2F"/>
+<text x="522" y="158" font-size="12" fill="#1B2430">Preise</text>
+<text x="522" y="173" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="9.5" fill="#5B6675">artikel_nr</text>
+<circle cx="692" cy="154" r="3" fill="#3F7D2F"/>
+<text x="702" y="158" font-size="12" fill="#1B2430">Rechnungen</text>
+<text x="702" y="173" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="9.5" fill="#5B6675">rechnung_ref</text>
+<rect x="980" y="0" width="560" height="246" rx="14" fill="#DDF4F1" stroke="#0F766E" stroke-width="1.4"/>
+<text x="996" y="26" font-size="17" font-weight="600" fill="#1B2430">Audit</text>
+<text x="996" y="43" font-size="11.5" fill="#5B6675">Frontends (Netlify) · 8 Bausteine</text>
+<circle cx="1002" cy="67" r="3" fill="#0F766E"/>
+<text x="1012" y="71" font-size="12" fill="#1B2430">Audits</text>
+<text x="1012" y="86" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="9.5" fill="#5B6675">AD-2026-0001</text>
+<circle cx="1182" cy="67" r="3" fill="#0F766E"/>
+<text x="1192" y="71" font-size="12" fill="#1B2430">Auditoren</text>
+<text x="1192" y="86" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="9.5" fill="#5B6675">auditor_id</text>
+<circle cx="1362" cy="67" r="3" fill="#0F766E"/>
+<text x="1372" y="71" font-size="12" fill="#1B2430">Kompetenzen</text>
+<text x="1372" y="86" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="9.5" fill="#5B6675">Auditor × Norm × Code</text>
+<circle cx="1002" cy="125" r="3" fill="#0F766E"/>
+<text x="1012" y="129" font-size="12" fill="#1B2430">Konflikte</text>
+<text x="1012" y="144" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="9.5" fill="#5B6675">KF-0001</text>
+<circle cx="1182" cy="125" r="3" fill="#0F766E"/>
+<text x="1192" y="129" font-size="12" fill="#1B2430">Einsaetze</text>
+<text x="1192" y="144" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="9.5" fill="#5B6675">Audit × Auditor</text>
+<circle cx="1362" cy="125" r="3" fill="#0F766E"/>
+<text x="1372" y="129" font-size="12" fill="#1B2430">Abweichungen</text>
+<text x="1372" y="144" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="9.5" fill="#5B6675">AB-2026-0001</text>
+<circle cx="1002" cy="183" r="3" fill="#0F766E"/>
+<text x="1012" y="187" font-size="12" fill="#1B2430">Checklisten</text>
+<text x="1012" y="202" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="9.5" fill="#5B6675">Norm × Kapitel</text>
+<circle cx="1182" cy="183" r="3" fill="#0F766E"/>
+<text x="1192" y="187" font-size="12" fill="#1B2430">Bewertungen</text>
+<text x="1192" y="202" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="9.5" fill="#5B6675">Audit</text>
+<rect x="1650" y="29" width="380" height="188" rx="14" fill="#F6E3EE" stroke="#8A3F6A" stroke-width="1.4"/>
+<text x="1666" y="55" font-size="17" font-weight="600" fill="#1B2430">Entscheidung</text>
+<text x="1666" y="72" font-size="11.5" fill="#5B6675">Prozessphase · 4 Bausteine</text>
+<circle cx="1672" cy="96" r="3" fill="#8A3F6A"/>
+<text x="1682" y="100" font-size="12" fill="#1B2430">Entscheidungen</text>
+<text x="1682" y="115" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="9.5" fill="#5B6675">ZE-2026-0001</text>
+<circle cx="1852" cy="96" r="3" fill="#8A3F6A"/>
+<text x="1862" y="100" font-size="12" fill="#1B2430">ZFA_Mitglieder</text>
+<text x="1862" y="115" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="9.5" fill="#5B6675">Mitglied</text>
+<circle cx="1672" cy="154" r="3" fill="#8A3F6A"/>
+<text x="1682" y="158" font-size="12" fill="#1B2430">ZFA_Sitzungen</text>
+<text x="1682" y="173" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="9.5" fill="#5B6675">SI-2026-01</text>
+<circle cx="1852" cy="154" r="3" fill="#8A3F6A"/>
+<text x="1862" y="158" font-size="12" fill="#1B2430">Beschwerden</text>
+<text x="1862" y="173" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="9.5" fill="#5B6675">BE-2026-0001</text>
+<rect x="2140" y="0" width="560" height="246" rx="14" fill="#DEE8F7" stroke="#1B4F94" stroke-width="1.4"/>
+<text x="2156" y="26" font-size="17" font-weight="600" fill="#1B2430">Zertifikat</text>
+<text x="2156" y="43" font-size="11.5" fill="#5B6675">Backend (Apps Script) · 7 Bausteine</text>
+<circle cx="2162" cy="67" r="3" fill="#1B4F94"/>
+<text x="2172" y="71" font-size="12" fill="#1B2430">Zertifikate (Register)</text>
+<text x="2172" y="86" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="9.5" fill="#5B6675">OC-2026-00123-7</text>
+<circle cx="2342" cy="67" r="3" fill="#1B4F94"/>
+<text x="2352" y="71" font-size="12" fill="#1B2430">Ausfertigungen</text>
+<text x="2352" y="86" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="9.5" fill="#5B6675">…/EN, …/S02</text>
+<circle cx="2522" cy="67" r="3" fill="#1B4F94"/>
+<text x="2532" y="71" font-size="12" fill="#1B2430">Normen</text>
+<text x="2532" y="86" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="9.5" fill="#5B6675">9001</text>
+<circle cx="2162" cy="125" r="3" fill="#1B4F94"/>
+<text x="2172" y="129" font-size="12" fill="#1B2430">Vorlagen</text>
+<text x="2172" y="144" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="9.5" fill="#5B6675">OC-zert-DE</text>
+<circle cx="2342" cy="125" r="3" fill="#1B4F94"/>
+<text x="2352" y="129" font-size="12" fill="#1B2430">Logos</text>
+<text x="2352" y="144" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="9.5" fill="#5B6675">OC-9001-DE-zert</text>
+<circle cx="2522" cy="125" r="3" fill="#1B4F94"/>
+<text x="2532" y="129" font-size="12" fill="#1B2430">Register_oeffentlich</text>
+<text x="2532" y="144" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="9.5" fill="#5B6675">zert_nr</text>
+<circle cx="2162" cy="183" r="3" fill="#1B4F94"/>
+<text x="2172" y="187" font-size="12" fill="#1B2430">Abonnenten</text>
+<text x="2172" y="202" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="9.5" fill="#5B6675">E-Mail × zert_nr</text>
+<rect x="2810" y="0" width="560" height="246" rx="14" fill="#ECE5F9" stroke="#6D4BB5" stroke-width="1.4"/>
+<text x="2826" y="26" font-size="17" font-weight="600" fill="#1B2430">Steuerung &amp; Protokoll</text>
+<text x="2826" y="43" font-size="11.5" fill="#5B6675">Daten (Google Workspace) · 8 Bausteine</text>
+<circle cx="2832" cy="67" r="3" fill="#6D4BB5"/>
+<text x="2842" y="71" font-size="12" fill="#1B2430">Mandanten</text>
+<text x="2842" y="86" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="9.5" fill="#5B6675">OC</text>
+<circle cx="3012" cy="67" r="3" fill="#6D4BB5"/>
+<text x="3022" y="71" font-size="12" fill="#1B2430">Regelwerk</text>
+<text x="3022" y="86" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="9.5" fill="#5B6675">R01–R33</text>
+<circle cx="3192" cy="67" r="3" fill="#6D4BB5"/>
+<text x="3202" y="71" font-size="12" fill="#1B2430">Mailvorlagen</text>
+<text x="3202" y="86" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="9.5" fill="#5B6675">ereignis-Sprache</text>
+<circle cx="2832" cy="125" r="3" fill="#6D4BB5"/>
+<text x="2842" y="129" font-size="12" fill="#1B2430">Texte</text>
+<text x="2842" y="144" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="9.5" fill="#5B6675">key → de/en/es/fr</text>
+<circle cx="3012" cy="125" r="3" fill="#6D4BB5"/>
+<text x="3022" y="129" font-size="12" fill="#1B2430">Aufgaben (Tagesliste)</text>
+<text x="3022" y="144" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="9.5" fill="#5B6675">aufgabe_id</text>
+<circle cx="3192" cy="125" r="3" fill="#6D4BB5"/>
+<text x="3202" y="129" font-size="12" fill="#1B2430">Erinnerungen_Log</text>
+<text x="3202" y="144" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="9.5" fill="#5B6675">lfd</text>
+<circle cx="2832" cy="183" r="3" fill="#6D4BB5"/>
+<text x="2842" y="187" font-size="12" fill="#1B2430">Historie</text>
+<text x="2842" y="202" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="9.5" fill="#5B6675">append-only</text>
+<circle cx="3012" cy="183" r="3" fill="#6D4BB5"/>
+<text x="3022" y="187" font-size="12" fill="#1B2430">Log + Heartbeat</text>
+<text x="3022" y="202" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="9.5" fill="#5B6675">lfd</text>
+</g>
+<rect x="40" y="378" width="10" height="10" rx="2" fill="#B7791F"/>
+<text x="55" y="387" font-size="11" fill="#5B6675">Rollen</text>
+<rect x="114.2" y="378" width="10" height="10" rx="2" fill="#3F7D2F"/>
+<text x="129.2" y="387" font-size="11" fill="#5B6675">Externe Dienste</text>
+<rect x="244.2" y="378" width="10" height="10" rx="2" fill="#0F766E"/>
+<text x="259.2" y="387" font-size="11" fill="#5B6675">Frontends (Netlify)</text>
+<rect x="399" y="378" width="10" height="10" rx="2" fill="#8A3F6A"/>
+<text x="414" y="387" font-size="11" fill="#5B6675">Prozessphase</text>
+<rect x="510.4" y="378" width="10" height="10" rx="2" fill="#1B4F94"/>
+<text x="525.4" y="387" font-size="11" fill="#5B6675">Backend (Apps Script)</text>
+<rect x="677.6" y="378" width="10" height="10" rx="2" fill="#6D4BB5"/>
+<text x="692.6" y="387" font-size="11" fill="#5B6675">Daten (Google Workspace)</text>
+<text x="863.4000000000001" y="387" font-size="11" fill="#5B6675">Pfeil = Abhängigkeit / löst aus</text>
+</svg>
