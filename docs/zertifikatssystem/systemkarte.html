@@ -586,7 +586,18 @@ $('#m-close').addEventListener('click',()=>{ $('#modal').hidden=true; });
 $('#modal').addEventListener('click',e=>{ if(e.target.id==='modal') $('#modal').hidden=true; });
 $('#m-over').addEventListener('click',()=>{exportMode='over';refreshExport();});
 $('#m-detail').addEventListener('click',()=>{exportMode='detail';refreshExport();});
-$('#m-download').addEventListener('click',()=>{ try{ const blob=new Blob([$('#m-text').value],{type:'image/svg+xml;charset=utf-8'}); const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='systemkarte-'+slug(cur.title)+'-'+(exportMode==='detail'?'detail':'uebersicht')+'.svg'; document.body.appendChild(a); a.click(); a.remove(); setTimeout(()=>URL.revokeObjectURL(a.href),2000); $('#m-note').textContent='Download gestartet. Wenn nichts passiert, ist der Download hier gesperrt: dann Text kopieren und als .svg speichern.'; }catch(e){ $('#m-note').textContent='Download nicht möglich: '+e.message+'. Bitte Text kopieren.'; } });
+$('#m-download').addEventListener('click',async()=>{
+  const name='systemkarte-'+slug(cur.title)+'-'+(exportMode==='detail'?'detail':'uebersicht')+'.svg', text=$('#m-text').value;
+  /* Im claude.ai-Viewer läuft der Download über die Download-Fähigkeit; sonst (Netlify, lokal) über einen Blob-Link. */
+  let dl=null; try{ if(window.claude&&typeof window.claude.use==='function') dl=await window.claude.use('downloads'); }catch(e){ dl=null; }
+  if(dl){
+    try{ await dl.save({filename:name,data:text}); $('#m-note').textContent='Gespeichert als '+name+'.'; }
+    catch(err){ const c=err&&err.code; $('#m-note').textContent=c==='declined'?'Download abgelehnt. Alternativ Text kopieren.':c==='rate_limited'?'Bitte kurz warten und erneut versuchen.':'Download hier nicht möglich ('+(c||'unbekannt')+'). Text kopieren und als .svg speichern.'; }
+    return;
+  }
+  try{ const blob=new Blob([text],{type:'image/svg+xml;charset=utf-8'}); const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download=name; document.body.appendChild(a); a.click(); a.remove(); setTimeout(()=>URL.revokeObjectURL(a.href),2000); $('#m-note').textContent='Download gestartet: '+name+'. Wenn nichts passiert, Text kopieren und als .svg speichern.'; }
+  catch(e){ $('#m-note').textContent='Download nicht möglich: '+e.message+'. Bitte Text kopieren.'; }
+});
 $('#m-copy').addEventListener('click',async()=>{ const t=$('#m-text'); try{ await navigator.clipboard.writeText(t.value); $('#m-note').textContent='SVG-Text kopiert. Als Datei mit Endung .svg speichern.'; }catch(e){ t.select(); document.execCommand&&document.execCommand('copy'); $('#m-note').textContent='Text markiert. Mit Strg+C kopieren und als .svg speichern.'; } });
 window.addEventListener('keydown',e=>{ if(e.key==='Escape') $('#modal').hidden=true; });
 
