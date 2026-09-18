@@ -49,10 +49,10 @@ Ergänzung zu [Anforderungskatalog](anforderungskatalog.md) und [Runde 2](runde-
 
 | Nr. | Punkt | Katalog hier | ZMS v1.3 | Empfehlung |
 |---|---|---|---|---|
-| E16 | **Ist die Kundenverwaltung vorhanden?** Der Auftragstext („Mir fehlt die Verwaltung der Kunden habe ich") ist doppeldeutig. | Vorhanden: CRM-Sheet aus Kontakt-Kunden-Import ist Kundenstamm, Zertifikatssystem referenziert per K-Nr. | Fehlt: Kundenverwaltung ist Kern der Anforderung. | Beides ist abgedeckt: M1 spezifiziert die Kundenverwaltung vollständig. Wenn das CRM-Sheet weiter genutzt wird, bleibt es Stammquelle und bekommt die K-Nr.; wenn nicht, wird `Kunden` in der Mandantendatei zum Stamm und das CRM-Sheet einmalig importiert. Bitte festlegen. |
-| E17 | **Zertifikatsnummer** | `OC-2026-00123-7` + Ausfertigung `/EN`, `/S02` | `Z-CB1-9001-2026-00417-DE` | Siehe N06 und E1: Sprache nie in der Kernnummer; Normcode optional. |
-| E18 | **Rechnungssystem** | Billomat per API | Docs-Vorlage + eigener Nummernkreis | Billomat (E-Rechnung 2028, Mahnwesen, Bankabgleich); siehe N03 und E4. |
-| E19 | **Berichtsfreigabe** | Auditor gibt frei, System prüft Pflichtfelder, Claude prüft vor | Backoffice prüft jeden Bericht mit Score | Stichprobe 5 % + Neu-Auditoren; siehe N04. |
+| E20 | **Ist die Kundenverwaltung vorhanden?** Der Auftragstext („Mir fehlt die Verwaltung der Kunden habe ich") ist doppeldeutig. | Vorhanden: CRM-Sheet aus Kontakt-Kunden-Import ist Kundenstamm, Zertifikatssystem referenziert per K-Nr. | Fehlt: Kundenverwaltung ist Kern der Anforderung. | Beides ist abgedeckt: M1 spezifiziert die Kundenverwaltung vollständig. Wenn das CRM-Sheet weiter genutzt wird, bleibt es Stammquelle und bekommt die K-Nr.; wenn nicht, wird `Kunden` in der Mandantendatei zum Stamm und das CRM-Sheet einmalig importiert. Bitte festlegen. |
+| E21 | **Zertifikatsnummer** | `OC-2026-00123-7` + Ausfertigung `/EN`, `/S02` | `Z-CB1-9001-2026-00417-DE` | Siehe N06 und E1: Sprache nie in der Kernnummer; Normcode optional. |
+| E22 | **Rechnungssystem** | Billomat per API | Docs-Vorlage + eigener Nummernkreis | Billomat (E-Rechnung 2028, Mahnwesen, Bankabgleich); siehe N03 und E4. |
+| E23 | **Berichtsfreigabe** | Auditor gibt frei, System prüft Pflichtfelder, Claude prüft vor | Backoffice prüft jeden Bericht mit Score | Stichprobe 5 % + Neu-Auditoren; siehe N04. |
 
 ---
 
@@ -65,7 +65,7 @@ Ergänzung zu [Anforderungskatalog](anforderungskatalog.md) und [Runde 2](runde-
 - Erinnerungskaskade 180/120/90/60/30 in Kundensprache, tägliche Ablaufprüfung.
 - Verifizierung ohne Login, unter eigener Domain, Status auch für abgelaufene/entzogene sichtbar.
 - Kundenportal per Token-Link, kein Passwort.
-- Auditor-Vorschlag mit Kompetenz, Verfügbarkeit und Konfliktprüfung; Bestätigung ist der einzige manuelle Schritt.
+- Auditor-Vorschlag mit Kompetenz und Konfliktprüfung; Bestätigung ist der einzige manuelle Schritt. Termine vereinbart der Auditor selbst mit dem Kunden und trägt sie ein (Festlegung 18.09.2026); Kapazitätsplanung je Kalenderwoche aus dem ZMS-Katalog entfällt dadurch als Pflicht und bleibt Option.
 - Tages-Trigger 06:00 mit Tagesreport, Backup, Fehler-Wiederholung 3×, Dry-Run.
 - Append-only-Protokoll, DAkkS-tauglicher Prüfpfad, GitHub als Änderungshistorie.
 - Ziel ≥ 90 % Automatisierung, Backoffice nur Ausnahmen und Freigaben.

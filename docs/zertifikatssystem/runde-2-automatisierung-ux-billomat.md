@@ -62,19 +62,19 @@ Das Backoffice sieht eine Übergabe nur, wenn die Eskalation greift. Läuft alle
 ### 2.2 Die Kette im Überblick (Schwimmbahnen)
 
 ```
-KUNDE            │ Anfrage ──► Angebot annehmen ──► Unterlagen hochladen ──► Termin wählen ──► Audit ──► Nachweise zu Abweichungen ──► Zertifikat/Logo abrufen ──► (Jahr 1/2) Termin wählen ──► …
+KUNDE            │ Anfrage ──► Angebot annehmen ──► Unterlagen in Drive ──► Termin bestätigen ─► Audit ──► Nachweise zu Abweichungen ──► Zertifikat/Logo abrufen ──► (Jahr 1/2) Termin wählen ──► …
                  │    │              │                     │                    │              │              │                              ▲                          │
 SYSTEM           │ Angebot-PDF   Auftrag, Billomat-   Vollständigkeits-    Auditor-Vor-    Auditplan,   CAP-Frist,         Ausschuss-     Zertifikat, PDFs,          Erinnerungen 120/90/60/30,
 (Regelwerk)      │ + Mail        Kunde, Vereinbarung, prüfung, Stufe-1-    schlag, Termin- Bericht-     Erinnerung,        vorgang,       Logo-Paket, Verifizierung, Rechnung ÜA, Auditor-
-                 │               Checkliste, Portal   Vorlage an Auditor   slots, Kalender Gerüst       Freigabe-Link      Voten, Quorum  Rechnung, Portal-Update   Vorschlag, Termin-Slots
+                 │               Checkliste, Portal   Vorlage an Auditor   schlag, Termin- Gerüst       Freigabe-Link      Voten, Quorum  Rechnung, Portal-Update   Vorschlag, Termin-Slots
                  │                                          │                    │              │              │                 │                                        │
-AUDITOR          │                                    Stufe 1: Dokumente  Slots freigeben  Audit durch-  Nachweise prüfen,  (ausge-       Bericht ist Grundlage      Überwachungsaudit
-                 │                                    prüfen, Ergebnis    (Kalender)       führen, Fest-  Abweichung         schlossen)                               durchführen, Bericht
-                 │                                    per Klick                            stellungen,    schließen
+AUDITOR          │                                    Stufe 1: Dokumente  Termin mit Kunde Audit durch-  Nachweise prüfen,  (ausge-       Bericht ist Grundlage      Überwachungsaudit
+                 │                                    prüfen, Ergebnis    vereinbaren und  führen, Fest-  Abweichung         schlossen)                               durchführen, Bericht
+                 │                                    per Klick           eintragen        stellungen,    schließen
                  │                                                                         Bericht senden
 AUSSCHUSS        │                                                                                                          Votum per
                  │                                                                                                          Magic Link
-BACKOFFICE       │ (nur bei Eskalation) Angebot ohne Antwort 30 T · Unterlagen fehlen 21 T · kein Slot 7 T · Bericht fehlt 5 T nach Audit · CAP überfällig · Votum fehlt 7 T · Zahlung offen Mahnstufe 2
+BACKOFFICE       │ (nur bei Eskalation) Angebot ohne Antwort 30 T · Unterlagen fehlen 21 T · kein Termin 14 T · Bericht fehlt 5 T nach Audit · CAP überfällig · Votum fehlt 7 T · Zahlung offen Mahnstufe 2
 ```
 
 ### 2.3 Ereigniskatalog (Regelwerk)
@@ -93,7 +93,7 @@ Jede Zeile ist eine Regel im Blatt `Regelwerk`. Fristen sind Vorschläge und je 
 
 | Regel | Auslöser | Automatische Aktion | Frist | Erinnerung | Eskalation an BO |
 |---|---|---|---|---|---|
-| R04 | Kunde lädt Dokument im Portal hoch | Checkliste abhaken (Dokumenttyp per Dateiname/Claude), Ablage in Drive `Kunden/{K-Nr}/Unterlagen`, Fortschritt im Portal | – | – | – |
+| R04 | Neue Datei im Drive-Kundenordner `Kunden/{K-Nr}/Unterlagen` (Kunde legt sie direkt im freigegebenen Ordner ab oder lädt sie im Portal hoch, was in denselben Ordner schreibt) | Stündlicher Ordner-Scan: Checkliste abhaken (Dokumenttyp per Dateiname/Claude), Fortschritt im Portal, Auditor sieht den Ordner | – | – | – |
 | R05 | Checkliste vollständig (alle Pflichtdokumente) | Auditor-Vorschlag (Norm, Sprache, Sperrliste, Auslastung), Stufe-1-Auftrag an Auditor mit Link; Skill qm-auditvorbereitung erzeugt Vorprüfbericht als Entwurf | Stufe 1 in 10 Tagen | Tag 5 an Auditor | Tag 10: Aufgabe „Auditor mahnen / umplanen" |
 | R06 | Auditor meldet Stufe-1-Ergebnis „bereit" | Terminphase starten (R07) | – | – | – |
 | R07 | Auditor meldet „nicht bereit" mit Lückenliste | Mail an Kunden mit Lückenliste und Upload-Link, Checkliste erweitert | 14 Tage | Tag 7 | Tag 14: Anruf-Aufgabe |
@@ -102,9 +102,9 @@ Jede Zeile ist eine Regel im Blatt `Regelwerk`. Fristen sind Vorschläge und je 
 
 | Regel | Auslöser | Automatische Aktion | Frist | Erinnerung | Eskalation an BO |
 |---|---|---|---|---|---|
-| R08 | Stufe 1 bereit | Auditor gibt freie Slots frei (Google-Kalender-Verfügbarkeit); Kunde bekommt Mail „3 Terminvorschläge" + Portal-Terminwahl | Kunde wählt in 7 Tagen | Tag 4 | Tag 7: Aufgabe „Termin telefonisch klären" |
-| R09 | Kunde wählt Termin | Kalendereintrag für beide, Videokonferenz-Link, Auditplan (Skill qm-auditplan) als PDF an beide, Bestätigungsmail | – | 7 Tage vor Audit: Erinnerung + Vorbereitungsliste an Kunde | – |
-| R10 | Kunde oder Auditor sagt ab (Klick „verschieben") | Termin freigeben, R08 neu, Historie | – | – | zweite Absage: Aufgabe |
+| R08 | Stufe 1 bereit | Auditor erhält Aufgabe „Termin mit Kunden vereinbaren" (Kontaktdaten, Wunschzeitraum des Kunden aus dem Angebot, Fälligkeit); Kunde erhält Mail „Ihr Auditor meldet sich zur Terminabstimmung" | Auditor trägt Termin in 14 Tagen ein | Tag 7 an Auditor | Tag 14: Aufgabe „Termin nachfassen" |
+| R09 | Auditor trägt vereinbarten Termin in der Auditor-App ein (Datum, Uhrzeit, Methode, Dauer) | Kalendereintrag für beide, Videokonferenz-Link, Auditplan (Skill qm-auditplan) als PDF, Bestätigungsmail an Kunden mit Knopf „Termin passt" / „Termin ändern" | Kunde bestätigt in 5 Tagen, sonst gilt der Termin als bestätigt | 7 Tage vor Audit: Erinnerung + Vorbereitungsliste an Kunde | – |
+| R10 | Kunde klickt „Termin ändern" oder Auditor verschiebt | Auditor erhält Aufgabe „neuen Termin vereinbaren", alter Kalendereintrag wird gelöscht, Historie | 14 Tage | Tag 7 | zweite Verschiebung: Aufgabe |
 
 **Phase D: Audit und Bericht**
 
@@ -138,7 +138,7 @@ Jede Zeile ist eine Regel im Blatt `Regelwerk`. Fristen sind Vorschläge und je 
 
 | Regel | Auslöser | Automatische Aktion | Frist | Erinnerung | Eskalation an BO |
 |---|---|---|---|---|---|
-| R24 | ÜA fällig in 120 Tagen | Mail an Kunden „Überwachungsaudit planen" mit Terminwahl (R08 mit vorgeschlagenem Auditor, möglichst derselbe wie zuletzt), Unterlagen-Kurzliste | Termin in 30 Tagen | 90, 60 | 60 Tage: Anruf-Aufgabe |
+| R24 | ÜA fällig in 120 Tagen | Auditor-Vorschlag (möglichst derselbe wie zuletzt), Aufgabe „Termin vereinbaren" an Auditor (R08), Mail an Kunden „Überwachungsaudit steht an, Ihr Auditor meldet sich" mit Unterlagen-Kurzliste | Termin eingetragen in 30 Tagen | 90, 60 | 60 Tage: Anruf-Aufgabe |
 | R25 | ÜA durchgeführt, Bericht frei | Kein Ausschuss nötig bei ÜA ohne Hauptabweichung (Regel je Mandant), Status bleibt `gueltig`, `ua1_erledigt`, Seite 2 wird neu erzeugt (Version) | – | – | – |
 | R26 | ÜA-Frist überschritten | Status `ueberwachung_faellig`, Verifizierung zeigt gelb, Mail mit Karenzfrist | 90 Tage Karenz | 30, 7 | Karenzende: Aussetzungsvorlage |
 | R27 | Rezert fällig in 180 Tagen | Wie R24, zusätzlich Angebot für neuen Zyklus (Preise aktuell) mit Annahme-Link | Annahme 60 Tage | 120, 90 | 90 Tage: Anruf-Aufgabe |
@@ -159,7 +159,7 @@ Jede Zeile ist eine Regel im Blatt `Regelwerk`. Fristen sind Vorschläge und je 
 Der Auditor ist der teuerste Engpass. Deshalb liefert das System ihm alles vorbereitet:
 
 - Stufe 1: Ordner mit allen Unterlagen, Vorprüfbericht-Entwurf (Skill), Ein-Klick-Ergebnis „bereit / nicht bereit + Lücken".
-- Termin: keine Mail-Pingpong-Abstimmung; Auditor pflegt nur Verfügbarkeit im Kalender, Kunde wählt.
+- Termin: Der Auditor vereinbart den Termin selbst mit dem Kunden (Telefon oder Mail) und trägt ihn in der Auditor-App ein. Alles Weitere (Kalender, Videolink, Auditplan, Bestätigung, Erinnerungen) erzeugt das System aus diesem einen Eintrag. Keine Slot-Verwaltung, keine Kalenderfreigabe nötig.
 - Audit: Checkliste je Norm und Kapitel (Blatt `Checklisten`), letzte Feststellungen des Kunden vorgeblendet, Zeiterfassung, Bericht per Klick.
 - Abweichungen: Nachweise kommen mit Prüf-Link, zwei Knöpfe.
 - Honorar: Auditor-Gutschrift je abgeschlossenem Audit als Aufgabe für BO (oder Billomat-Eingangsrechnung, Phase 6).
@@ -171,7 +171,8 @@ Der Auditor ist der teuerste Engpass. Deshalb liefert das System ihm alles vorbe
 - Eine Seite (Portal), auf der der ganze Zyklus als Zeitleiste steht: erledigt / jetzt / geplant.
 - Nie eine Mail ohne Knopf. Nie ein Passwort.
 - Zertifikat, Logo, Verifizierung und Rechnung in einer Mail.
-- Erinnerungen so früh, dass Terminwahl bequem ist (120 Tage), und so klar, dass keine Rückfrage nötig ist.
+- Erinnerungen so früh, dass die Terminabstimmung mit dem Auditor bequem ist (120 Tage), und so klar, dass keine Rückfrage nötig ist.
+- Unterlagen liegen im Google-Drive-Kundenordner, den der Kunde ohnehin kennt (Beratungsprojekt); der Kunde legt Dateien dort ab, das Portal zeigt nur den Fortschritt.
 
 ---
 
@@ -201,8 +202,8 @@ Aufruf per Magic Link aus jeder Mail (`/portal/{token}`), 72 h gültig, jederzei
 │ [Logo Mandant]                    Muster GmbH · DE ▾          │
 │                                                              │
 │ NÄCHSTER SCHRITT                                             │
-│ Termin für Überwachungsaudit 1 wählen · bis 15.11.2026       │
-│ [ Termin wählen ]                                            │
+│ Überwachungsaudit 1: 12.11.2026, 09:00, remote (A. Beispiel) │
+│ [ Termin passt ]   Termin ändern                             │
 │                                                              │
 │ ● ISO 9001:2015 · OC-2026-00123-7 · gültig bis 30.09.2029    │
 │   Zertifiziert seit 2023 · Standorte: Fürth, Nürnberg        │
@@ -224,20 +225,23 @@ Aufruf per Magic Link aus jeder Mail (`/portal/{token}`), 72 h gültig, jederzei
 └──────────────────────────────────────────────────────────────┘
 ```
 
-Aufgaben, die der Kunde ohne Rückfrage selbst erledigt: Termin wählen oder verschieben, Unterlagen und Nachweise hochladen, Rechnung ansehen (Link Billomat-Kundenportal oder PDF), Ansprechpartner und Rechnungsadresse ändern, Standort melden (löst Angebot aus), Sprachausfertigung nachbestellen (löst Angebot aus), Logo-Paket erneut laden, Verifizierungslink kopieren, LinkedIn-Text kopieren.
+Aufgaben, die der Kunde ohne Rückfrage selbst erledigt: Termin bestätigen oder Änderung anfragen, Unterlagen und Nachweise im Drive-Ordner ablegen (oder im Portal hochladen), Rechnung ansehen (Link Billomat-Kundenportal oder PDF), Ansprechpartner und Rechnungsadresse ändern, Standort melden (löst Angebot aus), Sprachausfertigung nachbestellen (löst Angebot aus), Logo-Paket erneut laden, Verifizierungslink kopieren, LinkedIn-Text kopieren.
 
 ### 3.3 Auditor: die Auditor-App
 
 Google-Login. Zwei Seiten: „Meine Audits" (Liste) und „Audit" (Arbeitsfläche).
 
 ```
-MEINE AUDITS                                    [Verfügbarkeit im Kalender pflegen]
+MEINE AUDITS                                              [Termin eintragen]
 ● Heute 09:00  Muster GmbH · ISO 9001 · Stufe 2 · remote        [Audit öffnen]
 ○ 24.09.       Beispiel AG · ISO 14001 · ÜA1 · vor Ort           [Auditplan]
 ! Bericht fällig bis 20.09.  Test KG · ISO 9001 · Stufe 2        [Bericht abschließen]
 ? Nachweis prüfen (2)  Muster GmbH · Abweichung N-01, N-02       [Prüfen]
 ? Stufe 1 (1)  Neu GmbH · Unterlagen vollständig seit 15.09.     [Stufe 1 starten]
+! Termin vereinbaren (1)  Neu GmbH · ISO 9001 · Stufe 2 · bis 02.10. [Termin eintragen]
 ```
+
+„Termin eintragen" ist ein Formular mit vier Feldern (Datum, Uhrzeit, Methode remote/vor Ort, Dauer in Tagen) und einem Knopf. Der Auditor hat den Termin vorher selbst mit dem Kunden abgestimmt; das System übernimmt Kalender, Videolink, Auditplan und Kundenbestätigung. Die Unterlagen des Kunden öffnet der Auditor direkt im Drive-Ordner (Link in jeder Auditzeile).
 
 ```
 AUDIT · Muster GmbH · ISO 9001:2015 · Stufe 2 · 18.09.2026 · Zeit läuft: 01:42
@@ -467,7 +471,7 @@ Gezählt je Zertifikat über einen 3-Jahres-Zyklus (Erst + ÜA1 + ÜA2), Normalf
 | Anfrage erfassen, Angebot | 20 Min | 3 Min (Freigabe) | 0 (Freigabe nur bei Sonderwunsch) |
 | Auftrag, Vereinbarung, Kunde in Billomat | 20 Min | 5 Min | 0 |
 | Unterlagen einsammeln, Vollständigkeit | 30 Min | 10 Min | 0 (Portal-Checkliste) |
-| Auditor finden, Termin abstimmen | 30 Min | 10 Min | 2 Min (Vorschlag bestätigen) |
+| Auditor finden, Termin abstimmen | 30 Min | 10 Min | 2 Min (Vorschlag bestätigen; Termin macht der Auditor) |
 | Auditplan, Kalender, Link | 15 Min | 2 Min | 0 |
 | Bericht nachfassen, Abweichungen verfolgen | 30 Min | 10 Min | 0 (Auditor-App, Prüf-Links) |
 | Ausschuss organisieren, Protokoll | 30 Min | 3 Min | 0 (Magic Links, Quorum) |
@@ -488,9 +492,9 @@ Neue oder geänderte Anforderungen, die in den Katalog übernommen werden:
 | Nr. | Anforderung | Prio | Bezug |
 |---|---|---|---|
 | M0.1 | Sieben Leitprinzipien (Kap. 1) sind Abnahmekriterien für jede Funktion | M | neu |
-| M2.8 | Unterlagen-Checkliste je Norm mit Portal-Upload, automatische Zuordnung des Dokumenttyps, Vollständigkeit löst Stufe 1 aus | M | R04/R05 |
+| M2.8 | Unterlagen-Checkliste je Norm; Ablage im Google-Drive-Kundenordner (für den Kunden freigegeben), Portal-Upload schreibt in denselben Ordner; stündlicher Ordner-Scan ordnet Dokumenttypen zu; Vollständigkeit löst Stufe 1 aus | M | R04/R05 |
 | M3.9 | Auditor-App: Meine Audits, Audit-Arbeitsfläche mit Checkliste je Kapitel, Feststellungen, Zeiterfassung, Bericht per Klick, Freigabe | M | R11/R12 |
-| M3.10 | Terminwahl durch Kunden aus Auditor-Verfügbarkeit (Google-Kalender), Kalendereinträge und Videolink automatisch | M | R08/R09 |
+| M3.10 | Auditor vereinbart den Termin selbst und trägt ihn in der Auditor-App ein; Kalendereinträge, Videolink, Auditplan und Kundenbestätigung entstehen automatisch aus dem Eintrag | M | R08/R09 |
 | M3.11 | Nachweisprüfung per Prüf-Link (akzeptiert / nachbessern) | M | R15 |
 | M3.12 | Blatt `Checklisten` (Norm, Kapitel, Frage, Sprache) als Datenquelle für Stufe 1, Audit und Unterlagenliste | M | 3.3 |
 | M4.9 | Ausschuss-Seite mit Unparteilichkeitshäkchen, drei Knöpfen, Einmal-Link; ÜA ohne Hauptabweichung ohne Ausschuss (Regel je Mandant) | M | 3.4, R25 |
@@ -507,13 +511,13 @@ Neue oder geänderte Anforderungen, die in den Katalog übernommen werden:
 | M10.9 | Monatlicher Regel-Report (Feuerungen, Eskalationen) | S | 5.3 |
 | M11.9 | UX-Regeln aus 3.1 als Abnahmekriterien (Handy zuerst, ein Hauptknopf, Ampel, Fehler als Sätze) | M | 3.1 |
 
-Geändert gegenüber Runde 1: M3.3 (Terminvorschlag) wird durch M3.10 (Terminwahl aus Verfügbarkeit) ersetzt und von Should auf Must gehoben. M8.5 (Fallback-Rechnung aus Docs) bleibt Should, wird aber nur für Mandanten ohne Billomat-Konto gebaut.
+Geändert gegenüber Runde 1: M3.3 (Terminvorschlag an Kunden) entfällt und wird durch M3.10 (Auditor trägt Termin ein) ersetzt, Must. M7.8 (Kalendereinträge) wird Must, weil der Termineintrag des Auditors die Kalender speist. M8.5 (Fallback-Rechnung aus Docs) bleibt Should, wird aber nur für Mandanten ohne Billomat-Konto gebaut.
 
 ---
 
 ## 8. Nächste Schritte
 
-1. Entscheidungen E1 bis E12 aus dem Katalog plus drei neue: E13 Billomat-Tarif mit API bestätigen (Business), E14 Auditor-Verfügbarkeit über Google-Kalender (Auditoren brauchen Google-Konto oder Freigabe), E15 ÜA ohne Ausschuss bei „keine Hauptabweichung" zulassen.
+1. Entscheidungen E1 bis E12 aus dem Katalog plus drei neue: E13 Billomat-Tarif mit API bestätigen (Business), E14 entschieden: Auditoren vereinbaren Termine selbst und tragen sie ein (keine Kalender-Verfügbarkeit nötig; Auditoren brauchen nur ein Google-Konto für die App), E15 ÜA ohne Ausschuss bei „keine Hauptabweichung" zulassen.
 2. Phase 0 starten: Monorepo, Blätter `Mandanten`, `Normen`, `Regelwerk`, `Preise`, `Checklisten` anlegen, Nummernvergabe, Probelauf-Grundgerüst.
 3. Billomat-Sandbox: Testkonto, Artikelstamm anlegen, Kette Kunde → Rechnung → Zahlung einmal durchspielen.
 4. UX-Klickmodelle für Portal, Auditor-App und Ausschuss-Seite als statische Netlify-Seiten (ein Tag), mit einem Auditor und einem Kunden testen, bevor Backend gebaut wird.

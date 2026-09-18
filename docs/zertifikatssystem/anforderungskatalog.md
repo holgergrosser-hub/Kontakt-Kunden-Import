@@ -174,6 +174,7 @@ Kennzeichnung: **M** = Must (Phase 1), **S** = Should (Phase 2), **C** = Could (
 | M2.3 | Annahme des Angebots durch Klick (Magic Link) oder Upload der unterschriebenen PDF → Auftrag `AU-2026-0001`, Vertragsdatum, Zyklusstart | M |
 | M2.4 | Erinnerungen an offene Angebote (7/14/30 Tage, vorhanden), danach Anruf-Aufgabe für Backoffice | M |
 | M2.5 | Zertifizierungsvereinbarung (Pflichten des Kunden, Zeichennutzung, Aussetzung/Entzug) als Docs-Vorlage, Teil des Auftrags | M |
+| M2.9 | Kundendokumente liegen im Google-Drive-Kundenordner (`Kunden/{K-Nr}/Unterlagen/{Jahr}`), der für den Kunden freigegeben ist; Portal-Upload schreibt in denselben Ordner; Auditoren arbeiten direkt im Ordner; keine zweite Dokumentablage | M |
 | M2.6 | Angebot für Erweiterung (weiterer Standort, weitere Norm, weitere Sprache) mit einem Klick aus dem Kundendatensatz | S |
 | M2.7 | Übergabe des Auftrags an Billomat als Kunde + Auftrag (siehe M8) | M |
 
@@ -183,7 +184,7 @@ Kennzeichnung: **M** = Must (Phase 1), **S** = Should (Phase 2), **C** = Could (
 |---|---|---|
 | M3.1 | Auditvorgang je Auftrag und Zyklusjahr: Typ (Erst Stufe 1/2, ÜA1, ÜA2, Rezert, Sonder), Plan-Datum, Ist-Datum, Methode (remote/vor Ort), Dauer (Audittage) | M |
 | M3.2 | Auditorenstamm: Name, Qualifikation je Norm, Verfügbarkeit, Interessenkonflikte (Kunden, die er/sie beraten hat → darf nicht auditieren) | M |
-| M3.3 | Terminvorschlag an Kunden (Calendly-Link oder drei Vorschläge), Bestätigung setzt Ist-Datum | S |
+| M3.3 | Auditor vereinbart den Audittermin selbst mit dem Kunden und trägt ihn in der Auditor-App ein (Datum, Uhrzeit, Methode, Dauer); der Eintrag setzt Plan-Datum, erzeugt Kalendereinträge, Videolink, Auditplan und Bestätigungsmail an den Kunden | M |
 | M3.4 | Auditbericht: Upload PDF oder Erzeugung über Skill qm-audit-iso9001; Pflichtfelder: Feststellungen, Abweichungen (Haupt/Neben), Empfehlung des Auditors | M |
 | M3.5 | Abweichungen mit Korrekturmaßnahmen-Frist; Zertifikat erst nach Abschluss der Hauptabweichungen | M |
 | M3.6 | Auditplan je Standort aus Skill qm-auditplan-auditprogramm | S |
@@ -243,7 +244,7 @@ Kennzeichnung: **M** = Must (Phase 1), **S** = Should (Phase 2), **C** = Could (
 | M7.5 | Anruf-Aufgaben: Kunde ohne Reaktion nach zweiter Erinnerung landet in der Tagesliste mit Telefonnummer, Historie und Gesprächsleitfaden (Muster: Skill offene-forderungen-telefonmappe) | M |
 | M7.6 | Karenzregel konfigurierbar (z. B. ÜA bis 90 Tage nach Fälligkeit, danach Aussetzung automatisch als Ausschussvorlage) | M |
 | M7.7 | Bounce-Erkennung: unzustellbare Mails erzeugen Aufgabe „Kontaktdaten prüfen" | S |
-| M7.8 | Kalendereinträge (Google Calendar) für Audits und Fälligkeiten je Auditor | S |
+| M7.8 | Kalendereinträge (Google Calendar) für Audits und Fälligkeiten je Auditor und Kunde, gespeist aus dem Termineintrag des Auditors | M |
 
 #### M8 Angebote und Rechnungen (Billomat)
 
@@ -393,7 +394,7 @@ Der Tagesablauf des Backoffice besteht aus genau einer Liste. Alles, was nicht a
 | Zeit | Tätigkeit | Werkzeug | Warum es in 2 h passt |
 |---|---|---|---|
 | 0:00–0:20 | Tagesliste durchgehen: neue Anfragen (Claude hat Daten erkannt und Angebot vorbereitet), Angebote freigeben | Dashboard, Ein-Klick-Freigabe | Angebot ist fertig, nur Freigabe |
-| 0:20–0:50 | Audits: Auditor zuordnen (Vorschlag mit Kompetenz- und Sperrlistenprüfung), Termin bestätigen | Dashboard, Kalender | System schlägt vor, Backoffice bestätigt |
+| 0:20–0:50 | Audits: Auditor zuordnen (Vorschlag mit Kompetenz- und Sperrlistenprüfung); Termine vereinbart der Auditor selbst | Dashboard | System schlägt vor, Backoffice bestätigt |
 | 0:50–1:10 | Berichte, die hochgeladen wurden, an Ausschuss weiterleiten (automatisch, nur Kontrolle); Voten überfällig → Erinnerung auslösen | Dashboard | Ausschuss läuft über Magic Links |
 | 1:10–1:40 | Anruf-Aufgaben: Kunden ohne Reaktion (Erinnerung 2 verstrichen), offene Posten ab Mahnstufe 2, Bounces | Telefonliste mit Gesprächsleitfaden und Historie | Liste ist priorisiert, ca. 5 bis 10 Anrufe/Tag bei 1.000 Kunden |
 | 1:40–2:00 | Ausnahmen: Fehlerlog, Scope-Änderungen, Sonderwünsche (zusätzliche Sprache, Standort) mit Ein-Klick-Angebot | Dashboard, Claude-Mailentwürfe | Standardfälle brauchen keinen Text |
@@ -420,7 +421,7 @@ Der Tagesablauf des Backoffice besteht aus genau einer Liste. Alles, was nicht a
 | **Eine Mail, alles drin:** Zertifikat in allen bestellten Sprachen, Anhang mit Auditdaten, Logo-Paket (PNG/SVG mit QR und „Gültig bis"), Verifizierungslink, Textbaustein für Website und LinkedIn | M5.7, M6.5, M9.3 | Kunde kann sofort werben, ohne nachzufragen |
 | **Verifizierung in 2 Sekunden:** QR scannen → Statusseite mit Ampel, Firma, Norm, Scope, Standorten, Gültig bis, Erstzertifizierung; in der Sprache des Zertifikats | M6.1, M6.8 | Auftraggeber des Kunden prüfen ohne Anruf; das ist der Kern des virtualbadge-Prinzips |
 | **Live-Badge für die Website:** eingebettetes Siegel zeigt aktuellen Status; wird bei Ablauf automatisch „abgelaufen" | M6.6 | Kunde muss nichts austauschen; Stelle behält Kontrolle über Zeichennutzung |
-| **Erinnerungen mit Handlungslink:** „Ihr Überwachungsaudit ist in 90 Tagen fällig – Termin wählen" mit Kalenderlink | M7.2, M3.3 | Kein Zertifikat läuft aus Versehen ab |
+| **Erinnerungen mit Handlungslink:** „Ihr Überwachungsaudit ist in 90 Tagen fällig – Ihr Auditor meldet sich zur Terminabstimmung", danach Bestätigungsmail mit „Termin passt" | M7.2, M3.3 | Kein Zertifikat läuft aus Versehen ab |
 | **Kundenportal ohne Passwort:** Magic Link aus jeder Mail → Zertifikate, Rechnungen, nächste Termine, Standort melden, Sprache nachbestellen | M9.2 | Selbstbedienung statt Rückfragen |
 | **Ein Klick zur Erweiterung:** weiterer Standort, weitere Norm, weitere Sprache als vorbereitetes Angebot | M2.6 | Zusatzumsatz ohne Vertrieb |
 | **Transparenter Ablauf:** Seite 2 zeigt Auditor, Auditart, Datum, Methode, Entscheidung, nächste Fälligkeit | M5.4 | Kunde versteht den Zyklus; Auftraggeber sehen Substanz hinter dem Zertifikat |
@@ -434,9 +435,9 @@ Der Tagesablauf des Backoffice besteht aus genau einer Liste. Alles, was nicht a
 | Kundennummer, Mandanten, Standorte (M1.1–M1.3, M1.5) | Dubletten, Migration virtualbadge, DSGVO-Export (M1.4, M1.6, M1.7) | MD-5-Rechner (M3.8) | Blockchain-Anker |
 | Register, Nummern, Ausfertigungen, Seite 1+2, PDF, Hash, Versand (M5.1–M5.9, M5.12) | Batch 50 (M5.11) | PAdES (M5.10) | Apple/Google Wallet |
 | Verifizierungsseite, QR, Logo-Blatt, Logo-Paket, Sprachen DE/EN (M6.1–M6.5, M6.8) | Web-Badge, API, Register, Missbrauchsschutz (M6.6, M6.7, M6.9, M6.10) | OB-3.0-JSON (M6.11) | eigene Zertifikats-Designer-Oberfläche (Docs reicht) |
-| Statuslauf, Erinnerungen, Log, Anruf-Aufgaben, Karenz (M7.1–M7.6) | Bounce, Kalender (M7.7, M7.8) | | |
+| Statuslauf, Erinnerungen, Log, Anruf-Aufgaben, Karenz, Kalender (M7.1–M7.6, M7.8) | Bounce (M7.7) | | |
 | Ausschuss komplett (M4.1–M4.7) | Ausschuss-Statistik (M4.8) | | |
-| Audits, Auditoren, Bericht, Abweichungen, Sperrliste (M3.1, M3.2, M3.4, M3.5, M3.7) | Terminwahl, Auditplan (M3.3, M3.6) | | |
+| Audits, Auditoren, Termineintrag, Bericht, Abweichungen, Sperrliste (M3.1–M3.5, M3.7) | Auditplan (M3.6) | | |
 | Angebot fortlaufend, Annahme, Vereinbarung, Preisregel, Billomat-Kunde (M2.1–M2.5, M2.7) | Erweiterungsangebot, Billomat-Angebot, Auswertung (M2.6, M8.6, M8.7) | | |
 | Rechnungsplan, Zahlungsstatus, offene Posten (M8.1–M8.4) | Fallback-Rechnung (M8.5) | | |
 | Mailvorlagen, Zeichennutzung (M9.1, M9.5) | Portal, LinkedIn, Claude-Assistent (M9.2–M9.4) | | |
@@ -496,13 +497,13 @@ Zugriff immer über Spaltenüberschriften (Header-Map), nie über feste Indizes.
 | Blatt | Schlüssel | Wichtige Spalten |
 |---|---|---|
 | `Mandanten` (nur in der Zentraldatei) | **mandant_id** (`OC`) | name, domain_verify, absender_mail, absender_name, logo_ids, farben, praefix_nummern, quorum, ausschuss_mitglieder, billomat_id, zahlung_vor_zertifikat (ja/nein), impressum_url, datenschutz_url |
-| `Kunden` (Referenz auf CRM) | **kunden_nr** (`K-00123`) | crm_zeilen_id, firma, rechtsform, ort, land, sprache, ansprechpartner, email, telefon, projektleiter, billomat_client_id, portal_token, portal_token_ablauf, opt_out_register |
+| `Kunden` (Referenz auf CRM) | **kunden_nr** (`K-00123`) | crm_zeilen_id, firma, rechtsform, ort, land, sprache, ansprechpartner, email, telefon, projektleiter, billomat_client_id, drive_ordner_id (Kundenordner in Google Drive, für den Kunden freigegeben), portal_token, portal_token_ablauf, opt_out_register |
 | `Standorte` | **standort_id** (`K-00123-S01`) | kunden_nr, bezeichnung, strasse, plz, ort, land, taetigkeit, mitarbeiter, hauptstandort (ja/nein), aktiv_ab, aktiv_bis |
 | `Normen` | **norm_code** (`9001`) | bezeichnung_de/en/es/fr, ausgabe (`2015`), systemname_de/en/es/fr, logo_key |
 | `Angebote` | **angebot_nr** (`AN-2026-0001`) | kunden_nr, paket, normen, standorte_anzahl, preis_erst, preis_ua, preis_rezert, pdf_id, gesendet, erinnerung_1/2/3, status (offen/angenommen/abgelehnt/verfallen), angenommen_am, billomat_offer_id |
 | `Auftraege` | **auftrag_nr** (`AU-2026-0001`) | angebot_nr, kunden_nr, normen, standorte, vertragsdatum, zyklus_start, zyklus_ende, vereinbarung_pdf_id, rechnungsplan (JSON: Erst/ÜA1/ÜA2/Rezert mit Datum und Betrag), status |
 | `Audits` | **audit_nr** (`AD-2026-0001`) | auftrag_nr, kunden_nr, typ (E1/E2/UA1/UA2/RZ/SO), plan_datum, ist_datum, methode, dauer_tage, auditor_id, co_auditor_id, bericht_pdf_id, ergebnis (empfohlen/mit_auflagen/nicht_empfohlen), abweichungen_haupt, abweichungen_neben, cap_frist, cap_geschlossen_am, status |
-| `Auditoren` | **auditor_id** | name, email, normen (Liste), sprachen, kalender_id, sperrliste_kunden (beraten), aktiv |
+| `Auditoren` | **auditor_id** | name, email, normen (Liste), sprachen, google_konto, sperrliste_kunden (beraten), aktiv |
 | `Entscheidungen` | **entscheidung_nr** (`ZE-2026-0001`) | audit_nr, kunden_nr, typ (Erteilung/Rezert/Erweiterung/Aussetzung/Entzug/Wiederaufnahme), vorlage_text, link_token_je_mitglied (JSON), voten (JSON: mitglied, votum, begruendung, zeit), ergebnis, entschieden_am, quorum_erreicht |
 | `Zertifikate` (**Register**) | **zert_nr** (`OC-2026-00123-7`) | kunden_nr, auftrag_nr, entscheidung_nr, norm_code, scope_de/en/es/fr, standorte (Liste standort_id), erstzertifizierung, ausgestellt_am, gueltig_bis, ua1_faellig, ua2_faellig, rezert_faellig, status, status_seit, status_grund_intern, version, ersetzt_durch, ersetzt_von, verify_token (UUID), pdf_hash_sha256 |
 | `Ausfertigungen` | **ausfertigung_id** (`OC-2026-00123-7/EN`, `/S02`, `/S02-EN`) | zert_nr, sprache, standort_id (leer = Gesamtzertifikat), vorlage_id, pdf_id, erzeugt_am, versendet_am, hash |
@@ -625,6 +626,10 @@ Gesamt: rund 30 bis 36 Umsetzungstage über 12 Wochen. Phase 1 liefert bereits d
 | E9 | Zeitstempel/Karenz für Überwachungsaudits? | 90 Tage Karenz, danach Aussetzungsvorlage an Ausschuss |
 | E10 | Ausschuss-Größe und Quorum? | 3 Mitglieder, 2 Ja-Stimmen für Erteilung, Einstimmigkeit für Entzug |
 | E11 | Sprachen der ersten Version? | DE + EN, ES/FR in Phase 5 (Logos vorhanden) |
+| E13 | Billomat-Tarif mit API (Business) bestätigen? | Ja, prüfen im Konto |
+| E14 | Terminfindung: Kunde wählt aus Slots oder Auditor vereinbart selbst? | **Entschieden (18.09.2026): Auditor vereinbart selbst und trägt ein.** |
+| E15 | ÜA ohne Hauptabweichung ohne Ausschuss? | Ja, als Regel je Mandant |
+| E16 | Kundendokumente: eigene Ablage oder Google Drive? | **Entschieden (18.09.2026): Google-Drive-Kundenordner, für den Kunden freigegeben.** |
 | E12 | Migration des virtualbadge-Bestands: alle oder nur gültige? | Alle, mit Status `migriert` und ursprünglicher ID als Zusatzfeld, damit alte QR-Links per Weiterleitung funktionieren |
 
 ---
