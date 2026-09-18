@@ -87,3 +87,8 @@ Die Apps-Script-Datei schreibt folgende Felder in die Zieltabelle:
 ## Anforderungskatalog Zertifikatsverwaltungssystem
 
 Der dreistufige Anforderungskatalog (Bedarf, Marktanalyse, Bewertung) für das mandantenfähige Zertifikatssystem nach dem Vorbild virtualbadge liegt unter [docs/zertifikatssystem/anforderungskatalog.md](docs/zertifikatssystem/anforderungskatalog.md).
+
+Ergänzungen:
+
+- [Runde 2: Automatisierungskette, UX je Rolle, Billomat-Anbindung, Erweiterbarkeit](docs/zertifikatssystem/runde-2-automatisierung-ux-billomat.md)
+- [Abgleich mit dem ZMS-Katalog v1.3](docs/zertifikatssystem/abgleich-zms-katalog-v1-3.md)
