@@ -164,6 +164,7 @@ Kennzeichnung: **M** = Must (Phase 1), **S** = Should (Phase 2), **C** = Could (
 | M1.5 | Mandanten-Konfiguration: Name, Logo(s), Farben, Nummernpräfix, Absender-Mail, Vorlagen-IDs, Verifizierungs-Domain, Preisliste, Ausschussmitglieder | M |
 | M1.6 | Import aus virtualbadge (Recipients/Certificates via API) in den Altbestand mit Status `migriert` | S |
 | M1.7 | DSGVO: Löschkonzept (Kontakte nach 10 Jahren, Zertifikatsdaten dauerhaft im Register), Auskunftsexport je Kunde | S |
+| M1.11 | Erstbefüllung des Kundenstamms aus Billomat (Kundenexport per API) zusammengeführt mit dem CRM-Sheet; Billomat-Kunden-ID und Kundennummer als Schlüssel; Dubletten nach Firma, PLZ und E-Mail-Domain; jede Zuordnung in `Historie` | M |
 
 #### M2 Angebote, Aufträge, Verträge
 
@@ -257,6 +258,7 @@ Kennzeichnung: **M** = Must (Phase 1), **S** = Should (Phase 2), **C** = Could (
 | M8.5 | Fallback ohne Billomat: Rechnung aus Docs-Vorlage mit eigenem Nummernkreis `RE-2026-0001` (LockService), nur für Mandanten ohne Billomat | S |
 | M8.6 | Angebot in Billomat spiegeln (Billomat-Angebot ↔ `AN-`-Nummer), damit Umsatzprognose im vorhandenen Dashboard stimmt | S |
 | M8.7 | Umsatz- und Bestandsauswertung: Zertifikate je Norm, Umsatz je Zyklusjahr, Prognose kommende 12 Monate aus Rechnungsplan | S |
+| M8.11 | Rechnungshistorie je Kunde aus Billomat lesen (Erstimport und täglicher Abgleich): Kundenakte zeigt alle Rechnungen; Zahlungsverhalten (durchschnittliche Zahlungsdauer, Mahnungen) steuert die Regel „Zertifikat erst nach Zahlung" (E5) automatisch | M |
 
 #### M9 Kommunikation und Kundenportal
 
@@ -619,14 +621,14 @@ Gesamt: rund 30 bis 36 Umsetzungstage über 12 Wochen. Phase 1 liefert bereits d
 | E2 | Ein Zertifikat je Norm oder ein Kombi-Zertifikat bei 9001+14001? | Je Norm eigenes Zertifikat, Ausfertigungen teilen Audit und Entscheidung |
 | E3 | Rezertifizierung: neue Nummer oder gleiche Nummer mit neuem Zyklus? | Neue Nummer, Feld `ersetzt_von`, Erstzertifizierung wird übernommen |
 | E4 | Billomat bleibt Rechnungssystem (API nur im Business-Tarif) oder Wechsel zu sevdesk/easybill? | Billomat behalten, Anbindung existiert; Wechsel erst, wenn E-Rechnung 2028 es erzwingt |
-| E5 | Zertifikat erst nach Zahlungseingang? | Ja für Neukunden, nein für Bestandskunden mit Zahlungshistorie (Regel je Kunde) |
+| E5 | Zertifikat erst nach Zahlungseingang? | Ja für Neukunden, nein für Bestandskunden mit guter Zahlungshistorie; die Historie kommt aus dem Billomat-Rechnungsexport (M8.11), Regel je Kunde automatisch |
 | E6 | Verifizierungs-Domain: `verify.onlinecert.de` oder Pfad auf qm-guru.de? | Eigene Subdomain je Mandant, Netlify-Site |
 | E7 | Auditor-Name auf Seite 2 öffentlich in der Verifizierung? | Auf dem PDF ja, auf der Verifizierungsseite nur „Leitender Auditor: Ja, geprüft" ohne Namen (Datenschutz) |
 | E8 | Digitale Signatur (PAdES) in Phase 1? | Nein, SHA-256-Hash auf Verifizierungsseite reicht; PAdES als Phase-6-Option |
 | E9 | Zeitstempel/Karenz für Überwachungsaudits? | 90 Tage Karenz, danach Aussetzungsvorlage an Ausschuss |
 | E10 | Ausschuss-Größe und Quorum? | 3 Mitglieder, 2 Ja-Stimmen für Erteilung, Einstimmigkeit für Entzug |
 | E11 | Sprachen der ersten Version? | DE + EN, ES/FR in Phase 5 (Logos vorhanden) |
-| E13 | Billomat-Tarif mit API (Business) bestätigen? | Ja, prüfen im Konto |
+| E13 | Billomat-Tarif mit API (Business) bestätigen? | **Entschieden (18.09.2026): API ist vorhanden, Kunden- und Rechnungsdaten sind exportierbar.** Schreibzugriff (Rechnung anlegen) mit demselben Schlüssel im Testlauf prüfen; die bestehende Function `billomat-book-payment` zeigt, dass Schreiben funktioniert. |
 | E14 | Terminfindung: Kunde wählt aus Slots oder Auditor vereinbart selbst? | **Entschieden (18.09.2026): Auditor vereinbart selbst und trägt ein.** |
 | E15 | ÜA ohne Hauptabweichung ohne Ausschuss? | Ja, als Regel je Mandant |
 | E16 | Kundendokumente: eigene Ablage oder Google Drive? | **Entschieden (18.09.2026): Google-Drive-Kundenordner, für den Kunden freigegeben.** |

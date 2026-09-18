@@ -399,7 +399,25 @@ Fehler bei Schritt 2 bis 4: nächster Lauf setzt beim gespeicherten Schritt fort
 | Kein Idempotenz-Schlüssel | `schritt`-Spalte und Filterprüfung (4.5) |
 | Auditor-Honorare (Eingangsrechnungen) | Phase 6: Belegerfassung in Billomat (Business) oder Gutschrift als Aufgabe |
 
-### 4.8 Quellen Billomat
+### 4.8 Erstbefüllung aus dem Billomat-Export (Kunden und Rechnungen)
+
+Der Billomat-Bestand ist die verlässlichste Quelle dafür, wer heute zahlender Kunde ist. Er wird deshalb vor Phase 1 einmalig importiert und danach täglich abgeglichen.
+
+**Importlauf (einmalig, Apps Script, Probelauf zuerst)**
+
+1. `GET /clients?per_page=500&page=n` bis `@total` erreicht ist (bei genau einem Treffer Objekt statt Array normalisieren). Felder: `id`, `client_number`, `name`, `street`, `zip`, `city`, `country_code`, `email`, `phone`, `vat_number`, `locale`, `due_days`, `archived`, `tags`.
+2. Zusammenführen mit dem CRM-Sheet: Treffer nach (a) `client_number` = K-Nr., (b) exakter Firmenname + PLZ, (c) E-Mail-Domain. Eindeutige Treffer werden verknüpft (`Kunden.billomat_client_id`), mehrdeutige landen als Aufgabe „Kunde zuordnen" in der Tagesliste, neue werden als Kunden angelegt und bekommen eine K-Nr.; die K-Nr. wird als `client_number` nach Billomat zurückgeschrieben (`PUT /clients/{id}`), sofern dort keine steht.
+3. `GET /invoices?client_id={id}&per_page=500` je Kunde (bei 1.000 Kunden rund 1.000 Aufrufe, verteilt auf mehrere Läufe wegen des Kontingents von 300 je 15 Minuten). Felder: `id`, `invoice_number`, `date`, `due_date`, `status`, `total_net`, `total_gross`, `paid_amount`, `open_amount`, `label`, `intro`, `invoice_items` (Artikelnummern).
+4. Daraus abgeleitet und ins Blatt `Rechnungen` geschrieben: Rechnungshistorie je Kunde; **Zahlungsverhalten** (durchschnittliche Tage bis Zahlung, Anzahl Mahnungen aus `GET /reminders?client_id=`); **aktive Zertifizierungskunden** (Rechnungen mit Artikelnummern oder Stichworten wie „Zertifizierung", „Überwachungsaudit", „Rezertifizierung" in den letzten 36 Monaten); **vermuteter Zyklusstand** (letzte Rechnung Erst/ÜA1/ÜA2/Rezert und deren Datum) als Vorschlag für den Rechnungsplan.
+5. Ergebnisbericht: Anzahl Kunden gesamt / verknüpft / neu / mehrdeutig; Kunden mit offenen Posten; Kunden mit Zertifizierungsrechnung ohne Zertifikat im Register (Migrationslücke, mit virtualbadge-Bestand abgleichen).
+
+**Abgleich mit dem virtualbadge-Bestand:** Recipients aus dem bestehenden Dashboard (Name, Zertifikat, Ausstellungs-/Ablaufdatum, ID-Nummer) werden über Firmenname und E-Mail-Domain den Billomat-Kunden zugeordnet. Ergebnis ist die Startliste des Registers mit Status `migriert`, Erstzertifizierungsdatum aus der ältesten virtualbadge-Ausstellung, Gültig-bis aus dem Ablaufdatum.
+
+**Täglicher Abgleich danach (R22):** nur `GET /invoice-payments?from=` und `GET /invoices?status=OVERDUE,PAID&from=`; kein Vollexport mehr.
+
+**Was aus dem Export in die Kundenakte kommt:** Reiter „Rechnungen" zeigt alle Billomat-Rechnungen mit Status, Betrag und PDF-Link; Kopfzeile zeigt Zahlungsverhalten als Ampel (grün: im Schnitt unter 14 Tagen, gelb: 14 bis 30, rot: Mahnungen). Die Ampel steuert die Regel „Zertifikat erst nach Zahlung" (E5) ohne manuelle Pflege.
+
+### 4.9 Quellen Billomat
 
 - https://www.billomat.com/en/api/basics/authentication/ · https://www.billomat.com/en/api/basics/rate-limiting/ · https://www.billomat.com/en/api/basics/read-data/ · https://www.billomat.com/en/api/basics/write-data/ · https://www.billomat.com/en/api/basics/errors/
 - https://www.billomat.com/en/api/invoices/ · https://www.billomat.com/en/api/invoices/payments/ · https://www.billomat.com/en/api/clients/ · https://www.billomat.com/en/api/settings/client-properties/ · https://www.billomat.com/en/api/articles/ · https://www.billomat.com/en/api/estimates/ · https://www.billomat.com/en/api/confirmations/ · https://www.billomat.com/en/api/reminders/ · https://www.billomat.com/en/api/recurrings/ · https://www.billomat.com/en/api/settings/templates/ · https://www.billomat.com/en/api/webhooks/
@@ -502,6 +520,7 @@ Neue oder geänderte Anforderungen, die in den Katalog übernommen werden:
 | M7.10 | Jede Mail trägt Regel-Nr. und Grund; jede Automatik schreibt Historie | M | P2 |
 | M8.8 | Billomat-Kette gemäß Kap. 4: Kunde bei Anfrage, Auftragsbestätigung bei Annahme, Rechnung Entwurf → Positionen → abschließen → versenden zum Stichtag, täglicher Statusabgleich, Mahnwesen in Billomat | M | Kap. 4 |
 | M8.9 | Artikelstamm in Billomat (Artikelnummern je Leistung) als einzige Preisquelle für Rechnungen; `Preise`-Blatt verweist auf Artikelnummern | M | Kap. 4 |
+| M8.11 | Erstbefüllung Kunden und Rechnungshistorie aus dem Billomat-Export, Zusammenführung mit CRM-Sheet und virtualbadge-Bestand, Zahlungsverhalten als Ampel | M | 4.8 |
 | M8.10 | Zertifikat wartet bei offener Zahlung (Regel je Mandant); Mail „liegt bereit, Rechnung offen" | S | R18 |
 | M9.6 | Portal „Mein Zertifikat" als eine Seite mit Nächster-Schritt-Karte, Zeitleiste, Selbstbedienung (Termin, Upload, Daten, Standort, Sprache) | M | 3.2 |
 | M9.7 | Antwort-Erkennung auf Systemmails (Claude klassifiziert, Aufgabe mit Entwurf) | S | R31 |
@@ -519,5 +538,5 @@ Geändert gegenüber Runde 1: M3.3 (Terminvorschlag an Kunden) entfällt und wir
 
 1. Entscheidungen E1 bis E12 aus dem Katalog plus drei neue: E13 Billomat-Tarif mit API bestätigen (Business), E14 entschieden: Auditoren vereinbaren Termine selbst und tragen sie ein (keine Kalender-Verfügbarkeit nötig; Auditoren brauchen nur ein Google-Konto für die App), E15 ÜA ohne Ausschuss bei „keine Hauptabweichung" zulassen.
 2. Phase 0 starten: Monorepo, Blätter `Mandanten`, `Normen`, `Regelwerk`, `Preise`, `Checklisten` anlegen, Nummernvergabe, Probelauf-Grundgerüst.
-3. Billomat-Sandbox: Testkonto, Artikelstamm anlegen, Kette Kunde → Rechnung → Zahlung einmal durchspielen.
+3. Billomat: Importlauf aus Kapitel 4.8 im Probelauf ausführen (Kunden- und Rechnungsexport liegt per API vor), Ergebnisbericht prüfen, dann Artikelstamm anlegen und die Kette Kunde → Rechnung → Zahlung an einem Testkunden durchspielen.
 4. UX-Klickmodelle für Portal, Auditor-App und Ausschuss-Seite als statische Netlify-Seiten (ein Tag), mit einem Auditor und einem Kunden testen, bevor Backend gebaut wird.
