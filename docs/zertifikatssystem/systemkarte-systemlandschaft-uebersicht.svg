@@ -1,7 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3140 482" width="3140" height="482" font-family="'IBM Plex Sans','Segoe UI',Helvetica,Arial,sans-serif" font-size="12">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3320 482" width="3320" height="482" font-family="'IBM Plex Sans','Segoe UI',Helvetica,Arial,sans-serif" font-size="12">
 <title>OnlineCert Systemkarte · Systemlandschaft · Übersicht</title>
 <defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#AEB8C4"/></marker></defs>
-<rect width="3140" height="482" fill="#FFFFFF"/>
+<rect width="3320" height="482" fill="#FFFFFF"/>
 <text x="40" y="34" font-size="22" font-weight="600" fill="#1B2430">OnlineCert Systemkarte · Systemlandschaft</text>
 <text x="40" y="56" font-size="12" fill="#5B6675">Übersicht: Gruppen, Bausteine als Liste, gebündelte Pfeile · Stand 18.09.2026 · Quelle: docs/zertifikatssystem/systemkarte.html</text>
 <g transform="translate(40,104)">
@@ -17,10 +17,12 @@
 <text x="1955" y="147" text-anchor="middle" font-size="10" fill="#5B6675" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">2 Pfeile</text>
 <path d="M1900,152 C1960,152 1950,152 2010,152" fill="none" stroke="#AEB8C4" stroke-width="5.5" stroke-linecap="round" marker-end="url(#a)"/>
 <text x="1955" y="147" text-anchor="middle" font-size="10" fill="#5B6675" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">18 Pfeile</text>
-<path d="M1900,152 C2290,152 2290,152 2680,152" fill="none" stroke="#AEB8C4" stroke-width="4" stroke-linecap="round" marker-end="url(#a)"/>
-<text x="2290" y="147" text-anchor="middle" font-size="10" fill="#5B6675" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">5 Pfeile</text>
-<path d="M2680,152 C2290,152 2290,152 1900,152" fill="none" stroke="#AEB8C4" stroke-width="2" stroke-linecap="round" marker-end="url(#a)"/>
-<text x="2290" y="147" text-anchor="middle" font-size="10" fill="#5B6675" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">1 Pfeile</text>
+<path d="M1900,152 C2290,152 2290,152 2680,152" fill="none" stroke="#AEB8C4" stroke-width="5" stroke-linecap="round" marker-end="url(#a)"/>
+<text x="2290" y="147" text-anchor="middle" font-size="10" fill="#5B6675" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">7 Pfeile</text>
+<path d="M2680,152 C2620,152 2630,152 2570,152" fill="none" stroke="#AEB8C4" stroke-width="2" stroke-linecap="round" marker-end="url(#a)"/>
+<text x="2625" y="147" text-anchor="middle" font-size="10" fill="#5B6675" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">1 Pfeile</text>
+<path d="M560,152 C1620,152 1620,152 2680,152" fill="none" stroke="#AEB8C4" stroke-width="2" stroke-linecap="round" marker-end="url(#a)"/>
+<text x="1620" y="147" text-anchor="middle" font-size="10" fill="#5B6675" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">1 Pfeile</text>
 <path d="M2680,152 C1955,152 1955,152 1230,152" fill="none" stroke="#AEB8C4" stroke-width="2" stroke-linecap="round" marker-end="url(#a)"/>
 <text x="1955" y="147" text-anchor="middle" font-size="10" fill="#5B6675" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">1 Pfeile</text>
 <rect x="0" y="58" width="560" height="188" rx="14" fill="#FFF4DC" stroke="#B7791F" stroke-width="1.4"/>
@@ -108,8 +110,8 @@
 <text x="2026" y="55" font-size="17" font-weight="600" fill="#1B2430">Daten in Google Workspace</text>
 <text x="2026" y="72" font-size="11.5" fill="#5B6675">Daten (Google Workspace) · 8 Bausteine</text>
 <circle cx="2032" cy="96" r="3" fill="#6D4BB5"/>
-<text x="2042" y="100" font-size="12" fill="#1B2430">CRM-Sheet</text>
-<text x="2042" y="115" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="9.5" fill="#5B6675">K-00123 · einziger Kundenst…</text>
+<text x="2042" y="100" font-size="12" fill="#1B2430">CRM „Super Master“</text>
+<text x="2042" y="115" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="9.5" fill="#5B6675">Organisations Nr. = K-Nr.</text>
 <circle cx="2212" cy="96" r="3" fill="#6D4BB5"/>
 <text x="2222" y="100" font-size="12" fill="#1B2430">Mandantendatei (Sheets)</text>
 <text x="2222" y="115" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="9.5" fill="#5B6675">je Mandant</text>
@@ -131,21 +133,27 @@
 <circle cx="2212" cy="212" r="3" fill="#6D4BB5"/>
 <text x="2222" y="216" font-size="12" fill="#1B2430">Gmail / MailApp</text>
 <text x="2222" y="231" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="9.5" fill="#5B6675">1.500 Empfänger/Tag</text>
-<rect x="2680" y="58" width="380" height="188" rx="14" fill="#E2F1DC" stroke="#3F7D2F" stroke-width="1.4"/>
+<rect x="2680" y="58" width="560" height="188" rx="14" fill="#E2F1DC" stroke="#3F7D2F" stroke-width="1.4"/>
 <text x="2696" y="84" font-size="17" font-weight="600" fill="#1B2430">Externe Dienste</text>
-<text x="2696" y="101" font-size="11.5" fill="#5B6675">Externe Dienste · 4 Bausteine</text>
+<text x="2696" y="101" font-size="11.5" fill="#5B6675">Externe Dienste · 6 Bausteine</text>
 <circle cx="2702" cy="125" r="3" fill="#3F7D2F"/>
-<text x="2712" y="129" font-size="12" fill="#1B2430">Billomat</text>
-<text x="2712" y="144" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="9.5" fill="#5B6675">REST-API, Business-Tarif</text>
+<text x="2712" y="129" font-size="12" fill="#1B2430">Sheet „Rechnungen QM“</text>
+<text x="2712" y="144" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="9.5" fill="#5B6675">QM-… · Billomat-Menü</text>
 <circle cx="2882" cy="125" r="3" fill="#3F7D2F"/>
-<text x="2892" y="129" font-size="12" fill="#1B2430">Claude API</text>
-<text x="2892" y="144" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="9.5" fill="#5B6675">über Netlify Function</text>
+<text x="2892" y="129" font-size="12" fill="#1B2430">Billomat</text>
+<text x="2892" y="144" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="9.5" fill="#5B6675">REST-API (Export, Kunden, E…</text>
+<circle cx="3062" cy="125" r="3" fill="#3F7D2F"/>
+<text x="3072" y="129" font-size="12" fill="#1B2430">Claude API</text>
+<text x="3072" y="144" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="9.5" fill="#5B6675">über Netlify Function</text>
 <circle cx="2702" cy="183" r="3" fill="#3F7D2F"/>
 <text x="2712" y="187" font-size="12" fill="#1B2430">GitHub</text>
 <text x="2712" y="202" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="9.5" fill="#5B6675">Monorepo onlinecert-system</text>
 <circle cx="2882" cy="183" r="3" fill="#3F7D2F"/>
 <text x="2892" y="187" font-size="12" fill="#1B2430">virtualbadge (Altbestan…</text>
-<text x="2892" y="202" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="9.5" fill="#5B6675">Migration</text>
+<text x="2892" y="202" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="9.5" fill="#5B6675">Migration · UUID als alt_id</text>
+<circle cx="3062" cy="183" r="3" fill="#3F7D2F"/>
+<text x="3072" y="187" font-size="12" fill="#1B2430">Zertifikatsverwaltung_2…</text>
+<text x="3072" y="202" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="9.5" fill="#5B6675">OC-0001…0058 · K-0001…0092</text>
 </g>
 <rect x="40" y="436" width="10" height="10" rx="2" fill="#B7791F"/>
 <text x="55" y="445" font-size="11" fill="#5B6675">Rollen</text>

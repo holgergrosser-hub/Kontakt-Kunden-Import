@@ -180,7 +180,7 @@ system:{
      {id:'regelwerk',name:'Regelwerk-Engine',key:'Regelwerk-Blatt R01–R33',desc:'Liest Regeln (Auslöser, Bedingung, Aktion, Frist, Eskalation) aus dem Blatt und führt sie aus. Drei Auslösertypen, fünf Aktionstypen. Probelauf 14 Tage für neue Regeln.',doc:R2+' 5.2'},
      {id:'statuslauf',name:'Statuslauf 05:30',key:'täglich',desc:'Berechnet den Status aller Zertifikate aus Datumsfeldern und Entscheidungen, schreibt Historie, füllt Register_oeffentlich.',doc:DOC+' 6.5'},
      {id:'erinnerung',name:'Erinnerungslauf 06:00',key:'täglich',desc:'Sendet ÜA-, Rezert-, Ablauf-, Angebots- und Ausschuss-Erinnerungen, max. 200 je Lauf, protokolliert jede Mail.',doc:DOC+' M7'},
-     {id:'rechnungslauf',name:'Rechnungslauf 06:30',key:'täglich',desc:'Legt fällige Rechnungen in Billomat an (Entwurf → Positionen → abschließen → senden), liest Zahlungen und Mahnstufen.',doc:R2+' 4.4'},
+     {id:'rechnungslauf',name:'Rechnungslauf 06:30',key:'täglich',desc:'Legt zum Stichtag vorbereitete Zeilen im Sheet „Rechnungen QM“ an und liest Rechnungsnummer, bezahlt, Storno und Mahnstufen zurück. Rechnungen stellt weiterhin das vorhandene Sheet mit Billomat-Menü.',doc:'Runde 3 Kap. 3'},
      {id:'queue',name:'Warteschlange PDF/Mail',key:'stündlich',desc:'Erzeugt Zertifikats-PDFs (max. 40 je Lauf), versendet Mails, wiederholt Fehler dreimal. Umgeht die 6-Minuten-Grenze.',doc:DOC+' 6.5'},
      {id:'webapp',name:'Web-App doGet/doPost',key:'verify, portal, decide, upload',desc:'JSON-Endpunkte für Verifizierung, Portal, Voten, Termineintrag, Webhook-Ziel für Billomat.',doc:DOC+' 6.1'},
      {id:'nummern',name:'Nummernvergabe',key:'LockService',desc:'Lückenlose Nummernkreise K-, AN-, AU-, AD-, ZE-, OC- mit Prüfziffer; Vergabe erst beim Finalisieren.',doc:DOC+' 6.3'},
@@ -190,7 +190,7 @@ system:{
      {id:'import',name:'Importlauf Billomat',key:'einmalig',desc:'Ordnet Billomat-Kunden den CRM-Zeilen zu, liest Rechnungshistorie und Zahlungsverhalten. Legt nie Kunden an.',doc:R2+' 4.8'}
    ]},
    {id:'g-daten',name:'Daten in Google Workspace',kind:'daten',col:3,children:[
-     {id:'crm',name:'CRM-Sheet',key:'K-00123 · einziger Kundenstamm',desc:'Für Beratung und Zertifizierung. Kunden werden genau einmal hier erfasst. Neue Spalten: Kundennummer, Billomat-ID, Drive-Ordner, Kundenart, Sprache.',doc:DOC+' M1.11–M1.13'},
+     {id:'crm',name:'CRM „Super Master“',key:'Organisations Nr. = K-Nr.',desc:'Einziger Kundenstamm für Beratung und Zertifizierung, ~130 Spalten. Kunden werden genau einmal hier erfasst. Neue Spalten: Billomat-ID, Drive-Ordner, Kundenart, Sprache.',doc:DOC+' M1.11–M1.13'},
      {id:'mandant',name:'Mandantendatei (Sheets)',key:'je Mandant',desc:'Register, Ausfertigungen, Angebote, Aufträge, Audits, Entscheidungen, Regelwerk, Logs. Siehe Ansicht Datenmodell.',doc:DOC+' 6.2'},
      {id:'register',name:'Register_oeffentlich',key:'minimale Felder',desc:'Einzige Quelle der Verifizierung: Nummer, Firma, Ort, Norm, Kurz-Scope, gültig bis, Status. Vom Statuslauf befüllt.',doc:AB+' L18'},
      {id:'drive',name:'Drive-Kundenordner',key:'Kunden/{K-Nr}/…',desc:'Für den Kunden freigegeben. Unterlagen, Nachweise, Zertifikats-PDFs, Berichte. Stündlicher Ordner-Scan hakt die Checkliste ab.',doc:DOC+' M2.9'},
@@ -200,10 +200,12 @@ system:{
      {id:'gmail',name:'Gmail / MailApp',key:'1.500 Empfänger/Tag',desc:'Alle Mails aus Mailvorlagen je Mandant × Sprache × Ereignis, mit Regel-Nummer und Grund.',doc:DOC+' M9.1'}
    ]},
    {id:'g-extern',name:'Externe Dienste',kind:'extern',col:4,children:[
-     {id:'billomat',name:'Billomat',key:'REST-API, Business-Tarif',desc:'Führend für Rechnung, Zahlung, Mahnung, E-Rechnung. Kunden kommen aus dem CRM. Webhook invoice_payment.create plus tägliches Polling.',doc:R2+' 4'},
+     {id:'rechqm',name:'Sheet „Rechnungen QM“',key:'QM-… · Billomat-Menü',desc:'Bestehende Rechnungsstellung aus Kundendaten: Zeile je Rechnung, Haken, Menü „Billomat → Rechnung erstellen“, Mahnmails 1–3, Flags Zertifikat erhalten / Veröffentlicht.',doc:'Runde 3 Kap. 1.2'},
+     {id:'billomat',name:'Billomat',key:'REST-API (Export, Kunden, Entwürfe)',desc:'Empfängt Rechnungen aus dem Sheet „Rechnungen QM“ (bestehendes Skript). Export von Kunden und Rechnungen für die Erstbefüllung. Vollautomatik per API bleibt Option.',doc:R2+' 4.8'},
      {id:'claude',name:'Claude API',key:'über Netlify Function',desc:'Texterkennung von Anfragen, Zusammenfassung für den Ausschuss, Klassifikation von Kundenantworten, Vorprüfung von Berichten.',doc:DOC+' 6.1'},
      {id:'github',name:'GitHub',key:'Monorepo onlinecert-system',desc:'Code, Vorlagenversionen, Anforderungskatalog, Backup-Branch. Deploy nach Netlify, Apps Script per clasp.',doc:DOC+' 3.4'},
-     {id:'vb',name:'virtualbadge (Altbestand)',key:'Migration',desc:'Bestehende Zertifikate werden per API exportiert, dem CRM zugeordnet und als Status „migriert“ ins Register übernommen.',doc:DOC+' M1.6'}
+     {id:'vb',name:'virtualbadge (Altbestand)',key:'Migration · UUID als alt_id',desc:'Bestehende Zertifikate werden per API exportiert, dem CRM zugeordnet und als Status „migriert“ ins Register übernommen; die virtualbadge-UUID bleibt als Alias verifizierbar.',doc:DOC+' M1.6'},
+     {id:'zv2025',name:'Zertifikatsverwaltung_2025',key:'OC-0001…0058 · K-0001…0092',desc:'Heutiges Register-Sheet mit Sprachspalten, Auditoren und KPI-Dashboard. Wird einmalig importiert (Zuordnung K-Nr. ↔ Organisations Nr.), danach abgelöst.',doc:'Runde 3 Kap. 1.3'}
    ]}
   ],
   edges:[
@@ -217,9 +219,9 @@ system:{
    ['statuslauf','mandant','Status, Historie'],['statuslauf','register','befüllt'],['snapshot','register','liest'],['snapshot','github','JSON-Deploy'],
    ['erinnerung','gmail','sendet'],['erinnerung','mandant','Log'],['queue','pdf',''],['queue','gmail','Zertifikatsmail'],
    ['pdf','docs','Vorlage'],['pdf','logos','Logo, QR'],['pdf','drive','PDF ablegen'],['pdf','nummern','Zert-Nr.'],
-   ['rechnungslauf','billomat','Rechnung, Zahlung'],['rechnungslauf','mandant','Rechnungsplan'],['billomat','webapp','Webhook Zahlung'],
+   ['rechnungslauf','rechqm','Zeile vorbereiten, Status lesen'],['rechnungslauf','mandant','Rechnungsplan'],['rechqm','billomat','Menü: Rechnung erstellen'],['rechqm','crm','Kunde per Dropdown/Lookup'],['backoffice','rechqm','Haken, Freigabe'],
    ['webapp','kalender','Termineintrag'],['webapp','drive','Ordner-Scan'],['webapp','claude','via Function'],
-   ['import','billomat','Export'],['import','crm','Billomat-ID'],['import','vb','Altbestand'],
+   ['import','billomat','Export'],['import','crm','Billomat-ID, K-Nr.'],['import','vb','Altbestand'],['import','zv2025','Register-Import'],['import','rechqm','Rechnungshistorie'],
    ['mandant','crm','K-Nr. (Referenz)'],['health','mandant','Log'],['health','gmail','Alarm'],['github','fn','Deploy']
   ]
 },

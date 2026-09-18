@@ -130,8 +130,8 @@ Jede Zeile ist eine Regel im Blatt `Regelwerk`. Fristen sind Vorschläge und je 
 
 | Regel | Auslöser | Automatische Aktion | Frist | Erinnerung | Eskalation an BO |
 |---|---|---|---|---|---|
-| R21 | Rechnungsplan-Termin erreicht (Erst bei Auftrag oder Zertifikat, ÜA1/ÜA2 je Jahrestag, Rezert 3 Monate vor Ablauf) | Rechnung in Billomat: Entwurf → Positionen aus Artikelstamm → abschließen → per Billomat versenden (PDF/E-Rechnung) | Zahlungsziel 14 Tage | Billomat-Mahnwesen Stufe 1/2/3 | Mahnstufe 2: Anruf-Aufgabe |
-| R22 | Zahlung in Billomat gebucht (täglicher Abgleich) | Status `bezahlt`, wartende Zertifikate freigeben (R18), Portal zeigt „bezahlt" | – | – | – |
+| R21 | Rechnungsplan-Termin erreicht (Erst bei Auftrag oder Zertifikat, jährlich oder ÜA1/ÜA2/Rezert je Zyklusmodell) | Vorbereitete Zeile in „Rechnungen QM" (Kunde, Adresse, Leistung, Festpreis, Kopfzeile mit Zertifikatsnummer), Kennzeichen „bereit", Aufgabe „Rechnung freigeben"; Freigabe und Billomat-Übergabe über das vorhandene Menü | Zahlungsziel wie im Sheet | Mahnung über Mail 1 bis 3 im Sheet | Mail 2 gesendet: Anruf-Aufgabe |
+| R22 | `Rechnung bezahlt` in „Rechnungen QM" gesetzt (täglicher Rückfluss) | Status `bezahlt`, wartende Zertifikate freigeben (R18), Portal zeigt „bezahlt" | – | – | – |
 | R23 | Rechnung 60 Tage überfällig | Aussetzungsvorlage an Ausschuss (Regel je Mandant) | – | – | Aufgabe |
 
 **Phase G: Überwachung und Rezertifizierung**
@@ -281,6 +281,8 @@ Eine Seite: Ampel groß, Zertifikatsnummer, Firma, Ort, Norm, Kurz-Scope, gülti
 ---
 
 ## 4. Billomat-Anbindung im Detail
+
+> **Stand 18.09.2026 (Runde 3):** Rechnungen werden weiterhin aus den Kundendaten im Sheet „Rechnungen QM" gestellt und über das vorhandene Billomat-Menü übergeben. Das Zertifikatssystem bereitet Rechnungszeilen vor und liest den Zahlungsstatus zurück (Katalog M8 neu). Dieses Kapitel beschreibt die **spätere Vollautomatik** (M8.9) und bleibt als Referenz für Endpunkte, Idempotenz und Limits stehen. Verbindlich für Phase 1 sind Abschnitt 4.8 (Importlauf) und Runde 3, Kapitel 3.
 
 Recherche vom 18.09.2026 aus der offiziellen API-Doku (über Suchergebnisse und Open-Source-Clients, da billomat.com aus der Umgebung nicht direkt abrufbar war). Vor Umsetzung: Tarif und API-Kontingent im eigenen Konto prüfen.
 

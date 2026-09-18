@@ -1,7 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3140 482" width="3140" height="482" font-family="'IBM Plex Sans','Segoe UI',Helvetica,Arial,sans-serif" font-size="12">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3320 482" width="3320" height="482" font-family="'IBM Plex Sans','Segoe UI',Helvetica,Arial,sans-serif" font-size="12">
 <title>OnlineCert Systemkarte · Systemlandschaft · Detail</title>
 <defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#AEB8C4"/></marker></defs>
-<rect width="3140" height="482" fill="#FFFFFF"/>
+<rect width="3320" height="482" fill="#FFFFFF"/>
 <text x="40" y="34" font-size="22" font-weight="600" fill="#1B2430">OnlineCert Systemkarte · Systemlandschaft</text>
 <text x="40" y="56" font-size="12" fill="#5B6675">Detail: alle Bausteine und Abhängigkeiten · Stand 18.09.2026 · Quelle: docs/zertifikatssystem/systemkarte.html</text>
 <g transform="translate(40,104)">
@@ -17,7 +17,7 @@
 <rect x="2010" y="29" width="560" height="246" rx="14" fill="#ECE5F9" stroke="#6D4BB5" stroke-width="1.2"/>
 <text x="2026" y="53" font-size="15" font-weight="600" fill="#1B2430">Daten in Google Workspace</text>
 <text x="2026" y="70" font-size="11.5" fill="#5B6675">Daten (Google Workspace)</text>
-<rect x="2680" y="58" width="380" height="188" rx="14" fill="#E2F1DC" stroke="#3F7D2F" stroke-width="1.2"/>
+<rect x="2680" y="58" width="560" height="188" rx="14" fill="#E2F1DC" stroke="#3F7D2F" stroke-width="1.2"/>
 <text x="2696" y="82" font-size="15" font-weight="600" fill="#1B2430">Externe Dienste</text>
 <text x="2696" y="99" font-size="11.5" fill="#5B6675">Externe Dienste</text>
 <path d="M184,133 C525,133 525,104 866,104" fill="none" stroke="#AEB8C4" stroke-width="1.2" marker-end="url(#a)"/>
@@ -56,10 +56,10 @@
 <text x="1285" y="143.5" text-anchor="middle" font-size="10" fill="#5B6675" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">Votum</text>
 <path d="M1034,162 C1375,162 1375,133 1716,133" fill="none" stroke="#AEB8C4" stroke-width="1.2" marker-end="url(#a)"/>
 <text x="1375" y="143.5" text-anchor="middle" font-size="10" fill="#5B6675" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">Aufgaben</text>
+<path d="M854,220 C1955,220 1955,133 3056,133" fill="none" stroke="#AEB8C4" stroke-width="1.2" marker-end="url(#a)"/>
+<text x="1955" y="172.5" text-anchor="middle" font-size="10" fill="#5B6675" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">API-Key</text>
 <path d="M854,220 C1865,220 1865,133 2876,133" fill="none" stroke="#AEB8C4" stroke-width="1.2" marker-end="url(#a)"/>
-<text x="1865" y="172.5" text-anchor="middle" font-size="10" fill="#5B6675" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">API-Key</text>
-<path d="M854,220 C1775,220 1775,133 2696,133" fill="none" stroke="#AEB8C4" stroke-width="1.2" marker-end="url(#a)"/>
-<text x="1775" y="172.5" text-anchor="middle" font-size="10" fill="#5B6675" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">Dashboard (lesen)</text>
+<text x="1865" y="172.5" text-anchor="middle" font-size="10" fill="#5B6675" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">Dashboard (lesen)</text>
 <path d="M1716,133 C1620,133 1620,75 1524,75" fill="none" stroke="#AEB8C4" stroke-width="1.2" marker-end="url(#a)"/>
 <text x="1620" y="100" text-anchor="middle" font-size="10" fill="#5B6675" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">löst Klick-Regeln aus</text>
 <path d="M1884,133 C2045,133 2045,104 2206,104" fill="none" stroke="#AEB8C4" stroke-width="1.2" marker-end="url(#a)"/>
@@ -95,23 +95,31 @@
 <path d="M1536,191 C1496,191 1564,191 1524,191" fill="none" stroke="#AEB8C4" stroke-width="1.2" marker-end="url(#a)"/>
 <text x="1530" y="187" text-anchor="middle" font-size="10" fill="#5B6675" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">Zert-Nr.</text>
 <path d="M1524,133 C2110,133 2110,133 2696,133" fill="none" stroke="#AEB8C4" stroke-width="1.2" marker-end="url(#a)"/>
-<text x="2110" y="129" text-anchor="middle" font-size="10" fill="#5B6675" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">Rechnung, Zahlung</text>
+<text x="2110" y="129" text-anchor="middle" font-size="10" fill="#5B6675" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">Zeile vorbereiten, Status lesen</text>
 <path d="M1524,133 C1865,133 1865,104 2206,104" fill="none" stroke="#AEB8C4" stroke-width="1.2" marker-end="url(#a)"/>
 <text x="1865" y="114.5" text-anchor="middle" font-size="10" fill="#5B6675" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">Rechnungsplan</text>
-<path d="M2696,133 C2290,133 2290,133 1884,133" fill="none" stroke="#AEB8C4" stroke-width="1.2" marker-end="url(#a)"/>
-<text x="2290" y="129" text-anchor="middle" font-size="10" fill="#5B6675" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">Webhook Zahlung</text>
+<path d="M2864,133 C2904,133 2836,133 2876,133" fill="none" stroke="#AEB8C4" stroke-width="1.2" marker-end="url(#a)"/>
+<text x="2870" y="129" text-anchor="middle" font-size="10" fill="#5B6675" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">Menü: Rechnung erstellen</text>
+<path d="M2696,133 C2445,133 2445,104 2194,104" fill="none" stroke="#AEB8C4" stroke-width="1.2" marker-end="url(#a)"/>
+<text x="2445" y="114.5" text-anchor="middle" font-size="10" fill="#5B6675" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">Kunde per Dropdown/Lookup</text>
+<path d="M184,191 C1440,191 1440,133 2696,133" fill="none" stroke="#AEB8C4" stroke-width="1.2" marker-end="url(#a)"/>
+<text x="1440" y="158" text-anchor="middle" font-size="10" fill="#5B6675" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">Haken, Freigabe</text>
 <path d="M1884,133 C1955,133 1955,220 2026,220" fill="none" stroke="#AEB8C4" stroke-width="1.2" marker-end="url(#a)"/>
 <text x="1955" y="172.5" text-anchor="middle" font-size="10" fill="#5B6675" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">Termineintrag</text>
 <path d="M1884,133 C1955,133 1955,162 2026,162" fill="none" stroke="#AEB8C4" stroke-width="1.2" marker-end="url(#a)"/>
 <text x="1955" y="143.5" text-anchor="middle" font-size="10" fill="#5B6675" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">Ordner-Scan</text>
-<path d="M1884,133 C2380,133 2380,133 2876,133" fill="none" stroke="#AEB8C4" stroke-width="1.2" marker-end="url(#a)"/>
-<text x="2380" y="129" text-anchor="middle" font-size="10" fill="#5B6675" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">via Function</text>
-<path d="M1704,249 C2200,249 2200,133 2696,133" fill="none" stroke="#AEB8C4" stroke-width="1.2" marker-end="url(#a)"/>
-<text x="2200" y="187" text-anchor="middle" font-size="10" fill="#5B6675" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">Export</text>
+<path d="M1884,133 C2470,133 2470,133 3056,133" fill="none" stroke="#AEB8C4" stroke-width="1.2" marker-end="url(#a)"/>
+<text x="2470" y="129" text-anchor="middle" font-size="10" fill="#5B6675" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">via Function</text>
+<path d="M1704,249 C2290,249 2290,133 2876,133" fill="none" stroke="#AEB8C4" stroke-width="1.2" marker-end="url(#a)"/>
+<text x="2290" y="187" text-anchor="middle" font-size="10" fill="#5B6675" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">Export</text>
 <path d="M1704,249 C1865,249 1865,104 2026,104" fill="none" stroke="#AEB8C4" stroke-width="1.2" marker-end="url(#a)"/>
-<text x="1865" y="172.5" text-anchor="middle" font-size="10" fill="#5B6675" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">Billomat-ID</text>
+<text x="1865" y="172.5" text-anchor="middle" font-size="10" fill="#5B6675" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">Billomat-ID, K-Nr.</text>
 <path d="M1704,249 C2290,249 2290,191 2876,191" fill="none" stroke="#AEB8C4" stroke-width="1.2" marker-end="url(#a)"/>
 <text x="2290" y="216" text-anchor="middle" font-size="10" fill="#5B6675" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">Altbestand</text>
+<path d="M1704,249 C2380,249 2380,191 3056,191" fill="none" stroke="#AEB8C4" stroke-width="1.2" marker-end="url(#a)"/>
+<text x="2380" y="216" text-anchor="middle" font-size="10" fill="#5B6675" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">Register-Import</text>
+<path d="M1704,249 C2200,249 2200,133 2696,133" fill="none" stroke="#AEB8C4" stroke-width="1.2" marker-end="url(#a)"/>
+<text x="2200" y="187" text-anchor="middle" font-size="10" fill="#5B6675" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">Rechnungshistorie</text>
 <path d="M2206,104 C2166,104 2234,104 2194,104" fill="none" stroke="#AEB8C4" stroke-width="1.2" marker-end="url(#a)"/>
 <text x="2200" y="100" text-anchor="middle" font-size="10" fill="#5B6675" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">K-Nr. (Referenz)</text>
 <path d="M1524,249 C1865,249 1865,104 2206,104" fill="none" stroke="#AEB8C4" stroke-width="1.2" marker-end="url(#a)"/>
@@ -193,8 +201,8 @@
 <text x="1546" y="245" font-size="11.5" fill="#1B2430">Importlauf Billomat</text>
 <text x="1546" y="261" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="10" fill="#5B6675">einmalig</text>
 <rect x="2026" y="81" width="168" height="46" rx="8" fill="#FFFFFF" stroke="#6D4BB5" stroke-width="1.2"/>
-<text x="2036" y="100" font-size="11.5" fill="#1B2430">CRM-Sheet</text>
-<text x="2036" y="116" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="10" fill="#5B6675">K-00123 · einziger Kundenst…</text>
+<text x="2036" y="100" font-size="11.5" fill="#1B2430">CRM „Super Master“</text>
+<text x="2036" y="116" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="10" fill="#5B6675">Organisations Nr. = K-Nr.</text>
 <rect x="2206" y="81" width="168" height="46" rx="8" fill="#FFFFFF" stroke="#6D4BB5" stroke-width="1.2"/>
 <text x="2216" y="100" font-size="11.5" fill="#1B2430">Mandantendatei (Sheets)</text>
 <text x="2216" y="116" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="10" fill="#5B6675">je Mandant</text>
@@ -217,17 +225,23 @@
 <text x="2216" y="216" font-size="11.5" fill="#1B2430">Gmail / MailApp</text>
 <text x="2216" y="232" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="10" fill="#5B6675">1.500 Empfänger/Tag</text>
 <rect x="2696" y="110" width="168" height="46" rx="8" fill="#FFFFFF" stroke="#3F7D2F" stroke-width="1.2"/>
-<text x="2706" y="129" font-size="11.5" fill="#1B2430">Billomat</text>
-<text x="2706" y="145" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="10" fill="#5B6675">REST-API, Business-Tarif</text>
+<text x="2706" y="129" font-size="11.5" fill="#1B2430">Sheet „Rechnungen QM“</text>
+<text x="2706" y="145" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="10" fill="#5B6675">QM-… · Billomat-Menü</text>
 <rect x="2876" y="110" width="168" height="46" rx="8" fill="#FFFFFF" stroke="#3F7D2F" stroke-width="1.2"/>
-<text x="2886" y="129" font-size="11.5" fill="#1B2430">Claude API</text>
-<text x="2886" y="145" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="10" fill="#5B6675">über Netlify Function</text>
+<text x="2886" y="129" font-size="11.5" fill="#1B2430">Billomat</text>
+<text x="2886" y="145" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="10" fill="#5B6675">REST-API (Export, Kunden, E…</text>
+<rect x="3056" y="110" width="168" height="46" rx="8" fill="#FFFFFF" stroke="#3F7D2F" stroke-width="1.2"/>
+<text x="3066" y="129" font-size="11.5" fill="#1B2430">Claude API</text>
+<text x="3066" y="145" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="10" fill="#5B6675">über Netlify Function</text>
 <rect x="2696" y="168" width="168" height="46" rx="8" fill="#FFFFFF" stroke="#3F7D2F" stroke-width="1.2"/>
 <text x="2706" y="187" font-size="11.5" fill="#1B2430">GitHub</text>
 <text x="2706" y="203" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="10" fill="#5B6675">Monorepo onlinecert-system</text>
 <rect x="2876" y="168" width="168" height="46" rx="8" fill="#FFFFFF" stroke="#3F7D2F" stroke-width="1.2"/>
 <text x="2886" y="187" font-size="11.5" fill="#1B2430">virtualbadge (Altbestan…</text>
-<text x="2886" y="203" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="10" fill="#5B6675">Migration</text>
+<text x="2886" y="203" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="10" fill="#5B6675">Migration · UUID als alt_id</text>
+<rect x="3056" y="168" width="168" height="46" rx="8" fill="#FFFFFF" stroke="#3F7D2F" stroke-width="1.2"/>
+<text x="3066" y="187" font-size="11.5" fill="#1B2430">Zertifikatsverwaltung_2…</text>
+<text x="3066" y="203" font-family="'IBM Plex Mono',Menlo,Consolas,monospace" font-size="10" fill="#5B6675">OC-0001…0058 · K-0001…0092</text>
 </g>
 <rect x="40" y="436" width="10" height="10" rx="2" fill="#B7791F"/>
 <text x="55" y="445" font-size="11" fill="#5B6675">Rollen</text>

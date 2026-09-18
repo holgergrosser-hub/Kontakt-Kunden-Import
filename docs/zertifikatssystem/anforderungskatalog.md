@@ -42,7 +42,7 @@ Das System von virtualbadge nachbauen. Kundenverwaltung und Zertifikatsvorlagen 
 |---|---|
 | „Anrufen" (in der Liste Zertnummer, Anrufen, Prüfung) | Doppelt abgedeckt: **Abruf** eines Zertifikats über Nummer/QR (öffentlich und per API) und **Anruf-Aufgaben** für das Backoffice (Telefonliste bei Kunden ohne Reaktion auf Erinnerungen). |
 | „Multiple Kunden erweiterbar" | Beides: 1000+ Endkunden **und** mehrere Mandanten/Aussteller (z. B. OnlineCert, QM-Guru, künftige Partner-Zertifizierer) mit eigenem Logo, Nummernkreis und Absender. |
-| „Zertifikate als Vorlage habe ich" | Vorhandene Docs-Vorlagen werden übernommen und um Platzhalter für Seite 2 ergänzt. |
+| „Zertifikate als Vorlage habe ich" | Vorhandene Docs-Vorlage (`{{FELD}}`-Platzhalter, eine Seite) wird übernommen und um Seite 2 ergänzt; Platzhalterstil ab jetzt `{{FELD}}`. Seite 1 behält das Layout des heutigen Zertifikats (Auditdatum bereits auf Seite 1). |
 | „Verwaltung der Kunden habe ich" | **Festlegung 18.09.2026:** Das CRM-System (Sheet aus Kontakt-Kunden-Import) ist der einzige Kundenstamm für Beratung **und** Zertifizierung. Jeder Kunde wird genau einmal dort erfasst. Zertifikatssystem und Billomat referenzieren Kunden per Kundennummer und legen selbst nie Kunden an. |
 | „Erst Zertifizierung muss enthalten sein" | Das Zertifikat trägt das Datum der Erstzertifizierung zusätzlich zu Ausstellungs- und Ablaufdatum, wie bei akkreditierten Zertifizierern üblich. |
 | „Zweite Seite ... Auditor ... und darum vom Audit" | Seite 2 = Anhang mit Verifizierungsblock (QR, URL, Nummer), Auditor, Auditart, Auditdatum, Auditmethode, Standorten, Entscheidungsdatum, nächstem Überwachungstermin. |
@@ -185,7 +185,8 @@ Kennzeichnung: **M** = Must (Phase 1), **S** = Should (Phase 2), **C** = Could (
 
 | Nr. | Anforderung | Prio |
 |---|---|---|
-| M3.1 | Auditvorgang je Auftrag und Zyklusjahr: Typ (Erst Stufe 1/2, ÜA1, ÜA2, Rezert, Sonder), Plan-Datum, Ist-Datum, Methode (remote/vor Ort), Dauer (Audittage) | M |
+| M3.0 | Zyklusmodell je Zertifikat: `gueltigkeit_jahre` 1, 2 oder 3 (Voreinstellung je Mandant, heute 1 Jahr). Jahresmodell = jährliches Überwachungsaudit mit Neuausstellung und gleicher Erstzertifizierung; Drei-Jahres-Modell = ÜA1, ÜA2, Rezertifizierung. Erinnerungen laufen gegen `gueltig_bis` und `naechstes_audit` | M |
+| M3.1 | Auditvorgang je Auftrag und Zyklusjahr: Typ (Erst Stufe 1/2, jährliches Überwachungsaudit oder ÜA1/ÜA2/Rezert, Sonder, Transfer), Plan-Datum, Ist-Datum, Methode (remote/vor Ort), Dauer (Audittage) | M |
 | M3.2 | Auditorenstamm: Name, Qualifikation je Norm, Verfügbarkeit, Interessenkonflikte (Kunden, die er/sie beraten hat → darf nicht auditieren) | M |
 | M3.3 | Auditor vereinbart den Audittermin selbst mit dem Kunden und trägt ihn in der Auditor-App ein (Datum, Uhrzeit, Methode, Dauer); der Eintrag setzt Plan-Datum, erzeugt Kalendereinträge, Videolink, Auditplan und Bestätigungsmail an den Kunden | M |
 | M3.4 | Auditbericht: Upload PDF oder Erzeugung über Skill qm-audit-iso9001; Pflichtfelder: Feststellungen, Abweichungen (Haupt/Neben), Empfehlung des Auditors | M |
@@ -249,18 +250,23 @@ Kennzeichnung: **M** = Must (Phase 1), **S** = Should (Phase 2), **C** = Could (
 | M7.7 | Bounce-Erkennung: unzustellbare Mails erzeugen Aufgabe „Kontaktdaten prüfen" | S |
 | M7.8 | Kalendereinträge (Google Calendar) für Audits und Fälligkeiten je Auditor und Kunde, gespeist aus dem Termineintrag des Auditors | M |
 
-#### M8 Angebote und Rechnungen (Billomat)
+#### M8 Rechnungen aus Kundendaten (bestehendes Sheet „Rechnungen QM" + Billomat-Menü)
+
+Festlegung 18.09.2026: Rechnungen entstehen wie heute im Sheet „Rechnungen QM" aus den CRM-Kundendaten; das Zertifikatssystem bereitet Zeilen vor und liest den Zahlungsstatus zurück. Details in [Runde 3](runde-3-ist-analyse-sheets.md), Kapitel 3.
 
 | Nr. | Anforderung | Prio |
 |---|---|---|
-| M8.1 | Billomat bleibt führendes Rechnungssystem (GoBD, fortlaufende Rechnungsnummer, E-Rechnung XRechnung/ZUGFeRD, Mahnwesen); unser System legt Kunden, Angebote und Rechnungen per Billomat-API an | M |
-| M8.2 | Rechnungsplan je Auftrag: Erstzertifizierung (bei Auftrag oder Zertifikat), ÜA1 (Jahr 1), ÜA2 (Jahr 2), Rezertifizierung (Jahr 3) → automatische Rechnung zum Stichtag, Positionen aus Preistabelle | M |
-| M8.3 | Zahlungsstatus aus Billomat lesen (vorhanden); Regel „Zertifikat wird erst nach Zahlungseingang versendet" je Mandant ein-/ausschaltbar | M |
-| M8.4 | Offene Posten in der Tagesliste; nach Billomat-Mahnstufe 2 Anruf-Aufgabe | M |
-| M8.5 | Fallback ohne Billomat: Rechnung aus Docs-Vorlage mit eigenem Nummernkreis `RE-2026-0001` (LockService), nur für Mandanten ohne Billomat | S |
-| M8.6 | Angebot in Billomat spiegeln (Billomat-Angebot ↔ `AN-`-Nummer), damit Umsatzprognose im vorhandenen Dashboard stimmt | S |
-| M8.7 | Umsatz- und Bestandsauswertung: Zertifikate je Norm, Umsatz je Zyklusjahr, Prognose kommende 12 Monate aus Rechnungsplan | S |
-| M8.11 | Rechnungshistorie je Kunde aus Billomat lesen (Erstimport und täglicher Abgleich): Kundenakte zeigt alle Rechnungen; Zahlungsverhalten (durchschnittliche Zahlungsdauer, Mahnungen) steuert die Regel „Zertifikat erst nach Zahlung" (E5) automatisch | M |
+| M8.1 | Rechnungen entstehen ausschließlich im Sheet „Rechnungen QM"; das Zertifikatssystem erzeugt keine Rechnungen und ruft Billomat nicht selbst auf | M |
+| M8.2 | Rechnungsplan je Auftrag (Erst, jährlich oder ÜA1/ÜA2/Rezert je Zyklusmodell) mit Fälligkeit, Leistung, Festpreis, Status | M |
+| M8.3 | Rechnungslauf legt zum Stichtag eine vorbereitete Zeile in „Rechnungen QM" an (Kunde, Adresse per Lookup, Leistung, Festpreis, Kopfzeile mit Zertifikatsnummer), ohne Haken für die Billomat-Übergabe | M |
+| M8.4 | Tagesliste zeigt vorbereitete Rechnungszeilen unter „Freigeben"; Freigabe und Billomat-Übergabe bleiben der vorhandene Menüpunkt | M |
+| M8.5 | Täglicher Rückfluss von Rechnungsnummer, offen, bezahlt, Storno und Mahnstufen (Mail 1 bis 3) in das Blatt `Rechnungen`; daraus Zahlungsampel je Kunde | M |
+| M8.6 | Regel „Zertifikat erst nach Zahlung" je Mandant und Kunde, Ausnahme über Zahlungsampel (E5) | S |
+| M8.7 | Prozessflags in „Rechnungen QM" (Zertifikat erhalten, Veröffentlicht, Info Überwachungsaudit raus) werden vom System gesetzt | S |
+| M8.8 | Bestehendes Billomat-Skript: API-Schlüssel in `PropertiesService`, Rechnungsnummer mit `LockService`, Kundensuche zusätzlich über `client_number` = K-Nr. | M |
+| M8.9 | Vollautomatik über die Billomat-API (Runde 2, Kap. 4) bleibt spätere Option | C |
+| M8.10 | Umsatz- und Bestandsauswertung: Zertifikate je Norm, Umsatz je Zyklusjahr, Prognose 12 Monate aus dem Rechnungsplan | S |
+| M8.11 | Erstbefüllung der Rechnungshistorie aus „Rechnungen QM" (Jahresspalten im CRM) und Billomat-Export; Zahlungsverhalten als Ampel | M |
 
 #### M9 Kommunikation und Kundenportal
 
@@ -638,7 +644,7 @@ Gesamt: rund 30 bis 36 Umsetzungstage über 12 Wochen. Phase 1 liefert bereits d
 | E1 | Normcode in der Zertifikatsnummer (`OC-9001-2026-…`) oder nicht (`OC-2026-…`)? | Ohne Normcode (Kombi-Zertifikate möglich, Norm als Feld) |
 | E2 | Ein Zertifikat je Norm oder ein Kombi-Zertifikat bei 9001+14001? | Je Norm eigenes Zertifikat, Ausfertigungen teilen Audit und Entscheidung |
 | E3 | Rezertifizierung: neue Nummer oder gleiche Nummer mit neuem Zyklus? | Neue Nummer, Feld `ersetzt_von`, Erstzertifizierung wird übernommen |
-| E4 | Billomat bleibt Rechnungssystem (API nur im Business-Tarif) oder Wechsel zu sevdesk/easybill? | Billomat behalten, Anbindung existiert; Wechsel erst, wenn E-Rechnung 2028 es erzwingt |
+| E4 | Billomat bleibt Rechnungssystem (API nur im Business-Tarif) oder Wechsel zu sevdesk/easybill? | **Entschieden (18.09.2026): Rechnungen bleiben im Sheet „Rechnungen QM" mit dem bestehenden Billomat-Menü; keine eigene Rechnungsstellung im Zertifikatssystem (M8 neu, Runde 3).** |
 | E5 | Zertifikat erst nach Zahlungseingang? | Ja für Neukunden, nein für Bestandskunden mit guter Zahlungshistorie; die Historie kommt aus dem Billomat-Rechnungsexport (M8.11), Regel je Kunde automatisch |
 | E6 | Verifizierungs-Domain: `verify.onlinecert.de` oder Pfad auf qm-guru.de? | Eigene Subdomain je Mandant, Netlify-Site |
 | E7 | Auditor-Name auf Seite 2 öffentlich in der Verifizierung? | Auf dem PDF ja, auf der Verifizierungsseite nur „Leitender Auditor: Ja, geprüft" ohne Namen (Datenschutz) |
@@ -650,6 +656,7 @@ Gesamt: rund 30 bis 36 Umsetzungstage über 12 Wochen. Phase 1 liefert bereits d
 | E14 | Terminfindung: Kunde wählt aus Slots oder Auditor vereinbart selbst? | **Entschieden (18.09.2026): Auditor vereinbart selbst und trägt ein.** |
 | E15 | ÜA ohne Hauptabweichung ohne Ausschuss? | Ja, als Regel je Mandant |
 | E16 | Kundendokumente: eigene Ablage oder Google Drive? | **Entschieden (18.09.2026): Google-Drive-Kundenordner, für den Kunden freigegeben.** |
+| E24 bis E27 | Zertifikatsnummer alt/neu, führende Kundennummer, Standard-Gültigkeit, Sprachenumfang | Siehe [Runde 3](runde-3-ist-analyse-sheets.md), Kapitel 4 |
 | E12 | Migration des virtualbadge-Bestands: alle oder nur gültige? | Alle, mit Status `migriert` und ursprünglicher ID als Zusatzfeld, damit alte QR-Links per Weiterleitung funktionieren |
 
 ---
