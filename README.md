@@ -93,5 +93,6 @@ Ergänzungen:
 - [Runde 2: Automatisierungskette, UX je Rolle, Billomat-Anbindung, Erweiterbarkeit](docs/zertifikatssystem/runde-2-automatisierung-ux-billomat.md)
 - [Abgleich mit dem ZMS-Katalog v1.3](docs/zertifikatssystem/abgleich-zms-katalog-v1-3.md)
 - [Runde 3: Ist-Analyse der vorhandenen Sheets, Vorlage und Zertifikate](docs/zertifikatssystem/runde-3-ist-analyse-sheets.md)
+- [Phase 0: Apps-Script-Grundgerüst (Einrichtung, Importe, Betrieb)](docs/zertifikatssystem/phase-0-umsetzung.md) · Code unter `zertifikatssystem/apps-script/`
 - [Interaktive Systemkarte (HTML, Zoom in Abhängigkeiten, SVG-Export)](docs/zertifikatssystem/systemkarte.html)
 - Systemkarte als Bilder: [Systemlandschaft](docs/zertifikatssystem/systemkarte-systemlandschaft-uebersicht.svg) · [Datenmodell](docs/zertifikatssystem/systemkarte-datenmodell-uebersicht.svg) · [Regelkette](docs/zertifikatssystem/systemkarte-regelkette-uebersicht.svg)
