@@ -86,6 +86,8 @@ Die Apps-Script-Datei schreibt folgende Felder in die Zieltabelle:
 
 ## Anforderungskatalog Zertifikatsverwaltungssystem
 
+> **Umgezogen:** Das Zertifikatssystem (Katalog, Systemkarte, Apps-Script-Code) liegt jetzt im eigenen Repo [holgergrosser-hub/onlinecert-system](https://github.com/holgergrosser-hub/onlinecert-system). Die Kopien hier bleiben als Stand vom 18.09.2026.
+
 **Einstieg:** [docs/zertifikatssystem/START-HIER.md](docs/zertifikatssystem/START-HIER.md) (drei Etappen, heute 30 Minuten).
 
 Der dreistufige Anforderungskatalog (Bedarf, Marktanalyse, Bewertung) für das mandantenfähige Zertifikatssystem nach dem Vorbild virtualbadge liegt unter [docs/zertifikatssystem/anforderungskatalog.md](docs/zertifikatssystem/anforderungskatalog.md).
