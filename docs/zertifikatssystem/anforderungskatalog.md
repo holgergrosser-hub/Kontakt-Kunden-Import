@@ -43,7 +43,7 @@ Das System von virtualbadge nachbauen. Kundenverwaltung und Zertifikatsvorlagen 
 | „Anrufen" (in der Liste Zertnummer, Anrufen, Prüfung) | Doppelt abgedeckt: **Abruf** eines Zertifikats über Nummer/QR (öffentlich und per API) und **Anruf-Aufgaben** für das Backoffice (Telefonliste bei Kunden ohne Reaktion auf Erinnerungen). |
 | „Multiple Kunden erweiterbar" | Beides: 1000+ Endkunden **und** mehrere Mandanten/Aussteller (z. B. OnlineCert, QM-Guru, künftige Partner-Zertifizierer) mit eigenem Logo, Nummernkreis und Absender. |
 | „Zertifikate als Vorlage habe ich" | Vorhandene Docs-Vorlagen werden übernommen und um Platzhalter für Seite 2 ergänzt. |
-| „Verwaltung der Kunden habe ich" | Das CRM-Sheet aus Kontakt-Kunden-Import (Spalten A bis DZ) bleibt Kundenstamm. Das Zertifikatssystem referenziert Kunden per Kundennummer statt Daten zu duplizieren. |
+| „Verwaltung der Kunden habe ich" | **Festlegung 18.09.2026:** Das CRM-System (Sheet aus Kontakt-Kunden-Import) ist der einzige Kundenstamm für Beratung **und** Zertifizierung. Jeder Kunde wird genau einmal dort erfasst. Zertifikatssystem und Billomat referenzieren Kunden per Kundennummer und legen selbst nie Kunden an. |
 | „Erst Zertifizierung muss enthalten sein" | Das Zertifikat trägt das Datum der Erstzertifizierung zusätzlich zu Ausstellungs- und Ablaufdatum, wie bei akkreditierten Zertifizierern üblich. |
 | „Zweite Seite ... Auditor ... und darum vom Audit" | Seite 2 = Anhang mit Verifizierungsblock (QR, URL, Nummer), Auditor, Auditart, Auditdatum, Auditmethode, Standorten, Entscheidungsdatum, nächstem Überwachungstermin. |
 
@@ -164,7 +164,9 @@ Kennzeichnung: **M** = Must (Phase 1), **S** = Should (Phase 2), **C** = Could (
 | M1.5 | Mandanten-Konfiguration: Name, Logo(s), Farben, Nummernpräfix, Absender-Mail, Vorlagen-IDs, Verifizierungs-Domain, Preisliste, Ausschussmitglieder | M |
 | M1.6 | Import aus virtualbadge (Recipients/Certificates via API) in den Altbestand mit Status `migriert` | S |
 | M1.7 | DSGVO: Löschkonzept (Kontakte nach 10 Jahren, Zertifikatsdaten dauerhaft im Register), Auskunftsexport je Kunde | S |
-| M1.11 | Erstbefüllung des Kundenstamms aus Billomat (Kundenexport per API) zusammengeführt mit dem CRM-Sheet; Billomat-Kunden-ID und Kundennummer als Schlüssel; Dubletten nach Firma, PLZ und E-Mail-Domain; jede Zuordnung in `Historie` | M |
+| M1.11 | Grundsatz „einmal erfassen": Kunden entstehen ausschließlich im CRM (Erfassungs-App dieses Repos oder Anfrage-Formular, das in dieselbe Apps-Script-Funktion schreibt). Zertifikatssystem, Portal und Billomat legen nie Kunden an; sie lesen per K-Nr. Änderungen aus dem Portal (Adresse, Ansprechpartner) schreiben in die CRM-Zeile zurück und werden von dort nach Billomat nachgezogen | M |
+| M1.12 | Billomat-Kundenexport dient nur der Zuordnung (Billomat-Kunden-ID an die CRM-Zeile, Rechnungshistorie), nie der Kundenanlage; Billomat-Kunden ohne CRM-Treffer erzeugen eine Aufgabe „im CRM erfassen" | M |
+| M1.13 | CRM-Sheet erhält die Spalten Kundennummer, Billomat-Kunden-ID, Drive-Ordner-ID, Kundenart (Beratung / Zertifizierung / beides) und Sprache; alle anderen Zertifikatsdaten bleiben in der Mandantendatei | M |
 
 #### M2 Angebote, Aufträge, Verträge
 

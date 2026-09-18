@@ -85,7 +85,7 @@ Jede Zeile ist eine Regel im Blatt `Regelwerk`. Fristen sind Vorschläge und je 
 
 | Regel | Auslöser | Automatische Aktion | Frist | Erinnerung | Eskalation an BO |
 |---|---|---|---|---|---|
-| R01 | Anfrage über Website/Formular/Mail (Claude erkennt Felder) | Kunde anlegen (K-Nr., Dublettenprüfung), Angebot berechnen (Paket × Normen × Standorte), PDF erzeugen, Angebotsmail mit Annahme-Link; Billomat-Kunde anlegen | Annahme in 30 Tagen | Tag 7, 14 (Mail) | Tag 30: Anruf-Aufgabe; Tag 60: Angebot `verfallen` |
+| R01 | Anfrage über Website/Formular/Mail (Claude erkennt Felder) | Kunde im CRM anlegen oder finden (bestehende Apps-Script-Funktion, K-Nr., Dublettenprüfung), Angebot berechnen (Paket × Normen × Standorte), PDF erzeugen, Angebotsmail mit Annahme-Link; Billomat-Kunde anlegen | Annahme in 30 Tagen | Tag 7, 14 (Mail) | Tag 30: Anruf-Aufgabe; Tag 60: Angebot `verfallen` |
 | R02 | Kunde klickt „Angebot annehmen" (oder lädt unterschriebenes PDF hoch) | Auftrag AU- anlegen, Zyklus berechnen, Zertifizierungsvereinbarung als PDF, Rechnungsplan anlegen, Billomat-Auftragsbestätigung, Portal-Link, Willkommensmail mit Unterlagen-Checkliste | Unterlagen in 21 Tagen | Tag 10, 18 | Tag 21: Aufgabe „Unterlagen anfordern (Telefon)" |
 | R03 | Angebot enthält Sonderwunsch (Freitext) | Claude fasst zusammen, Aufgabe „Angebot prüfen" | – | – | sofort |
 
@@ -288,7 +288,7 @@ Recherche vom 18.09.2026 aus der offiziellen API-Doku (über Suchergebnisse und 
 
 | Objekt | Führend | Begründung |
 |---|---|---|
-| Kunde (Stammdaten) | **Unser System** (CRM-Sheet, K-Nr.) | Billomat-Kunde wird angelegt und bei Änderung nachgezogen; `client_number` = K-Nr. |
+| Kunde (Stammdaten) | **CRM-System** (gemeinsamer Stamm für Beratung und Zertifizierung, K-Nr.) | Billomat-Kunde wird aus der CRM-Zeile angelegt und bei Änderung nachgezogen; `client_number` = K-Nr.; Billomat legt nie eigenständig Kunden an |
 | Angebot | **Unser System** (Docs-PDF, AN-Nr., Annahme-Link) | Unser Angebot ist Marketing und Paketlogik; Billomat bekommt es nur als Spiegel für die Umsatzprognose (optional, Should) |
 | Auftrag | **Unser System** (AU-Nr.) + Billomat-Auftragsbestätigung | Billomat `confirmations` liefert den Beleg mit Nummer; unser Auftrag hält Zyklus und Rechnungsplan |
 | Rechnung | **Billomat** | Nummernkreis, PDF, E-Rechnung (XRechnung/ZUGFeRD), GoBD-Unveränderbarkeit, Versand |
@@ -406,7 +406,7 @@ Der Billomat-Bestand ist die verlässlichste Quelle dafür, wer heute zahlender 
 **Importlauf (einmalig, Apps Script, Probelauf zuerst)**
 
 1. `GET /clients?per_page=500&page=n` bis `@total` erreicht ist (bei genau einem Treffer Objekt statt Array normalisieren). Felder: `id`, `client_number`, `name`, `street`, `zip`, `city`, `country_code`, `email`, `phone`, `vat_number`, `locale`, `due_days`, `archived`, `tags`.
-2. Zusammenführen mit dem CRM-Sheet: Treffer nach (a) `client_number` = K-Nr., (b) exakter Firmenname + PLZ, (c) E-Mail-Domain. Eindeutige Treffer werden verknüpft (`Kunden.billomat_client_id`), mehrdeutige landen als Aufgabe „Kunde zuordnen" in der Tagesliste, neue werden als Kunden angelegt und bekommen eine K-Nr.; die K-Nr. wird als `client_number` nach Billomat zurückgeschrieben (`PUT /clients/{id}`), sofern dort keine steht.
+2. Zusammenführen mit dem CRM-Sheet: Treffer nach (a) `client_number` = K-Nr., (b) exakter Firmenname + PLZ, (c) E-Mail-Domain. Eindeutige Treffer werden verknüpft (`Kunden.billomat_client_id`), mehrdeutige landen als Aufgabe „Kunde zuordnen" in der Tagesliste, Billomat-Kunden ohne CRM-Treffer erzeugen die Aufgabe „im CRM erfassen" (der Importlauf legt keine Kunden an, Grundsatz „einmal erfassen"); nach Zuordnung wird die K-Nr. als `client_number` nach Billomat zurückgeschrieben (`PUT /clients/{id}`), sofern dort keine steht.
 3. `GET /invoices?client_id={id}&per_page=500` je Kunde (bei 1.000 Kunden rund 1.000 Aufrufe, verteilt auf mehrere Läufe wegen des Kontingents von 300 je 15 Minuten). Felder: `id`, `invoice_number`, `date`, `due_date`, `status`, `total_net`, `total_gross`, `paid_amount`, `open_amount`, `label`, `intro`, `invoice_items` (Artikelnummern).
 4. Daraus abgeleitet und ins Blatt `Rechnungen` geschrieben: Rechnungshistorie je Kunde; **Zahlungsverhalten** (durchschnittliche Tage bis Zahlung, Anzahl Mahnungen aus `GET /reminders?client_id=`); **aktive Zertifizierungskunden** (Rechnungen mit Artikelnummern oder Stichworten wie „Zertifizierung", „Überwachungsaudit", „Rezertifizierung" in den letzten 36 Monaten); **vermuteter Zyklusstand** (letzte Rechnung Erst/ÜA1/ÜA2/Rezert und deren Datum) als Vorschlag für den Rechnungsplan.
 5. Ergebnisbericht: Anzahl Kunden gesamt / verknüpft / neu / mehrdeutig; Kunden mit offenen Posten; Kunden mit Zertifizierungsrechnung ohne Zertifikat im Register (Migrationslücke, mit virtualbadge-Bestand abgleichen).
