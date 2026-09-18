@@ -83,3 +83,7 @@ Die Apps-Script-Datei schreibt folgende Felder in die Zieltabelle:
 - Spalte DS: WAHR
 - Spalte DE: Ja
 - Spalte DF: wie Spalte L
+
+## Anforderungskatalog Zertifikatsverwaltungssystem
+
+Der dreistufige Anforderungskatalog (Bedarf, Marktanalyse, Bewertung) für das mandantenfähige Zertifikatssystem nach dem Vorbild virtualbadge liegt unter [docs/zertifikatssystem/anforderungskatalog.md](docs/zertifikatssystem/anforderungskatalog.md).
