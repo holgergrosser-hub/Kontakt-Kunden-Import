@@ -92,3 +92,4 @@ Ergänzungen:
 
 - [Runde 2: Automatisierungskette, UX je Rolle, Billomat-Anbindung, Erweiterbarkeit](docs/zertifikatssystem/runde-2-automatisierung-ux-billomat.md)
 - [Abgleich mit dem ZMS-Katalog v1.3](docs/zertifikatssystem/abgleich-zms-katalog-v1-3.md)
+- [Interaktive Systemkarte (HTML, Zoom in Abhängigkeiten)](docs/zertifikatssystem/systemkarte.html)

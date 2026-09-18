@@ -1,0 +1,507 @@
+<title>OnlineCert Systemkarte</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --bg:#F3F5F8;--surface:#FFFFFF;--surface-2:#E9EDF2;--ink:#1B2430;--muted:#5B6675;--line:#D3D9E1;--line-strong:#AEB8C4;
+  --accent:#1B4F94;--accent-ink:#FFFFFF;--focus:#F2A93B;
+  --c-rolle:#B7791F;--c-rolle-bg:#FFF4DC;--c-front:#0F766E;--c-front-bg:#DDF4F1;--c-back:#1B4F94;--c-back-bg:#DEE8F7;
+  --c-daten:#6D4BB5;--c-daten-bg:#ECE5F9;--c-extern:#3F7D2F;--c-extern-bg:#E2F1DC;--c-phase:#8A3F6A;--c-phase-bg:#F6E3EE;
+  --ok:#2E8B57;--warn:#D98E04;--crit:#C0392B;--shadow:0 10px 30px rgba(27,36,48,.12);
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#12161C;--surface:#1B222B;--surface-2:#232C37;--ink:#E6EAF0;--muted:#98A4B4;--line:#2C3641;--line-strong:#4A5765;
+  --accent:#7FB0F0;--accent-ink:#0E1620;--focus:#F2A93B;
+  --c-rolle:#F0B860;--c-rolle-bg:#3A2E15;--c-front:#5FD1C5;--c-front-bg:#12332F;--c-back:#8FBBF5;--c-back-bg:#172A45;
+  --c-daten:#B79CF2;--c-daten-bg:#2A2144;--c-extern:#8CD27A;--c-extern-bg:#1E3319;--c-phase:#E48EC0;--c-phase-bg:#3B1E30;
+  --shadow:0 10px 30px rgba(0,0,0,.45);
+}}
+:root[data-theme="dark"]{
+  --bg:#12161C;--surface:#1B222B;--surface-2:#232C37;--ink:#E6EAF0;--muted:#98A4B4;--line:#2C3641;--line-strong:#4A5765;
+  --accent:#7FB0F0;--accent-ink:#0E1620;--focus:#F2A93B;
+  --c-rolle:#F0B860;--c-rolle-bg:#3A2E15;--c-front:#5FD1C5;--c-front-bg:#12332F;--c-back:#8FBBF5;--c-back-bg:#172A45;
+  --c-daten:#B79CF2;--c-daten-bg:#2A2144;--c-extern:#8CD27A;--c-extern-bg:#1E3319;--c-phase:#E48EC0;--c-phase-bg:#3B1E30;
+  --shadow:0 10px 30px rgba(0,0,0,.45);
+}
+html,body{height:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;font-size:14px;line-height:1.45;overflow:hidden}
+*{box-sizing:border-box}
+.app{height:100%;display:grid;grid-template-rows:auto 1fr;grid-template-columns:1fr 340px;grid-template-areas:"bar bar" "map panel"}
+.bar{grid-area:bar;display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px;padding:10px 16px;background:var(--surface);border-bottom:1px solid var(--line)}
+.brand{display:flex;flex-direction:column;margin-right:6px}
+.brand b{font-weight:600;font-size:15px;letter-spacing:.01em}
+.brand span{font-size:11.5px;color:var(--muted)}
+.tabs{display:flex;gap:4px;background:var(--surface-2);padding:3px;border-radius:8px}
+.tabs button{border:0;background:transparent;color:var(--muted);font:inherit;font-weight:500;padding:6px 12px;border-radius:6px;cursor:pointer}
+.tabs button[aria-selected="true"]{background:var(--surface);color:var(--ink);box-shadow:0 1px 2px rgba(0,0,0,.12)}
+.tabs button:focus-visible,.ctl button:focus-visible,.chip:focus-visible,input:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
+.search{display:flex;align-items:center;gap:6px;flex:1 1 180px;min-width:140px;max-width:320px}
+.search input{width:100%;font:inherit;padding:7px 10px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink)}
+.ctl{display:flex;gap:6px;align-items:center}
+.ctl button{font:inherit;font-weight:500;border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:8px;padding:6px 10px;cursor:pointer;min-width:36px}
+.ctl button:hover{border-color:var(--line-strong)}
+.ctl label{display:flex;align-items:center;gap:6px;color:var(--muted);font-size:13px;cursor:pointer;padding-left:6px}
+.map{grid-area:map;position:relative;min-width:0}
+svg{width:100%;height:100%;display:block;cursor:grab;touch-action:none}
+svg.dragging{cursor:grabbing}
+.legend{position:absolute;left:12px;bottom:12px;display:flex;flex-wrap:wrap;gap:6px 12px;padding:8px 12px;background:var(--surface);border:1px solid var(--line);border-radius:10px;font-size:12px;color:var(--muted);max-width:calc(100% - 24px)}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:6px;vertical-align:-1px}
+.hint{position:absolute;left:12px;top:12px;font-size:12px;color:var(--muted);background:var(--surface);border:1px solid var(--line);padding:6px 10px;border-radius:8px;pointer-events:none;transition:opacity .4s}
+.panel{grid-area:panel;background:var(--surface);border-left:1px solid var(--line);overflow:auto;padding:16px 18px 24px;min-height:0}
+.panel h2{font-size:17px;font-weight:600;margin:0 0 2px;text-wrap:balance}
+.panel .key{font-family:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;font-size:12.5px;color:var(--muted);margin-bottom:10px}
+.panel .type{display:inline-block;font-size:11px;letter-spacing:.06em;text-transform:uppercase;font-weight:600;padding:2px 8px;border-radius:999px;margin-bottom:10px}
+.panel p{margin:0 0 12px;max-width:62ch}
+.panel h3{font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin:16px 0 6px;font-weight:600}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{font:inherit;font-size:12.5px;border:1px solid var(--line);background:var(--bg);color:var(--ink);border-radius:999px;padding:4px 10px;cursor:pointer;text-align:left}
+.chip small{display:block;color:var(--muted);font-size:11px}
+.chip:hover{border-color:var(--line-strong)}
+.doc{font-size:12.5px;color:var(--muted)}
+.doc code{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:12px}
+.empty{color:var(--muted);font-size:13px}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:12px 0 4px}
+.stats div{background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:8px 10px}
+.stats b{display:block;font-size:18px;font-weight:600;font-variant-numeric:tabular-nums}
+.stats span{font-size:11.5px;color:var(--muted)}
+/* svg parts */
+.grp-rect{stroke-width:1.2;rx:14}
+.grp-title{font-weight:600;font-size:15px;fill:var(--ink)}
+.grp-sub{font-size:11.5px;fill:var(--muted)}
+.node rect{stroke-width:1.2;rx:8}
+.node text{font-size:11.5px;fill:var(--ink);pointer-events:none}
+.node .k{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:10px;fill:var(--muted)}
+.node{cursor:pointer}
+.node.sel rect{stroke:var(--focus);stroke-width:2.5}
+.node.hit rect{stroke:var(--focus);stroke-width:2}
+.edge{fill:none;stroke:var(--line-strong);stroke-width:1.2;opacity:.75}
+.edge.hl{stroke:var(--focus);stroke-width:2.2;opacity:1}
+.edge.dim{opacity:.12}
+.gedge{fill:none;stroke:var(--line-strong);stroke-width:2;opacity:.6;stroke-linecap:round}
+.elabel{font-size:10px;fill:var(--muted);paint-order:stroke;stroke:var(--bg);stroke-width:3px;stroke-linejoin:round}
+.elabel.hl{fill:var(--ink)}
+.node.dim{opacity:.35}
+.grp-count{font-size:11px;fill:var(--muted);font-variant-numeric:tabular-nums}
+@media (max-width: 820px){
+  .app{grid-template-columns:1fr;grid-template-rows:auto 1fr auto;grid-template-areas:"bar" "map" "panel"}
+  .panel{border-left:0;border-top:1px solid var(--line);max-height:42vh}
+  .legend{display:none}
+  .brand span{display:none}
+}
+@media (prefers-reduced-motion: reduce){ .hint{transition:none} }
+</style>
+
+<div class="app">
+  <div class="bar">
+    <div class="brand"><b>OnlineCert Systemkarte</b><span>Zertifikatsverwaltungssystem · Abhängigkeiten zum Reinzoomen</span></div>
+    <div class="tabs" role="tablist" aria-label="Ansicht">
+      <button role="tab" id="tab-system" aria-selected="true" data-view="system">Systemlandschaft</button>
+      <button role="tab" id="tab-daten" aria-selected="false" data-view="daten">Datenmodell</button>
+      <button role="tab" id="tab-regeln" aria-selected="false" data-view="regeln">Regelkette</button>
+    </div>
+    <div class="search"><input id="q" type="search" placeholder="Suchen: Billomat, R18, Zertifikate …" aria-label="Knoten suchen"></div>
+    <div class="ctl">
+      <button id="zin" title="Vergrößern" aria-label="Vergrößern">+</button>
+      <button id="zout" title="Verkleinern" aria-label="Verkleinern">−</button>
+      <button id="fit" title="Alles anzeigen">Alles</button>
+      <label><input type="checkbox" id="always"> Details immer</label>
+    </div>
+  </div>
+  <div class="map">
+    <svg id="svg" aria-label="Systemkarte">
+      <defs>
+        <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="var(--line-strong)"/></marker>
+        <marker id="arr-hl" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="var(--focus)"/></marker>
+      </defs>
+      <g id="root"></g>
+    </svg>
+    <div class="hint" id="hint">Rad oder Finger zum Zoomen · Gruppe anklicken zum Reinzoomen · Knoten anklicken für Abhängigkeiten</div>
+    <div class="legend" id="legend"></div>
+  </div>
+  <aside class="panel" id="panel"></aside>
+</div>
+
+<script>
+/* ---------- DATEN ---------- */
+const KINDS={
+  rolle:{name:'Rollen',c:'var(--c-rolle)',bg:'var(--c-rolle-bg)'},
+  front:{name:'Frontends (Netlify)',c:'var(--c-front)',bg:'var(--c-front-bg)'},
+  back:{name:'Backend (Apps Script)',c:'var(--c-back)',bg:'var(--c-back-bg)'},
+  daten:{name:'Daten (Google Workspace)',c:'var(--c-daten)',bg:'var(--c-daten-bg)'},
+  extern:{name:'Externe Dienste',c:'var(--c-extern)',bg:'var(--c-extern-bg)'},
+  phase:{name:'Prozessphase',c:'var(--c-phase)',bg:'var(--c-phase-bg)'}
+};
+const DOC='Anforderungskatalog', R2='Runde 2', AB='Abgleich ZMS';
+
+const VIEWS={
+system:{
+  title:'Systemlandschaft',
+  intro:'Wer spricht mit wem. Rollen links, Frontends und Backend in der Mitte, Daten und externe Dienste rechts. Gruppe anklicken, um die Bausteine zu sehen; Baustein anklicken, um seine Abhängigkeiten hervorzuheben.',
+  groups:[
+   {id:'g-rollen',name:'Rollen',kind:'rolle',col:0,children:[
+     {id:'kunde',name:'Kunde',key:'Magic Link',desc:'Nimmt Angebot an, legt Unterlagen im Drive-Ordner ab, bestätigt den vom Auditor eingetragenen Termin, ruft Zertifikat, Logo und Rechnungen im Portal ab.',doc:R2+' 3.2'},
+     {id:'auditor',name:'Auditor',key:'Google-Login',desc:'Prüft Stufe 1 im Drive-Ordner, vereinbart den Termin selbst mit dem Kunden und trägt ihn ein, führt das Audit mit Checkliste, gibt den Bericht frei, prüft Nachweise.',doc:R2+' 3.3'},
+     {id:'ausschuss',name:'Zertifizierungsausschuss',key:'Einmal-Link',desc:'Unabhängige Entscheidung je Vorgang: erteilen, mit Auflage, ablehnen, vertagt. Quorum je Mandant, Unparteilichkeit per Häkchen.',doc:R2+' 3.4'},
+     {id:'backoffice',name:'Backoffice',key:'2 h/Tag',desc:'Arbeitet nur die Tagesliste ab: Auditor bestätigen, Anrufe, Ausnahmen, Fehler. Alles andere läuft über Regeln.',doc:R2+' 3.5'},
+     {id:'oeff',name:'Öffentlichkeit',key:'ohne Login',desc:'Kunden der Kunden, Einkäufer, Behörden: prüfen ein Zertifikat per QR oder Nummer, abonnieren Statusänderungen.',doc:AB+' L03'},
+     {id:'pl',name:'Projektleiter (Beratung)',key:'CRM',desc:'Erfasst Kunden einmal im CRM, sieht Status seiner Kunden. Darf beratene Kunden nicht auditieren (Sperrliste).',doc:DOC+' 3.1'}
+   ]},
+   {id:'g-front',name:'Frontends auf Netlify',kind:'front',col:1,children:[
+     {id:'verify',name:'Verifizierungsseite',key:'verify.{mandant}/v/{nr}',desc:'Ampel, Firma, Norm, Scope, gültig bis, zertifiziert seit. Liest stündlichen JSON-Snapshot, holt Live-Status per doGet. Suche per Nummer, Abonnement, Bulk-Prüfung.',doc:DOC+' M6'},
+     {id:'portal',name:'Kundenportal „Mein Zertifikat“',key:'/portal/{token}',desc:'Eine Seite: nächster Schritt, Zeitleiste, PDFs, Logo-Paket, Rechnungen, Termin bestätigen, Standort melden.',doc:R2+' 3.2'},
+     {id:'auditorapp',name:'Auditor-App',key:'Meine Audits / Audit',desc:'Liste und Arbeitsfläche: Termin eintragen, Checkliste je Kapitel, Feststellungen, Bericht per Klick, Nachweise prüfen.',doc:R2+' 3.3'},
+     {id:'zfa-seite',name:'Ausschuss-Seite',key:'drei Knöpfe',desc:'Zusammenfassung, Berichtslink, Abweichungen, Unparteilichkeitshäkchen, Votum.',doc:R2+' 3.4'},
+     {id:'admin',name:'Tagesliste & Kundenakte',key:'/admin',desc:'Tagesliste mit Ein-Klick-Aktionen, Kundenakte 360°, Probelauf „Was würde heute passieren?“.',doc:R2+' 3.5'},
+     {id:'erfassung',name:'Erfassungs-App (CRM-Import)',key:'Kontakt-Kunden-Import',desc:'Bestehend: Claude erkennt Kontaktdaten, schreibt eine CRM-Zeile. Bekommt Kundennummer und Dublettenprüfung.',doc:DOC+' 1'},
+     {id:'fn',name:'Netlify Functions',key:'Token-Proxy',desc:'Halten Geheimnisse serverseitig: Claude-API, Apps-Script-Token, Billomat-Dashboard. Frontends rufen nie direkt mit Schlüsseln.',doc:DOC+' 6.1'}
+   ]},
+   {id:'g-back',name:'Backend Apps Script',kind:'back',col:2,children:[
+     {id:'regelwerk',name:'Regelwerk-Engine',key:'Regelwerk-Blatt R01–R33',desc:'Liest Regeln (Auslöser, Bedingung, Aktion, Frist, Eskalation) aus dem Blatt und führt sie aus. Drei Auslösertypen, fünf Aktionstypen. Probelauf 14 Tage für neue Regeln.',doc:R2+' 5.2'},
+     {id:'statuslauf',name:'Statuslauf 05:30',key:'täglich',desc:'Berechnet den Status aller Zertifikate aus Datumsfeldern und Entscheidungen, schreibt Historie, füllt Register_oeffentlich.',doc:DOC+' 6.5'},
+     {id:'erinnerung',name:'Erinnerungslauf 06:00',key:'täglich',desc:'Sendet ÜA-, Rezert-, Ablauf-, Angebots- und Ausschuss-Erinnerungen, max. 200 je Lauf, protokolliert jede Mail.',doc:DOC+' M7'},
+     {id:'rechnungslauf',name:'Rechnungslauf 06:30',key:'täglich',desc:'Legt fällige Rechnungen in Billomat an (Entwurf → Positionen → abschließen → senden), liest Zahlungen und Mahnstufen.',doc:R2+' 4.4'},
+     {id:'queue',name:'Warteschlange PDF/Mail',key:'stündlich',desc:'Erzeugt Zertifikats-PDFs (max. 40 je Lauf), versendet Mails, wiederholt Fehler dreimal. Umgeht die 6-Minuten-Grenze.',doc:DOC+' 6.5'},
+     {id:'webapp',name:'Web-App doGet/doPost',key:'verify, portal, decide, upload',desc:'JSON-Endpunkte für Verifizierung, Portal, Voten, Termineintrag, Webhook-Ziel für Billomat.',doc:DOC+' 6.1'},
+     {id:'nummern',name:'Nummernvergabe',key:'LockService',desc:'Lückenlose Nummernkreise K-, AN-, AU-, AD-, ZE-, OC- mit Prüfziffer; Vergabe erst beim Finalisieren.',doc:DOC+' 6.3'},
+     {id:'pdf',name:'Zertifikatserzeugung',key:'Docs → PDF + Hash',desc:'Kopiert Vorlage je Mandant × Sprache, ersetzt Platzhalter Seite 1 und 2, bettet QR ein, speichert PDF und SHA-256.',doc:DOC+' 6.4'},
+     {id:'snapshot',name:'Register-Snapshot 06:45',key:'JSON',desc:'Schreibt öffentliche Felder als JSON für die Verifizierungsseite; Ausfallsicherheit ohne Apps Script.',doc:DOC+' 3.4'},
+     {id:'health',name:'Health-Check 08:00',key:'Heartbeat',desc:'Prüft, ob jeder Trigger gelaufen ist; meldet Ausfälle per Mail.',doc:AB+' L15'},
+     {id:'import',name:'Importlauf Billomat',key:'einmalig',desc:'Ordnet Billomat-Kunden den CRM-Zeilen zu, liest Rechnungshistorie und Zahlungsverhalten. Legt nie Kunden an.',doc:R2+' 4.8'}
+   ]},
+   {id:'g-daten',name:'Daten in Google Workspace',kind:'daten',col:3,children:[
+     {id:'crm',name:'CRM-Sheet',key:'K-00123 · einziger Kundenstamm',desc:'Für Beratung und Zertifizierung. Kunden werden genau einmal hier erfasst. Neue Spalten: Kundennummer, Billomat-ID, Drive-Ordner, Kundenart, Sprache.',doc:DOC+' M1.11–M1.13'},
+     {id:'mandant',name:'Mandantendatei (Sheets)',key:'je Mandant',desc:'Register, Ausfertigungen, Angebote, Aufträge, Audits, Entscheidungen, Regelwerk, Logs. Siehe Ansicht Datenmodell.',doc:DOC+' 6.2'},
+     {id:'register',name:'Register_oeffentlich',key:'minimale Felder',desc:'Einzige Quelle der Verifizierung: Nummer, Firma, Ort, Norm, Kurz-Scope, gültig bis, Status. Vom Statuslauf befüllt.',doc:AB+' L18'},
+     {id:'drive',name:'Drive-Kundenordner',key:'Kunden/{K-Nr}/…',desc:'Für den Kunden freigegeben. Unterlagen, Nachweise, Zertifikats-PDFs, Berichte. Stündlicher Ordner-Scan hakt die Checkliste ab.',doc:DOC+' M2.9'},
+     {id:'docs',name:'Docs-Vorlagen',key:'##platzhalter##',desc:'Zertifikat Seite 1+2, Anhang, Angebot, Vereinbarung, Berichte je Audittyp; je Mandant × Sprache.',doc:DOC+' 6.4'},
+     {id:'logos',name:'Logos',key:'Mandant × Norm × Sprache',desc:'Zertifikatslogo, Web-Badge, QR-Logo; Drive-Datei-ID, Version, gültig ab.',doc:DOC+' M6.4'},
+     {id:'kalender',name:'Google Kalender',key:'Auditor + Kunde',desc:'Einträge entstehen aus dem Termineintrag des Auditors: Audit, Fälligkeiten.',doc:DOC+' M7.8'},
+     {id:'gmail',name:'Gmail / MailApp',key:'1.500 Empfänger/Tag',desc:'Alle Mails aus Mailvorlagen je Mandant × Sprache × Ereignis, mit Regel-Nummer und Grund.',doc:DOC+' M9.1'}
+   ]},
+   {id:'g-extern',name:'Externe Dienste',kind:'extern',col:4,children:[
+     {id:'billomat',name:'Billomat',key:'REST-API, Business-Tarif',desc:'Führend für Rechnung, Zahlung, Mahnung, E-Rechnung. Kunden kommen aus dem CRM. Webhook invoice_payment.create plus tägliches Polling.',doc:R2+' 4'},
+     {id:'claude',name:'Claude API',key:'über Netlify Function',desc:'Texterkennung von Anfragen, Zusammenfassung für den Ausschuss, Klassifikation von Kundenantworten, Vorprüfung von Berichten.',doc:DOC+' 6.1'},
+     {id:'github',name:'GitHub',key:'Monorepo onlinecert-system',desc:'Code, Vorlagenversionen, Anforderungskatalog, Backup-Branch. Deploy nach Netlify, Apps Script per clasp.',doc:DOC+' 3.4'},
+     {id:'vb',name:'virtualbadge (Altbestand)',key:'Migration',desc:'Bestehende Zertifikate werden per API exportiert, dem CRM zugeordnet und als Status „migriert“ ins Register übernommen.',doc:DOC+' M1.6'}
+   ]}
+  ],
+  edges:[
+   ['kunde','portal','nutzt'],['kunde','drive','legt Unterlagen ab'],['kunde','verify','Link anfordern'],
+   ['auditor','auditorapp','nutzt'],['auditor','drive','prüft Unterlagen'],
+   ['ausschuss','zfa-seite','Votum'],['backoffice','admin','Tagesliste'],['oeff','verify','prüft'],['pl','erfassung','erfasst Kunden'],['pl','crm','liest Status'],
+   ['erfassung','fn','Claude-Aufruf'],['erfassung','crm','schreibt Zeile'],
+   ['verify','snapshot','liest JSON'],['verify','webapp','Live-Status'],['portal','webapp','Token, Daten'],['auditorapp','webapp','Termin, Bericht'],['zfa-seite','webapp','Votum'],['admin','webapp','Aufgaben'],['fn','claude','API-Key'],['fn','billomat','Dashboard (lesen)'],
+   ['webapp','regelwerk','löst Klick-Regeln aus'],['webapp','mandant','liest/schreibt'],['webapp','register','liest'],
+   ['regelwerk','mandant','Regelwerk-Blatt'],['regelwerk','erinnerung',''],['regelwerk','queue',''],['regelwerk','rechnungslauf',''],
+   ['statuslauf','mandant','Status, Historie'],['statuslauf','register','befüllt'],['snapshot','register','liest'],['snapshot','github','JSON-Deploy'],
+   ['erinnerung','gmail','sendet'],['erinnerung','mandant','Log'],['queue','pdf',''],['queue','gmail','Zertifikatsmail'],
+   ['pdf','docs','Vorlage'],['pdf','logos','Logo, QR'],['pdf','drive','PDF ablegen'],['pdf','nummern','Zert-Nr.'],
+   ['rechnungslauf','billomat','Rechnung, Zahlung'],['rechnungslauf','mandant','Rechnungsplan'],['billomat','webapp','Webhook Zahlung'],
+   ['webapp','kalender','Termineintrag'],['webapp','drive','Ordner-Scan'],['webapp','claude','via Function'],
+   ['import','billomat','Export'],['import','crm','Billomat-ID'],['import','vb','Altbestand'],
+   ['mandant','crm','K-Nr. (Referenz)'],['health','mandant','Log'],['health','gmail','Alarm'],['github','fn','Deploy']
+  ]
+},
+daten:{
+  title:'Datenmodell',
+  intro:'Die Tabellenblätter je Mandantendatei und ihre Schlüsselbeziehungen. Pfeil = „verweist auf“. Das CRM-Sheet ist der einzige Kundenstamm; alles andere referenziert die Kundennummer.',
+  groups:[
+   {id:'d-kunden',name:'Kunden',kind:'rolle',col:0,children:[
+     {id:'t-crm',name:'CRM-Sheet',key:'kunden_nr K-00123',desc:'Einziger Kundenstamm (Beratung + Zertifizierung). Spalten: Kundennummer, Billomat-ID, Drive-Ordner-ID, Kundenart, Sprache, Projektleiter.',doc:DOC+' M1.13'},
+     {id:'t-kunden',name:'Kunden (Referenz)',key:'kunden_nr',desc:'Nur Referenz in der Mandantendatei: crm_zeilen_id, billomat_client_id, portal_token, opt_out_register, status_kunde (abgeleitet).',doc:DOC+' 6.2'},
+     {id:'t-ap',name:'Ansprechpartner',key:'K-00123-01',desc:'Mehrere je Kunde mit Rolle (QMB, GF, Buchhaltung), Kennzeichen Rechnung/Zertifikat/Audit-Kontakt, Sprache.',doc:AB+' L01'},
+     {id:'t-standorte',name:'Standorte',key:'K-00123-S01',desc:'Adresse, Tätigkeit, Mitarbeiter, Hauptstandort, aktiv ab/bis. Standort-Ausfertigungen des Zertifikats verweisen hierauf.',doc:DOC+' M1.3'}
+   ]},
+   {id:'d-vertrieb',name:'Vertrieb & Geld',kind:'extern',col:1,children:[
+     {id:'t-angebote',name:'Angebote',key:'AN-2026-0001',desc:'Paket, Normen, Standorte, Preise je Zyklusjahr, Erinnerungen, Status, billomat_offer_id (optional).',doc:DOC+' M2'},
+     {id:'t-auftraege',name:'Auftraege',key:'AU-2026-0001',desc:'Zyklus start/ende, Vereinbarung, Rechnungsplan (Erst/ÜA1/ÜA2/Rezert), billomat_confirmation_id.',doc:DOC+' M2.3'},
+     {id:'t-preise',name:'Preise',key:'artikel_nr',desc:'Paketlogik oder Kalkulation; verweist auf Billomat-Artikelnummern; gueltig_ab.',doc:R2+' 4.1'},
+     {id:'t-rechnungen',name:'Rechnungen',key:'rechnung_ref',desc:'Zyklusjahr, fällig, Betrag, billomat_invoice_id, Status, schritt 1–5, bezahlt_am, mahnstufe.',doc:R2+' 4.4'}
+   ]},
+   {id:'d-audit',name:'Audit',kind:'front',col:2,children:[
+     {id:'t-audits',name:'Audits',key:'AD-2026-0001',desc:'Typ E1/E2/UA1/UA2/RZ/SO/TR, Plan- und Ist-Datum (vom Auditor eingetragen), Methode, Dauer, Auditor, Bericht, Ergebnis.',doc:DOC+' M3.1'},
+     {id:'t-auditoren',name:'Auditoren',key:'auditor_id',desc:'Name, Normen, Sprachen, Google-Konto, Sperrliste, Selbsterklärung gültig bis.',doc:DOC+' M3.2'},
+     {id:'t-kompetenzen',name:'Kompetenzen',key:'Auditor × Norm × Code',desc:'Stufe Lead/Team/in Ausbildung, Branchencode, gültig bis.',doc:AB+' L07'},
+     {id:'t-konflikte',name:'Konflikte',key:'KF-0001',desc:'Auditor × Kunde × Zeitraum × Art (Beratung, intern). 24 Monate Sperre.',doc:AB+' L07'},
+     {id:'t-einsaetze',name:'Einsaetze',key:'Audit × Auditor',desc:'Tage geplant/ist, Status angefragt/bestätigt/durchgeführt/abgerechnet.',doc:AB+' L07'},
+     {id:'t-abweichungen',name:'Abweichungen',key:'AB-2026-0001',desc:'Haupt/Neben/Hinweis, Normkapitel, Korrektur, Frist, Nachweis, Wirksamkeit, Status. Haupt offen blockiert den Ausschuss.',doc:AB+' L10'},
+     {id:'t-checklisten',name:'Checklisten',key:'Norm × Kapitel',desc:'Fragen für Stufe 1, Audit und Unterlagenliste je Sprache; Pflichtfelder der Berichte.',doc:R2+' M3.12'},
+     {id:'t-bewertungen',name:'Bewertungen',key:'Audit',desc:'Kundenfeedback, Pünktlichkeit Bericht, Abweichungen je Audit.',doc:AB+' L09'}
+   ]},
+   {id:'d-entscheid',name:'Entscheidung',kind:'phase',col:3,children:[
+     {id:'t-entsch',name:'Entscheidungen',key:'ZE-2026-0001',desc:'Typ, Verfahren umlauf/sitzung, Links je Mitglied, Voten (erteilen/Auflage/ablehnen/vertagt), Quorum, Ergebnis.',doc:DOC+' M4'},
+     {id:'t-zfa',name:'ZFA_Mitglieder',key:'Mitglied',desc:'Name, Rolle, Normen (Kompetenz für Quorum), Selbsterklärung gültig bis.',doc:AB+' L13'},
+     {id:'t-sitzungen',name:'ZFA_Sitzungen',key:'SI-2026-01',desc:'Termin, Tagesordnung, Protokoll, Anwesende. Für Ablehnung, Sanktion, Beschwerde.',doc:AB+' L13'},
+     {id:'t-beschwerden',name:'Beschwerden',key:'BE-2026-0001',desc:'Eingang, Bezug, unabhängiger Prüfer (gesperrt für Beteiligte), Frist, Ergebnis.',doc:AB+' L14'}
+   ]},
+   {id:'d-zert',name:'Zertifikat',kind:'back',col:4,children:[
+     {id:'t-zert',name:'Zertifikate (Register)',key:'OC-2026-00123-7',desc:'Norm, Scope je Sprache, Standorte, Erstzertifizierung, ausgestellt, gültig bis, ÜA1/ÜA2/Rezert fällig, Status, Version, ersetzt_von, verify_token, pdf_hash.',doc:DOC+' 6.3'},
+     {id:'t-ausf',name:'Ausfertigungen',key:'…/EN, …/S02',desc:'Sprache, Standort, Vorlage, PDF, erzeugt, versendet, Hash. Teilen Status und Gültigkeit der Kernnummer.',doc:DOC+' M5.2'},
+     {id:'t-normen',name:'Normen',key:'9001',desc:'Bezeichnung und Systemname je Sprache, Ausgabe, Logo-Schlüssel.',doc:DOC+' 6.2'},
+     {id:'t-vorlagen',name:'Vorlagen',key:'OC-zert-DE',desc:'Doc-ID je Mandant × Typ × Sprache, Version, Platzhalterliste.',doc:DOC+' 6.4'},
+     {id:'t-logos',name:'Logos',key:'OC-9001-DE-zert',desc:'Variante zert/web/qr, Drive-ID, Version, gültig ab.',doc:DOC+' M6.4'},
+     {id:'t-register',name:'Register_oeffentlich',key:'zert_nr',desc:'Minimale öffentliche Felder; einzige Quelle für Verifizierung und Snapshot.',doc:AB+' L18'},
+     {id:'t-abo',name:'Abonnenten',key:'E-Mail × zert_nr',desc:'Double-Opt-in, Abmeldelink; Statuswechsel löst Mail aus.',doc:AB+' L04'}
+   ]},
+   {id:'d-steuer',name:'Steuerung & Protokoll',kind:'daten',col:5,children:[
+     {id:'t-mandanten',name:'Mandanten',key:'OC',desc:'Logo, Absender, Präfix, Quorum, Billomat-ID, Zahlungsregel, Testmodus, Preismodus, Stichprobe Berichte.',doc:DOC+' M1.5'},
+     {id:'t-regelwerk',name:'Regelwerk',key:'R01–R33',desc:'Auslöser, Feld, Offset, Bedingung, Aktion, Parameter, Erinnerung, Eskalation, aktiv, probelauf_bis.',doc:R2+' 5.2'},
+     {id:'t-mail',name:'Mailvorlagen',key:'ereignis-Sprache',desc:'Betreff, HTML, Anhänge je Mandant × Sprache × Ereignis.',doc:DOC+' M9.1'},
+     {id:'t-texte',name:'Texte',key:'key → de/en/es/fr',desc:'Oberflächentexte für Verifizierung, Portal, Status.',doc:DOC+' 6.2'},
+     {id:'t-aufgaben',name:'Aufgaben (Tagesliste)',key:'aufgabe_id',desc:'Typ, Bezug, fällig, Priorität, Aktionslink, erledigt.',doc:DOC+' M10.1'},
+     {id:'t-erlog',name:'Erinnerungen_Log',key:'lfd',desc:'Jede gesendete Erinnerung: Bezug, Typ, Empfänger, Zeit, Status.',doc:DOC+' M7.4'},
+     {id:'t-historie',name:'Historie',key:'append-only',desc:'Jede Änderung und jede Automatik mit Nutzer, Zeit, Regel-Nr., alt/neu.',doc:DOC+' M11.3'},
+     {id:'t-log',name:'Log + Heartbeat',key:'lfd',desc:'Ergebnis jedes Trigger-Laufs; Heartbeat für Health-Check.',doc:AB+' L15'}
+   ]}
+  ],
+  edges:[
+   ['t-kunden','t-crm','kunden_nr'],['t-ap','t-crm','kunden_nr'],['t-standorte','t-crm','kunden_nr'],
+   ['t-angebote','t-crm','kunden_nr'],['t-angebote','t-preise','paket'],['t-auftraege','t-angebote','angebot_nr'],['t-rechnungen','t-auftraege','auftrag_nr'],['t-rechnungen','t-preise','artikel_nr'],
+   ['t-audits','t-auftraege','auftrag_nr'],['t-audits','t-auditoren','auditor_id'],['t-einsaetze','t-audits','audit_nr'],['t-einsaetze','t-auditoren','auditor_id'],['t-kompetenzen','t-auditoren','auditor_id'],['t-konflikte','t-auditoren','auditor_id'],['t-konflikte','t-crm','kunden_nr'],['t-abweichungen','t-audits','audit_nr'],['t-checklisten','t-normen','norm_code'],['t-bewertungen','t-audits','audit_nr'],
+   ['t-entsch','t-audits','audit_nr'],['t-entsch','t-zfa','voten'],['t-sitzungen','t-entsch','entscheidung_nr'],['t-beschwerden','t-entsch','bezug'],['t-beschwerden','t-zert','bezug'],
+   ['t-zert','t-entsch','entscheidung_nr'],['t-zert','t-auftraege','auftrag_nr'],['t-zert','t-normen','norm_code'],['t-zert','t-standorte','standorte'],['t-ausf','t-zert','zert_nr'],['t-ausf','t-vorlagen','vorlage_id'],['t-ausf','t-standorte','standort_id'],['t-logos','t-normen','norm_code'],['t-register','t-zert','zert_nr (nur öffentliche Felder)'],['t-abo','t-zert','zert_nr'],
+   ['t-regelwerk','t-mandanten','mandant'],['t-mail','t-mandanten','mandant'],['t-vorlagen','t-mandanten','mandant'],['t-logos','t-mandanten','mandant'],['t-zfa','t-mandanten','mandant'],
+   ['t-aufgaben','t-crm','kunden_nr'],['t-erlog','t-zert','zert_nr'],['t-erlog','t-regelwerk','regel_nr'],['t-historie','t-regelwerk','regel_nr'],['t-rechnungen','t-crm','kunden_nr']
+  ]
+},
+regeln:{
+  title:'Regelkette',
+  intro:'Die Übergabepunkte Kunde → Auditor → Kunde → Backoffice als Regeln R01 bis R33. Pfeil = „löst aus“. Klick auf eine Regel zeigt Auslöser, Aktion, Frist und Eskalation.',
+  groups:[
+   {id:'p-a',name:'A · Anfrage bis Auftrag',kind:'phase',col:0,children:[
+     {id:'R01',name:'Anfrage → Angebot',key:'R01',desc:'Auslöser: Anfrage (Claude erkennt Felder). Aktion: Kunde im CRM anlegen oder finden, Angebot berechnen, PDF, Annahme-Link, Billomat-Kunde aus CRM-Zeile. Frist 30 Tage; Erinnerung Tag 7, 14; Tag 30 Anruf-Aufgabe, Tag 60 verfallen.',doc:R2+' 2.3 A'},
+     {id:'R02',name:'Annahme → Auftrag',key:'R02',desc:'Auslöser: Klick „Angebot annehmen“. Aktion: Auftrag, Zyklus, Vereinbarung, Rechnungsplan, Billomat-Auftragsbestätigung, Portal-Link, Unterlagen-Checkliste. Frist Unterlagen 21 Tage.',doc:R2+' 2.3 A'},
+     {id:'R03',name:'Sonderwunsch',key:'R03',desc:'Freitext im Angebot → Claude fasst zusammen → Aufgabe „Angebot prüfen“ sofort.',doc:R2+' 2.3 A'}
+   ]},
+   {id:'p-b',name:'B · Unterlagen & Stufe 1',kind:'phase',col:1,children:[
+     {id:'R04',name:'Datei im Drive-Ordner',key:'R04',desc:'Auslöser: neue Datei im Kundenordner (direkt oder per Portal). Aktion: stündlicher Scan, Dokumenttyp zuordnen, Checkliste abhaken, Fortschritt im Portal.',doc:R2+' 2.3 B'},
+     {id:'R05',name:'Checkliste vollständig',key:'R05',desc:'Aktion: Auditor-Vorschlag (Norm, Sprache, Sperrliste), Stufe-1-Auftrag, Vorprüfbericht per Skill. Frist 10 Tage; Tag 5 Erinnerung; Tag 10 Aufgabe.',doc:R2+' 2.3 B'},
+     {id:'R06',name:'Stufe 1 bereit',key:'R06',desc:'Auditor meldet „bereit“ → Terminphase (R08).',doc:R2+' 2.3 B'},
+     {id:'R07',name:'Stufe 1 nicht bereit',key:'R07',desc:'Lückenliste an Kunden mit Upload-Link. Frist 14 Tage; Tag 7 Erinnerung; Tag 14 Anruf-Aufgabe.',doc:R2+' 2.3 B'}
+   ]},
+   {id:'p-c',name:'C · Terminierung',kind:'phase',col:2,children:[
+     {id:'R08',name:'Auditor vereinbart Termin',key:'R08',desc:'Auslöser: Stufe 1 bereit oder ÜA fällig. Aktion: Aufgabe an Auditor mit Kontaktdaten; Kunde erfährt, dass sich der Auditor meldet. Frist 14 Tage; Tag 7 Erinnerung; Tag 14 Aufgabe „nachfassen“.',doc:R2+' 2.3 C'},
+     {id:'R09',name:'Termin eingetragen',key:'R09',desc:'Auslöser: Auditor trägt Datum, Uhrzeit, Methode, Dauer ein. Aktion: Kalender, Videolink, Auditplan, Bestätigungsmail mit „Termin passt / ändern“. Ohne Antwort in 5 Tagen gilt der Termin. 7 Tage vorher Vorbereitungsliste.',doc:R2+' 2.3 C'},
+     {id:'R10',name:'Termin ändern',key:'R10',desc:'Kunde klickt „ändern“ oder Auditor verschiebt → Aufgabe an Auditor, Kalender löschen, Historie. Zweite Verschiebung: Aufgabe.',doc:R2+' 2.3 C'}
+   ]},
+   {id:'p-d',name:'D · Audit & Bericht',kind:'phase',col:3,children:[
+     {id:'R11',name:'Audittermin erreicht',key:'R11',desc:'Auditor-App öffnet Audit mit Checkliste, Feststellungen, Zeiterfassung. Bericht in 5 Tagen; Tag 3 Erinnerung; Tag 5 Aufgabe.',doc:R2+' 2.3 D'},
+     {id:'R12',name:'Audit abschließen',key:'R12',desc:'Bericht aus Feststellungen (Docs-Vorlage je Audittyp), Pflichtfelder geprüft, Claude-Vorprüfung, Auditor gibt frei.',doc:R2+' 2.3 D'},
+     {id:'R13',name:'Bericht frei, keine Hauptabweichung',key:'R13',desc:'Ausschussvorgang anlegen (R17), Kunde erhält Bericht und Hinweis „Entscheidung läuft“.',doc:R2+' 2.3 D'},
+     {id:'R14',name:'Bericht frei, mit Abweichungen',key:'R14',desc:'Vorgang je Abweichung, Mail mit Nachweis-Upload. Haupt 30 Tage, Neben 60 Tage; Erinnerung zur Hälfte und 5 Tage vor Frist; nach 90 Tagen Aussetzungsvorlage.',doc:R2+' 2.3 D'},
+     {id:'R15',name:'Nachweis hochgeladen',key:'R15',desc:'Auditor erhält Prüf-Link (akzeptiert / nachbessern). Frist 5 Tage; Tag 3 Erinnerung.',doc:R2+' 2.3 D'},
+     {id:'R16',name:'Hauptabweichungen geschlossen',key:'R16',desc:'→ R13.',doc:R2+' 2.3 D'}
+   ]},
+   {id:'p-e',name:'E · Entscheidung & Zertifikat',kind:'phase',col:4,children:[
+     {id:'R17',name:'Ausschussvorgang',key:'R17',desc:'Zusammenfassung (Claude), Magic Links an Mitglieder ohne Konflikt. Votum in 5 Tagen; Tag 3 Erinnerung; Tag 7 Aufgabe, Vertreterregel.',doc:R2+' 2.3 E'},
+     {id:'R18',name:'Quorum positiv',key:'R18',desc:'Zertifikatsnummer, alle Ausfertigungen, Hash, Register gültig, Logo-Paket, Verifizierung, Zahlungsprüfung (Ampel aus Billomat-Historie), Versandmail.',doc:R2+' 2.3 E'},
+     {id:'R19',name:'Quorum negativ / Rückfrage',key:'R19',desc:'Aufgabe „Kunde informieren“ mit Textbaustein und Rechtsmittelbelehrung; Vorgang zurück an Auditor.',doc:R2+' 2.3 E'},
+     {id:'R20',name:'Zertifikat versendet',key:'R20',desc:'Portal aktualisiert, Erinnerungskette ÜA1 gesetzt, Auditor „erledigt“, Rechnungsplan-Termine gesetzt. R20a: kein Abruf nach 7 Tagen → Erinnerung.',doc:R2+' 2.3 E'}
+   ]},
+   {id:'p-f',name:'F · Geldfluss (Billomat)',kind:'phase',col:5,children:[
+     {id:'R21',name:'Rechnungstermin',key:'R21',desc:'Rechnung in Billomat: Entwurf → Positionen → abschließen → senden. Zahlungsziel 14 Tage; Mahnwesen in Billomat; Mahnstufe 2 → Anruf-Aufgabe.',doc:R2+' 2.3 F'},
+     {id:'R22',name:'Zahlung gebucht',key:'R22',desc:'Webhook oder täglicher Abgleich → bezahlt, wartende Zertifikate freigeben, Portal „bezahlt“.',doc:R2+' 2.3 F'},
+     {id:'R23',name:'60 Tage überfällig',key:'R23',desc:'Aussetzungsvorlage an Ausschuss (Regel je Mandant), Aufgabe.',doc:R2+' 2.3 F'}
+   ]},
+   {id:'p-g',name:'G · Überwachung & Rezert',kind:'phase',col:6,children:[
+     {id:'R24',name:'ÜA fällig in 120 Tagen',key:'R24',desc:'Auditor-Vorschlag (derselbe wie zuletzt), Aufgabe „Termin vereinbaren“ (R08), Mail an Kunden mit Kurzliste. Termin in 30 Tagen; 90/60 Erinnerung; 60 Tage Anruf-Aufgabe.',doc:R2+' 2.3 G'},
+     {id:'R25',name:'ÜA durchgeführt',key:'R25',desc:'Ohne Hauptabweichung kein Ausschuss (Regel je Mandant), Status bleibt gültig, Seite 2 neu als Version.',doc:R2+' 2.3 G'},
+     {id:'R26',name:'ÜA-Frist überschritten',key:'R26',desc:'Status ueberwachung_faellig, Verifizierung gelb, Karenz 90 Tage; 30/7 Erinnerung; Karenzende Aussetzungsvorlage.',doc:R2+' 2.3 G'},
+     {id:'R27',name:'Rezert fällig in 180 Tagen',key:'R27',desc:'Wie R24 plus Angebot neuer Zyklus mit Annahme-Link. Annahme 60 Tage; 120/90 Erinnerung; 90 Tage Anruf-Aufgabe.',doc:R2+' 2.3 G'},
+     {id:'R28',name:'Rezert positiv',key:'R28',desc:'Neue Kernnummer, ersetzt_von, Erstzertifizierung übernommen, altes Zertifikat „ersetzt“.',doc:R2+' 2.3 G'},
+     {id:'R29',name:'Gültig-bis ohne Rezert',key:'R29',desc:'Status abgelaufen, Verifizierung grau, Mail „Logo entfernen“ mit 14 Tagen Frist.',doc:R2+' 2.3 G'}
+   ]},
+   {id:'p-q',name:'Querschnitt',kind:'daten',col:7,children:[
+     {id:'R30',name:'Mail-Bounce',key:'R30',desc:'Aufgabe „Kontaktdaten prüfen“, Portal-Hinweis.',doc:R2+' 2.3'},
+     {id:'R31',name:'Kunde antwortet auf Systemmail',key:'R31',desc:'Claude klassifiziert (Termin, Rechnung, Standort, Sprache, Beschwerde) → Aufgabe mit Antwortentwurf.',doc:R2+' 2.3'},
+     {id:'R32',name:'Standort/Name geändert',key:'R32',desc:'Angebot Erweiterung (R01-Logik) oder Neuausgabe-Vorgang; Aufgabe „prüfen“.',doc:R2+' 2.3'},
+     {id:'R33',name:'Trigger-Fehler',key:'R33',desc:'Dreimal wiederholen, dann Aufgabe mit Fehlertext.',doc:R2+' 2.3'}
+   ]}
+  ],
+  edges:[
+   ['R01','R02','Annahme'],['R01','R03','Freitext'],['R02','R04','Checkliste'],['R04','R05','vollständig'],['R05','R06','bereit'],['R05','R07','nicht bereit'],['R07','R04','Upload'],
+   ['R06','R08',''],['R08','R09','Eintrag'],['R09','R10','ändern'],['R10','R08',''],['R09','R11','Termin'],['R11','R12','abschließen'],['R12','R13','ohne Haupt'],['R12','R14','mit Abw.'],['R14','R15','Nachweis'],['R15','R16','akzeptiert'],['R16','R13',''],
+   ['R13','R17',''],['R17','R18','positiv'],['R17','R19','negativ'],['R18','R20',''],['R18','R21','Erstrechnung'],['R21','R22','Zahlung'],['R21','R23','überfällig'],['R22','R18','freigeben'],
+   ['R20','R24','ÜA1 setzen'],['R24','R08','Termin'],['R24','R25','durchgeführt'],['R24','R26','überschritten'],['R25','R21','ÜA-Rechnung'],['R25','R27','Jahr 3'],['R27','R08',''],['R27','R28','positiv'],['R27','R29','keine Rezert'],['R28','R20',''],
+   ['R32','R01','Angebot'],['R31','R32','Standort'],['R30','R31','']
+  ]
+}};
+
+/* ---------- LAYOUT ---------- */
+const NW=168,NH=46,GAP=12,PAD=16,HEAD=52,COLGAP=110,ROWGAP=40;
+function layout(view){
+  const cols={};
+  view.groups.forEach(g=>{
+    const n=g.children.length; const c=Math.min(n<=4?2:3,n); const r=Math.ceil(n/c);
+    g.w=PAD*2+c*NW+(c-1)*GAP; g.h=HEAD+PAD+r*NH+(r-1)*GAP+PAD; g.cols=c;
+    (cols[g.col]=cols[g.col]||[]).push(g);
+  });
+  let x=0; const colKeys=Object.keys(cols).map(Number).sort((a,b)=>a-b);
+  const maxH=Math.max(...colKeys.map(k=>cols[k].reduce((s,g)=>s+g.h,0)+(cols[k].length-1)*ROWGAP));
+  colKeys.forEach(k=>{
+    const gs=cols[k]; const w=Math.max(...gs.map(g=>g.w)); const tot=gs.reduce((s,g)=>s+g.h,0)+(gs.length-1)*ROWGAP;
+    let y=(maxH-tot)/2;
+    gs.forEach(g=>{ g.x=x+(w-g.w)/2; g.y=y; y+=g.h+ROWGAP;
+      g.children.forEach((ch,i)=>{ const ci=i%g.cols, ri=Math.floor(i/g.cols); ch.x=g.x+PAD+ci*(NW+GAP); ch.y=g.y+HEAD+ri*(NH+GAP); ch.group=g; });
+    });
+    x+=w+COLGAP;
+  });
+  view.byId={}; view.groups.forEach(g=>g.children.forEach(c=>view.byId[c.id]=c));
+  view.edgeObjs=view.edges.map(([a,b,l])=>({a:view.byId[a],b:view.byId[b],l:l||''})).filter(e=>e.a&&e.b);
+  view.bounds={x:0,y:0,w:x-COLGAP,h:maxH};
+}
+
+/* ---------- SVG-HELFER ---------- */
+const NS='http://www.w3.org/2000/svg';
+function el(tag,attrs,parent,text){ const e=document.createElementNS(NS,tag); for(const a in attrs) e.setAttribute(a,attrs[a]); if(text!=null) e.textContent=text; if(parent) parent.appendChild(e); return e; }
+const $=s=>document.querySelector(s), $$=s=>Array.from(document.querySelectorAll(s));
+const svg=$('#svg'), root=$('#root');
+let cur=null, selected=null, always=false;
+const LOD=1.15;
+const T={k:1,x:0,y:0};
+function applyT(){ root.setAttribute('transform',`translate(${T.x},${T.y}) scale(${T.k})`); applyLOD(); }
+function prefersReduced(){return window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;}
+let anim=null;
+function animateTo(t,dur){
+  if(anim) cancelAnimationFrame(anim);
+  if(prefersReduced()||dur===0){ Object.assign(T,t); applyT(); return; }
+  const from={...T}, t0=performance.now();
+  const step=now=>{ const u=Math.min(1,(now-t0)/dur), e=1-Math.pow(1-u,3);
+    T.k=from.k+(t.k-from.k)*e; T.x=from.x+(t.x-from.x)*e; T.y=from.y+(t.y-from.y)*e; applyT();
+    if(u<1) anim=requestAnimationFrame(step); else anim=null; };
+  anim=requestAnimationFrame(step);
+}
+function zoomTo(x,y,w,h){
+  const W=svg.clientWidth,H=svg.clientHeight; const s=Math.max(0.15,Math.min(4,0.9*Math.min(W/w,H/h)));
+  animateTo({k:s,x:W/2-s*(x+w/2),y:H/2-s*(y+h/2)},550);
+}
+function scaleBy(f,cx,cy){
+  const W=svg.clientWidth,H=svg.clientHeight; cx=cx==null?W/2:cx; cy=cy==null?H/2:cy;
+  const k=Math.max(0.15,Math.min(5,T.k*f)); const r=k/T.k;
+  animateTo({k,x:cx-(cx-T.x)*r,y:cy-(cy-T.y)*r},160);
+}
+/* Pan, Wheel-Zoom, Pinch */
+let drag=null; const pts=new Map();
+svg.addEventListener('pointerdown',e=>{ pts.set(e.pointerId,{x:e.clientX,y:e.clientY}); if(pts.size===1){ drag={x:e.clientX,y:e.clientY,tx:T.x,ty:T.y,moved:false}; svg.setPointerCapture(e.pointerId);} });
+svg.addEventListener('pointermove',e=>{
+  if(!pts.has(e.pointerId)) return; pts.set(e.pointerId,{x:e.clientX,y:e.clientY});
+  if(pts.size===2){ const [a,b]=[...pts.values()]; const d=Math.hypot(a.x-b.x,a.y-b.y); const cx=(a.x+b.x)/2-svg.getBoundingClientRect().left, cy=(a.y+b.y)/2-svg.getBoundingClientRect().top;
+    if(drag&&drag.pd){ const f=d/drag.pd; const k=Math.max(0.15,Math.min(5,T.k*f)); const r=k/T.k; T.k=k; T.x=cx-(cx-T.x)*r; T.y=cy-(cy-T.y)*r; applyT(); }
+    drag=drag||{}; drag.pd=d; drag.moved=true; return; }
+  if(drag&&drag.tx!=null){ const dx=e.clientX-drag.x, dy=e.clientY-drag.y; if(Math.abs(dx)+Math.abs(dy)>3){ drag.moved=true; svg.classList.add('dragging'); } T.x=drag.tx+dx; T.y=drag.ty+dy; applyT(); }
+});
+const endPtr=e=>{ pts.delete(e.pointerId); if(pts.size===0){ if(drag&&drag.moved) svg.dataset.moved='1'; drag=null; svg.classList.remove('dragging'); } };
+svg.addEventListener('pointerup',endPtr); svg.addEventListener('pointercancel',endPtr);
+svg.addEventListener('wheel',e=>{ e.preventDefault(); const r=svg.getBoundingClientRect(); const f=Math.exp(-e.deltaY*(e.deltaMode===1?0.05:0.0015)); const cx=e.clientX-r.left, cy=e.clientY-r.top; const k=Math.max(0.15,Math.min(5,T.k*f)); const rr=k/T.k; T.k=k; T.x=cx-(cx-T.x)*rr; T.y=cy-(cy-T.y)*rr; applyT(); },{passive:false});
+svg.addEventListener('click',e=>{ if(svg.dataset.moved){ delete svg.dataset.moved; return; } if(e.target===svg||e.target.id==='root'){ select(null);} });
+svg.addEventListener('dblclick',e=>{ if(e.target===svg) fitAll(); });
+
+function edgePath(a,b){
+  const ax=a.x+NW/2, ay=a.y+NH/2, bx=b.x+NW/2, by=b.y+NH/2; const dx=bx-ax, dy=by-ay;
+  if(Math.abs(dx)>Math.abs(dy)*0.8){ const sx=dx>0?a.x+NW:a.x, tx=dx>0?b.x:b.x+NW, c=Math.max(40,Math.abs(tx-sx)/2); return `M${sx},${ay} C${sx+(dx>0?c:-c)},${ay} ${tx-(dx>0?c:-c)},${by} ${tx},${by}`; }
+  const sy=dy>0?a.y+NH:a.y, ty=dy>0?b.y:b.y+NH, c=Math.max(30,Math.abs(ty-sy)/2); return `M${ax},${sy} C${ax},${sy+(dy>0?c:-c)} ${bx},${ty-(dy>0?c:-c)} ${bx},${ty}`;
+}
+function gEdgePath(ga,gb){
+  const ax=ga.x+ga.w/2, ay=ga.y+ga.h/2, bx=gb.x+gb.w/2, by=gb.y+gb.h/2; const dx=bx-ax;
+  if(Math.abs(dx)<10){ const dy=by-ay; const sy=dy>0?ga.y+ga.h:ga.y, ty=dy>0?gb.y:gb.y+gb.h; return `M${ax},${sy} C${ax},${sy+(dy>0?40:-40)} ${bx},${ty-(dy>0?40:-40)} ${bx},${ty}`; }
+  const sx=dx>0?ga.x+ga.w:ga.x, tx=dx>0?gb.x:gb.x+gb.w, c=Math.max(60,Math.abs(tx-sx)/2); return `M${sx},${ay} C${sx+(dx>0?c:-c)},${ay} ${tx-(dx>0?c:-c)},${by} ${tx},${by}`;
+}
+function trunc(s,n){return s.length>n?s.slice(0,n-1)+'…':s;}
+
+/* ---------- RENDER ---------- */
+let L={};
+function render(viewKey){
+  cur=VIEWS[viewKey]; layout(cur); selected=null; root.innerHTML='';
+  const agg={}; cur.edgeObjs.forEach(e=>{ if(e.a.group===e.b.group) return; const key=e.a.group.id+'>'+e.b.group.id; (agg[key]=agg[key]||{a:e.a.group,b:e.b.group,n:0}).n++; });
+  L.gedges=el('g',{class:'gedges'},root);
+  Object.values(agg).forEach(d=>el('path',{class:'gedge',d:gEdgePath(d.a,d.b),'marker-end':'url(#arr)','data-w':(1.2+Math.min(4,d.n*0.5))},L.gedges));
+  L.groups=el('g',{class:'groups'},root);
+  cur.groups.forEach(g=>{
+    const gg=el('g',{class:'grp'},L.groups); gg.addEventListener('click',e=>{ e.stopPropagation(); if(svg.dataset.moved){delete svg.dataset.moved;return;} zoomTo(g.x,g.y,g.w,g.h); });
+    el('rect',{class:'grp-rect',x:g.x,y:g.y,width:g.w,height:g.h,fill:KINDS[g.kind].bg,stroke:KINDS[g.kind].c},gg);
+    el('text',{class:'grp-title',x:g.x+PAD,y:g.y+24},gg,g.name).__data=g;
+    el('text',{class:'grp-sub',x:g.x+PAD,y:g.y+41},gg,KINDS[g.kind].name);
+    el('text',{class:'grp-count',x:g.x+g.w-PAD,y:g.y+24,'text-anchor':'end'},gg,g.children.length+' Bausteine');
+  });
+  L.edges=el('g',{class:'edges'},root);
+  cur.edgeObjs.forEach(e=>{
+    e.path=el('path',{class:'edge',d:edgePath(e.a,e.b),'marker-end':'url(#arr)'},L.edges);
+    e.label=el('text',{class:'elabel','text-anchor':'middle',x:(e.a.x+e.b.x)/2+NW/2,y:(e.a.y+e.b.y)/2+NH/2-4},L.edges,e.l);
+  });
+  L.nodes=el('g',{class:'nodes'},root);
+  cur.groups.forEach(g=>g.children.forEach(d=>{
+    d.el=el('g',{class:'node',id:'n-'+d.id},L.nodes); d.el.addEventListener('click',e=>{ e.stopPropagation(); if(svg.dataset.moved){delete svg.dataset.moved;return;} select(d); });
+    el('rect',{x:d.x,y:d.y,width:NW,height:NH,fill:'var(--surface)',stroke:KINDS[g.kind].c},d.el);
+    el('text',{x:d.x+10,y:d.y+19},d.el,trunc(d.name,24));
+    el('text',{class:'k',x:d.x+10,y:d.y+35},d.el,trunc(d.key,28));
+  }));
+  buildLegend(); panelIntro(); fitAll();
+}
+function applyLOD(){
+  if(!L.nodes) return;
+  const detail=always||T.k>=LOD||!!selected;
+  L.nodes.style.opacity=detail?1:0; L.nodes.style.pointerEvents=detail?'auto':'none';
+  L.edges.style.opacity=detail?1:0; L.gedges.style.opacity=detail?0.15:0.8;
+  /* Semantischer Zoom: in der Übersicht bleiben Gruppentitel lesbar, Pfeile sichtbar */
+  const f=detail?1:Math.min(2.6,1.15/T.k);
+  $$('.grp').forEach(g=>{ g.style.cursor=detail?'default':'zoom-in';
+    g.querySelector('.grp-title').style.fontSize=(15*f)+'px'; g.querySelector('.grp-sub').style.fontSize=(11.5*f)+'px'; g.querySelector('.grp-count').style.fontSize=(11*f)+'px';
+    const t=g.querySelector('.grp-title'), d=t.__data; if(d){ t.setAttribute('y',d.y+24*f); g.querySelector('.grp-sub').setAttribute('y',d.y+24*f+17*f); g.querySelector('.grp-count').setAttribute('y',d.y+24*f); }
+  });
+  $$('.gedge').forEach(e=>{ e.style.strokeWidth=(parseFloat(e.dataset.w)*(detail?1:Math.max(1,0.8/T.k)))+'px'; });
+}
+function fitAll(){const b=cur.bounds; zoomTo(b.x-20,b.y-20,b.w+40,b.h+40);}
+function touches(e,d){return e.a.id===d.id||e.b.id===d.id;}
+function select(d,doZoom){
+  selected=d;
+  cur.groups.forEach(g=>g.children.forEach(n=>{ n.el.classList.toggle('sel',!!d&&n.id===d.id); n.el.classList.toggle('dim',!!d&&n.id!==d.id&&!cur.edgeObjs.some(e=>(e.a.id===d.id&&e.b.id===n.id)||(e.b.id===d.id&&e.a.id===n.id))); }));
+  cur.edgeObjs.forEach(e=>{ const on=!!d&&touches(e,d); e.path.classList.toggle('hl',on); e.path.classList.toggle('dim',!!d&&!on); e.path.setAttribute('marker-end',on?'url(#arr-hl)':'url(#arr)'); e.label.classList.toggle('hl',on); e.label.style.opacity=d?(on?1:0):1; });
+  applyLOD();
+  if(d){ panelNode(d); if(doZoom) zoomTo(d.x-NW*1.2,d.y-NH*2,NW*3.4,NH*5); } else panelIntro();
+}
+function buildLegend(){
+  const kinds=[...new Set(cur.groups.map(g=>g.kind))];
+  $('#legend').innerHTML=kinds.map(kd=>`<span><i style="background:${KINDS[kd].c}"></i>${KINDS[kd].name}</span>`).join('')+'<span>Pfeil = Abhängigkeit / löst aus</span>';
+}
+/* ---------- PANEL ---------- */
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;');}
+function panelIntro(){
+  const n=cur.groups.reduce((s,g)=>s+g.children.length,0);
+  $('#panel').innerHTML=`<h2>${cur.title}</h2><div class="key">${n} Bausteine · ${cur.edgeObjs.length} Abhängigkeiten · ${cur.groups.length} Gruppen</div><p>${cur.intro}</p>
+  <div class="stats"><div><b>${cur.groups.length}</b><span>Gruppen</span></div><div><b>${n}</b><span>Bausteine</span></div><div><b>${cur.edgeObjs.length}</b><span>Pfeile</span></div></div>
+  <h3>Gruppen</h3><div class="chips">${cur.groups.map(g=>`<button class="chip" data-grp="${g.id}">${esc(g.name)}<small>${g.children.length} Bausteine</small></button>`).join('')}</div>
+  <h3>Quellen im Repo</h3><div class="doc">docs/zertifikatssystem/<code>anforderungskatalog.md</code>, <code>runde-2-automatisierung-ux-billomat.md</code>, <code>abgleich-zms-katalog-v1-3.md</code></div>`;
+  $$('#panel [data-grp]').forEach(b=>b.addEventListener('click',()=>{const g=cur.groups.find(x=>x.id===b.dataset.grp); zoomTo(g.x,g.y,g.w,g.h);}));
+}
+function panelNode(d){
+  const inn=cur.edgeObjs.filter(e=>e.b.id===d.id), out=cur.edgeObjs.filter(e=>e.a.id===d.id);
+  const chip=(n,l)=>`<button class="chip" data-node="${n.id}">${esc(n.name)}${l?`<small>${esc(l)}</small>`:''}</button>`;
+  const isRule=cur===VIEWS.regeln, isData=cur===VIEWS.daten;
+  const inTitle=isRule?'Wird ausgelöst von':isData?'Wird referenziert von':'Braucht Eingaben von';
+  const outTitle=isRule?'Löst aus':isData?'Verweist auf':'Liefert an';
+  $('#panel').innerHTML=`<span class="type" style="background:${KINDS[d.group.kind].bg};color:${KINDS[d.group.kind].c}">${esc(d.group.name)}</span><h2>${esc(d.name)}</h2><div class="key">${esc(d.key)}</div><p>${esc(d.desc)}</p>
+  <h3>${inTitle} (${inn.length})</h3><div class="chips">${inn.length?inn.map(e=>chip(e.a,e.l)).join(''):'<span class="empty">keine</span>'}</div>
+  <h3>${outTitle} (${out.length})</h3><div class="chips">${out.length?out.map(e=>chip(e.b,e.l)).join(''):'<span class="empty">keine</span>'}</div>
+  <h3>Nachlesen</h3><div class="doc">${esc(d.doc)}</div>
+  <h3>Navigation</h3><div class="chips"><button class="chip" id="back">Zurück zur Übersicht</button><button class="chip" id="zoomgrp">Gruppe „${esc(d.group.name)}“ anzeigen</button></div>`;
+  $$('#panel [data-node]').forEach(b=>b.addEventListener('click',()=>select(cur.byId[b.dataset.node],true)));
+  $('#back').addEventListener('click',()=>{select(null);fitAll();});
+  $('#zoomgrp').addEventListener('click',()=>zoomTo(d.group.x,d.group.y,d.group.w,d.group.h));
+}
+/* ---------- BEDIENUNG ---------- */
+$$('.tabs button').forEach(b=>b.addEventListener('click',()=>{ $$('.tabs button').forEach(x=>x.setAttribute('aria-selected','false')); b.setAttribute('aria-selected','true'); render(b.dataset.view); try{localStorage.setItem('oc-map-view',b.dataset.view);}catch(e){} }));
+$('#zin').addEventListener('click',()=>scaleBy(1.4));
+$('#zout').addEventListener('click',()=>scaleBy(1/1.4));
+$('#fit').addEventListener('click',()=>{select(null);fitAll();});
+$('#always').addEventListener('change',e=>{always=e.target.checked;applyLOD();});
+const q=$('#q');
+function matches(d,s){return d.name.toLowerCase().includes(s)||d.key.toLowerCase().includes(s)||d.id.toLowerCase().includes(s);}
+q.addEventListener('input',()=>{ const s=q.value.trim().toLowerCase(); cur.groups.forEach(g=>g.children.forEach(d=>d.el.classList.toggle('hit',!!s&&matches(d,s)))); always=s?true:$('#always').checked; applyLOD(); });
+q.addEventListener('keydown',e=>{ if(e.key==='Enter'){ const s=q.value.trim().toLowerCase(); const hit=cur.groups.flatMap(g=>g.children).find(d=>matches(d,s)); if(hit) select(hit,true);} });
+window.addEventListener('keydown',e=>{ if(e.key==='Escape') select(null); });
+window.addEventListener('resize',()=>{ if(!selected) fitAll(); });
+setTimeout(()=>{$('#hint').style.opacity=0;},9000);
+
+let start='system'; try{ const s=localStorage.getItem('oc-map-view'); if(s&&VIEWS[s]) start=s; }catch(e){}
+$$('.tabs button').forEach(b=>b.setAttribute('aria-selected',b.dataset.view===start?'true':'false'));
+render(start);
+</script>
