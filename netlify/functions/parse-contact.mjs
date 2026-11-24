@@ -13,8 +13,8 @@ export default async (req) => {
   }
 
   try {
-    const { text } = await req.json();
-    const parsed = await parseContactText(text, process.env.ANTHROPIC_API_KEY);
+    const { text, pdfBase64 } = await req.json();
+    const parsed = await parseContactText(text, process.env.ANTHROPIC_API_KEY, pdfBase64 || "");
 
     return Response.json(parsed);
   } catch (err) {

@@ -19,21 +19,53 @@ function defaultFundingDate() {
   return formatDateInput(date);
 }
 
+// Kalender- und CRM-Termin: einen Monat vor der Vorlagefrist aus dem Bescheid.
+function oneMonthBefore(isoDate) {
+  const date = new Date(isoDate + "T12:00:00");
+  if (isNaN(date.getTime())) return "";
+  date.setMonth(date.getMonth() - 1);
+  return formatDateInput(date);
+}
+
+function formatGerman(isoDate) {
+  const p = String(isoDate || "").slice(0, 10).split("-");
+  return p.length === 3 ? `${p[2]}.${p[1]}.${p[0]}` : "";
+}
+
+function fileToBase64(file) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => resolve(String(reader.result).split(",")[1]);
+    reader.onerror = reject;
+    reader.readAsDataURL(file);
+  });
+}
+
+const MAX_PDF_BYTES = 4 * 1024 * 1024;
+
+const STEPS = [
+  { key: "crm", label: "Kunde im CRM anlegen", hint: "CRM Super Master + Ansprechpartner im Blatt Kontakte" },
+  { key: "calendar", label: "Kalendertermin anlegen", hint: "QM-Office Termine, Bescheid als Anhang" },
+  { key: "drive", label: "Drive-Ablage anlegen", hint: "Kundenordner mit _Verträge: Bescheid und Angebote" },
+];
+
 function createEmpty() {
   return {
-    prefix: "", firstName: "", lastName: "",
+    salutation: "", prefix: "", firstName: "", lastName: "",
     customerName: "", website: "", projectLeader: "",
     company: "", jobTitle: "",
     emailWork: "", emailPersonal: "",
     phoneMobile: "", phoneWork: "", phoneFax: "",
     street: "", postalCode: "", city: "", country: "",
     fundingDate: defaultFundingDate(),
+    deadline: "", vorgang: "", bescheidDate: "",
     notes: "",
   };
 }
 
 const sections = [
   { title: "Person", fields: [
+    { key: "salutation", label: "Anrede", options: ["Herr", "Frau"] },
     { key: "prefix", label: "Titel", ph: "Dr. / Prof." },
     { key: "firstName", label: "Vorname" },
     { key: "lastName", label: "Nachname" },
@@ -59,7 +91,9 @@ const sections = [
     { key: "country", label: "Land" },
   ]},
   { title: "Sonstiges", fields: [
-    { key: "fundingDate", label: "Foerdergeldtermin", type: "date" },
+    { key: "fundingDate", label: "Termin Fördergelder abrechnen (Kalender + CRM)", type: "date" },
+    { key: "deadline", label: "Vorlagefrist BAFA laut Bescheid", type: "date" },
+    { key: "vorgang", label: "Vorgang (Mein Zeichen)", ph: "UBF-..." },
     { key: "notes", label: "Notizen", multi: true },
   ]},
 ];
@@ -72,8 +106,14 @@ export default function App() {
   const [errorMessage, setErrorMessage] = useState("");
   const [savedRowIndex, setSavedRowIndex] = useState(null);
   const [open, setOpen] = useState({
-    Person: true, Firma: true, Kontakt: true, Adresse: true, Sonstiges: false,
+    Person: true, Firma: true, Kontakt: true, Adresse: true, Sonstiges: true,
   });
+  const [steps, setSteps] = useState({ crm: true, calendar: true, drive: true });
+  const [pdf, setPdf] = useState(null); // { name, base64 }
+  const [check, setCheck] = useState(null); // Ergebnis der Prüfung vor dem Anlegen
+  const [pickedOffers, setPickedOffers] = useState({});
+  const [allowDuplicate, setAllowDuplicate] = useState(false);
+  const [result, setResult] = useState(null);
 
   // AI parse state
   const [rawText, setRawText] = useState("");
@@ -81,21 +121,35 @@ export default function App() {
   const [parseError, setParseError] = useState("");
   const [showPaste, setShowPaste] = useState(true);
 
-  const set = (k, v) => setD((p) => ({ ...p, [k]: v }));
+  const set = (k, v) => { setD((p) => ({ ...p, [k]: v })); setCheck(null); };
   const fullName = [d.prefix, d.firstName, d.lastName].filter(Boolean).join(" ");
   const initials = [d.firstName, d.lastName].map((n) => n?.[0] || "").join("").toUpperCase();
   const toggle = (t) => setOpen((p) => ({ ...p, [t]: !p[t] }));
 
   /* ── Claude AI Parse ── */
+  const choosePdf = async (file) => {
+    setParseError("");
+    if (!file) { setPdf(null); return; }
+    if (file.type !== "application/pdf" && !/\.pdf$/i.test(file.name)) {
+      setParseError("Bitte den Zuwendungsbescheid als PDF auswählen.");
+      return;
+    }
+    if (file.size > MAX_PDF_BYTES) {
+      setParseError("Das PDF ist größer als 4 MB. Bitte kleiner speichern.");
+      return;
+    }
+    setPdf({ name: file.name, base64: await fileToBase64(file) });
+  };
+
   const parseWithClaude = async () => {
-    if (!rawText.trim()) return;
+    if (!rawText.trim() && !pdf) return;
     setParsing(true);
     setParseError("");
     try {
       const res = await fetch("/api/parse-contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ text: rawText }),
+        body: JSON.stringify({ text: rawText, pdfBase64: pdf ? pdf.base64 : "" }),
       });
       // Antwort immer als JSON lesen, auch bei Fehlerstatus - sonst geht die
       // eigentliche Fehlermeldung vom Backend (z.B. fehlender API-Key,
@@ -117,6 +171,8 @@ export default function App() {
         for (const key of Object.keys(prev)) {
           if (parsed[key]) merged[key] = parsed[key];
         }
+        const termin = parsed.deadline ? oneMonthBefore(parsed.deadline) : "";
+        if (termin) merged.fundingDate = termin;
         return merged;
       });
       setShowPaste(false);
@@ -127,56 +183,77 @@ export default function App() {
     }
   };
 
-  /* ── Send to Google Sheets ── */
+  /* ── Google Backend ── */
+  const callBackend = async (payload) => {
+    if (!SCRIPT_URL) throw new Error("VITE_GAS_URL ist nicht gesetzt.");
+    if (!SCRIPT_TOKEN) throw new Error("VITE_GAS_TOKEN ist nicht gesetzt.");
+    // Body ohne eigenen Content-Type: Apps Script braucht so keine Vorab-Anfrage (CORS).
+    const response = await fetch(SCRIPT_URL, {
+      method: "POST",
+      body: JSON.stringify({ ...payload, token: SCRIPT_TOKEN }),
+    });
+    if (!response.ok) throw new Error("Apps Script antwortet nicht erfolgreich.");
+    const json = await response.json().catch(() => null);
+    if (!json) throw new Error("Antwort vom Apps Script nicht lesbar. Ist die neue Version bereitgestellt?");
+    if (json.status === "error") throw new Error(json.message || "Fehler im Apps Script.");
+    return json;
+  };
+
+  const customerNameValue = () => d.customerName.trim() || d.company.trim() || fullName.trim();
+  const anyStep = steps.crm || steps.calendar || steps.drive;
+
+  const validate = () => {
+    if (!anyStep) throw new Error("Bitte mindestens einen Schritt anhaken.");
+    if (!customerNameValue()) throw new Error("Bitte einen Kundennamen eingeben.");
+    if (steps.crm && !d.projectLeader) throw new Error("Bitte einen Projektleiter auswählen.");
+    if (steps.calendar && !d.fundingDate) throw new Error("Bitte den Termin für den Kalender eintragen.");
+  };
+
+  /* Schritt 1: prüfen – legt noch nichts an */
+  const runCheck = async () => {
+    setStatus("sending");
+    setErrorMessage("");
+    try {
+      validate();
+      const json = await callBackend({
+        action: "check",
+        customerName: customerNameValue(),
+        emailWork: d.emailWork,
+        website: d.website,
+        searchOffers: steps.drive,
+      });
+      const picked = {};
+      (json.offers || []).forEach((o) => { picked[o.messageId + ":" + o.index] = true; });
+      setPickedOffers(picked);
+      setAllowDuplicate(false);
+      setCheck(json);
+      setStatus("idle");
+    } catch (error) {
+      setErrorMessage(error.message || "Bitte Verbindung prüfen und erneut versuchen.");
+      setStatus("error");
+    }
+  };
+
+  /* Schritt 2: anlegen */
   const send = async () => {
     setStatus("sending");
     setErrorMessage("");
-    setSavedRowIndex(null);
     try {
-      if (!SCRIPT_URL) {
-        throw new Error("VITE_GAS_URL ist nicht gesetzt.");
-      }
-      if (!SCRIPT_TOKEN) {
-        throw new Error("VITE_GAS_TOKEN ist nicht gesetzt.");
-      }
-
-      const customerName = d.customerName.trim() || d.company.trim() || fullName.trim();
-      if (!customerName) {
-        throw new Error("Bitte einen Kundennamen eingeben.");
-      }
-      if (!d.projectLeader) {
-        throw new Error("Bitte einen Projektleiter auswählen.");
-      }
-
-      const payload = {
+      validate();
+      const json = await callBackend({
         ...d,
-        customerName,
-        fullName,
-          fundingDate: d.fundingDate || defaultFundingDate(),
+        action: "create",
+        steps,
+        customerName: customerNameValue(),
         phone: d.phoneWork.trim() || d.phoneMobile.trim(),
-        token: SCRIPT_TOKEN,
-      };
-
-      const body = new URLSearchParams();
-      Object.entries(payload).forEach(([key, value]) => {
-        body.append(key, value || "");
+        calendarDate: d.fundingDate,
+        allowDuplicate,
+        pdfBase64: pdf && (steps.calendar || steps.drive) ? pdf.base64 : "",
+        offers: steps.drive
+          ? (check?.offers || []).filter((o) => pickedOffers[o.messageId + ":" + o.index])
+          : [],
       });
-
-      const response = await fetch(SCRIPT_URL, {
-        method: "POST",
-        body,
-      });
-
-      if (!response.ok) {
-        throw new Error("Apps Script antwortet nicht erfolgreich.");
-      }
-
-      const result = await response.json().catch(() => null);
-      if (result?.status === "error") {
-        throw new Error(result.message || "Fehler beim Speichern in Google Sheets.");
-      }
-
-      setSavedRowIndex(result?.rowIndex ?? null);
+      setResult(json);
       setStatus("done");
     } catch (error) {
       setErrorMessage(error.message || "Bitte Verbindung prüfen und erneut versuchen.");
@@ -189,6 +266,9 @@ export default function App() {
     setStatus("idle");
     setErrorMessage("");
     setSavedRowIndex(null);
+    setPdf(null);
+    setCheck(null);
+    setResult(null);
     setRawText("");
     setShowPaste(true);
     setParseError("");
@@ -200,6 +280,8 @@ export default function App() {
     d.phoneWork && { i: "☎", v: d.phoneWork },
     d.website && { i: "🌐", v: d.website },
     d.city && { i: "📍", v: `${d.postalCode} ${d.city}`.trim() },
+    pdf && { i: "📄", v: pdf.name },
+    d.deadline && { i: "⏳", v: `Frist ${formatGerman(d.deadline)}` },
   ].filter(Boolean);
 
   return (
@@ -215,10 +297,21 @@ export default function App() {
           <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 14 }}>
             <span style={{ fontSize: 20 }}>✨</span>
             <div>
-              <div style={{ fontSize: 15, fontWeight: 700 }}>KI-Import</div>
-              <div style={{ fontSize: 11, opacity: 0.7 }}>Signatur, Visitenkarte oder Text einfügen</div>
+              <h1 style={{ fontSize: 15, fontWeight: 700, margin: 0 }}>Neukunde anlegen</h1>
+              <div style={{ fontSize: 11, opacity: 0.7 }}>Zuwendungsbescheid anhängen, Mail-Absender oder Impressum einfügen</div>
             </div>
           </div>
+          <label style={{
+            display: "block", padding: "10px 14px", marginBottom: 10, fontSize: 13,
+            border: "1.5px dashed rgba(255,255,255,0.35)", borderRadius: 12, cursor: "pointer",
+            background: "rgba(255,255,255,0.08)",
+          }}>
+            <input
+              type="file" accept="application/pdf,.pdf" style={{ display: "none" }}
+              onChange={(e) => choosePdf(e.target.files?.[0])}
+            />
+            {pdf ? `📄 ${pdf.name}` : "📄 Zuwendungsbescheid (PDF) auswählen – optional"}
+          </label>
           <textarea
             value={rawText}
             onChange={(e) => setRawText(e.target.value)}
@@ -240,7 +333,7 @@ export default function App() {
           <div style={{ display: "flex", gap: 8, marginTop: 12 }}>
             <button
               onClick={parseWithClaude}
-              disabled={parsing || !rawText.trim()}
+              disabled={parsing || (!rawText.trim() && !pdf)}
               style={{
                 flex: 1, padding: "10px 0", border: "none", borderRadius: 10,
                 background: parsing ? "rgba(255,255,255,0.15)" : "#fff",
@@ -390,32 +483,119 @@ export default function App() {
           </div>
         ))}
 
-        {/* ── Action Area ── */}
-        {status === "done" ? (
+        {/* ── Schritte ── */}
+        {status !== "done" && (
           <div style={{
-            background: "#fff", borderRadius: 16, padding: "28px 24px", textAlign: "center",
-            boxShadow: "0 1px 2px rgba(0,0,0,0.04)", marginTop: 4,
+            background: "#fff", borderRadius: 16, marginBottom: 8, padding: "14px 18px",
+            boxShadow: "0 1px 2px rgba(0,0,0,0.04)",
           }}>
-            <div style={{
-              width: 52, height: 52, borderRadius: "50%", margin: "0 auto 12px",
-              background: "linear-gradient(135deg,#22c55e,#4ade80)",
-              display: "flex", alignItems: "center", justifyContent: "center",
-              fontSize: 24, color: "#fff",
-            }}>✓</div>
-            <div style={{ fontSize: 16, fontWeight: 700, color: "#1a1a1a" }}>Kontakt gespeichert</div>
-            <div style={{ fontSize: 13, color: "#999", marginTop: 4, lineHeight: 1.4 }}>
-              {(d.customerName || d.company || fullName) || "Der Kontakt"} wurde in die Google-Tabelle geschrieben.
+            <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: 1.2, textTransform: "uppercase", marginBottom: 8 }}>
+              Was soll angelegt werden?
             </div>
-            {savedRowIndex && (
-              <div style={{ fontSize: 12, color: "#777", marginTop: 8 }}>
-                Gespeichert in Zeile {savedRowIndex}.
+            {STEPS.map((step) => (
+              <label key={step.key} style={{ display: "flex", gap: 10, alignItems: "flex-start", padding: "7px 0", cursor: "pointer" }}>
+                <input
+                  type="checkbox" checked={steps[step.key]} style={{ marginTop: 3 }}
+                  onChange={(e) => { setSteps((p) => ({ ...p, [step.key]: e.target.checked })); setCheck(null); }}
+                />
+                <span>
+                  <span style={{ fontSize: 14, fontWeight: 600, color: "#1a1a1a" }}>{step.label}</span>
+                  <span style={{ display: "block", fontSize: 12, color: "#888" }}>{step.hint}</span>
+                </span>
+              </label>
+            ))}
+            {(steps.calendar || steps.drive) && !pdf && (
+              <div style={{ fontSize: 12, color: "#b45309", marginTop: 6 }}>
+                Kein Zuwendungsbescheid angehängt – Termin und Ordner werden ohne PDF angelegt.
               </div>
             )}
+          </div>
+        )}
+
+        {/* ── Vorschau nach dem Prüfen ── */}
+        {check && status !== "done" && (
+          <div style={{
+            background: "#fff", borderRadius: 16, marginBottom: 8, padding: "14px 18px",
+            boxShadow: "0 1px 2px rgba(0,0,0,0.04)", fontSize: 13, color: "#333", lineHeight: 1.5,
+          }}>
+            <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: 1.2, textTransform: "uppercase", marginBottom: 8, color: "#1a1a1a" }}>
+              Vorschau – noch nichts angelegt
+            </div>
+            {steps.crm && (check.duplicates.length > 0 ? (
+              <div style={{ marginBottom: 10 }}>
+                <div style={{ color: "#b91c1c", fontWeight: 600 }}>⚠ Im CRM gibt es schon:</div>
+                {check.duplicates.map((dup) => (
+                  <div key={dup.row}>Zeile {dup.row}: {dup.name} ({dup.reason})</div>
+                ))}
+                <label style={{ display: "flex", gap: 8, marginTop: 6, cursor: "pointer" }}>
+                  <input type="checkbox" checked={allowDuplicate} onChange={(e) => setAllowDuplicate(e.target.checked)} />
+                  Trotzdem eine neue CRM-Zeile anlegen
+                </label>
+              </div>
+            ) : (
+              <div style={{ marginBottom: 10 }}>✓ CRM: {customerNameValue()} ist neu, Projektleiter {d.projectLeader}.</div>
+            ))}
+            {steps.calendar && (
+              <div style={{ marginBottom: 10 }}>
+                ✓ Kalender: „{customerNameValue()} - wegen Fördergelder abrechnen“ am {formatGerman(d.fundingDate)}
+                {d.deadline ? ` (Vorlagefrist ${formatGerman(d.deadline)})` : ""}.
+              </div>
+            )}
+            {steps.drive && (
+              <div>
+                <div>
+                  ✓ Drive: {check.folder
+                    ? <>Ordner „{check.folder.name}“ gibt es schon – es wird nur ergänzt.</>
+                    : <>Neuer Ordner „{customerNameValue()}“ mit _Verträge.</>}
+                </div>
+                <div style={{ marginTop: 6, fontWeight: 600 }}>
+                  {check.offers.length > 0 ? "Angebote aus dem Postfach ablegen:" : "Keine Angebots-PDFs im Postfach gefunden."}
+                </div>
+                {check.offers.map((o) => {
+                  const key = o.messageId + ":" + o.index;
+                  return (
+                    <label key={key} style={{ display: "flex", gap: 8, padding: "4px 0", cursor: "pointer" }}>
+                      <input
+                        type="checkbox" checked={Boolean(pickedOffers[key])} style={{ marginTop: 3 }}
+                        onChange={(e) => setPickedOffers((p) => ({ ...p, [key]: e.target.checked }))}
+                      />
+                      <span>{o.name}<span style={{ display: "block", fontSize: 11, color: "#888" }}>{o.date} · {o.subject}</span></span>
+                    </label>
+                  );
+                })}
+              </div>
+            )}
+          </div>
+        )}
+
+        {/* ── Action Area ── */}
+        {status === "done" && result ? (
+          <div style={{
+            background: "#fff", borderRadius: 16, padding: "22px 24px",
+            boxShadow: "0 1px 2px rgba(0,0,0,0.04)", marginTop: 4, fontSize: 13, color: "#333", lineHeight: 1.6,
+          }}>
+            <div style={{ fontSize: 16, fontWeight: 700, color: "#1a1a1a", marginBottom: 8 }}>
+              Ergebnis für {result.customerName}
+            </div>
+            {[
+              result.crm && { label: "CRM", r: result.crm, text: result.crm.ok && `Zeile ${result.crm.rowIndex} angelegt` },
+              result.contact && { label: "Kontakte", r: result.contact, text: result.contact.ok && (result.contact.existed ? `gab es schon (Zeile ${result.contact.rowIndex})` : `Zeile ${result.contact.rowIndex} angelegt`) },
+              result.calendar && { label: "Kalender", r: result.calendar, text: result.calendar.ok && (result.calendar.existed ? "Termin gab es schon" : "Termin angelegt"), link: result.calendar.eventLink },
+              result.drive && { label: "Drive", r: result.drive, text: result.drive.ok && `${result.drive.folderCreated ? "Ordner angelegt" : "Ordner ergänzt"}, ${result.drive.files.length} Datei(en) in _Verträge`, link: result.drive.folderUrl },
+            ].filter(Boolean).map((line) => (
+              <div key={line.label} style={{ color: line.r.ok ? "#166534" : "#b91c1c" }}>
+                {line.r.ok ? "✓" : "✕"} <strong>{line.label}:</strong> {line.r.ok ? line.text : line.r.message}
+                {line.r.ok && line.link && <> · <a href={line.link} target="_blank" rel="noreferrer">öffnen</a></>}
+              </div>
+            ))}
+            <div style={{ marginTop: 12, fontSize: 12, color: "#666" }}>
+              Nächste Schritte: Projektstartmail · Fragebogen zur Dokumentation · Dokumentenpaket · Kunde in Billomat
+            </div>
             <button onClick={reset} style={{
               marginTop: 16, padding: "8px 28px", border: "1.5px solid #e8e8e6",
               borderRadius: 10, background: "none", fontFamily: font, fontSize: 13,
               fontWeight: 600, cursor: "pointer", color: "#666",
-            }}>Weiteren Kontakt senden</button>
+            }}>Nächsten Kunden anlegen</button>
           </div>
         ) : status === "error" ? (
           <div style={{
@@ -428,7 +608,7 @@ export default function App() {
               display: "flex", alignItems: "center", justifyContent: "center",
               fontSize: 22, color: "#fff",
             }}>✕</div>
-            <div style={{ fontSize: 16, fontWeight: 700, color: "#1a1a1a" }}>Fehler beim Senden</div>
+            <div style={{ fontSize: 16, fontWeight: 700, color: "#1a1a1a" }}>Das hat nicht geklappt</div>
             <div style={{ fontSize: 13, color: "#999", marginTop: 4 }}>{errorMessage || "Bitte Verbindung prüfen und erneut versuchen."}</div>
             <button onClick={() => setStatus("idle")} style={{
               marginTop: 16, padding: "8px 28px", border: "1.5px solid #e8e8e6",
@@ -437,7 +617,7 @@ export default function App() {
             }}>Erneut versuchen</button>
           </div>
         ) : (
-          <button onClick={send} disabled={status === "sending"} style={{
+          <button onClick={check ? send : runCheck} disabled={status === "sending" || !anyStep} style={{
             width: "100%", padding: "16px 0", border: "none", borderRadius: 16,
             background: status === "sending" ? "#4f46e5" : "#1a1a1a",
             color: "#fff", fontSize: 15, fontWeight: 700, fontFamily: font,
@@ -446,7 +626,7 @@ export default function App() {
             boxShadow: "0 4px 20px rgba(0,0,0,0.10)",
             transition: "background 0.2s",
           }}>
-            {status === "sending" ? "Wird gespeichert …" : "In Google Tabelle speichern →"}
+            {status === "sending" ? "Bitte warten …" : check ? "Jetzt anlegen →" : "Prüfen →"}
           </button>
         )}
       </div>
