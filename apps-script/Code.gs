@@ -173,7 +173,31 @@ function findOfferAttachments(customerName, email, website) {
       });
     });
   });
+
+  // Angebote, die als Mail ohne PDF rausgingen (Angebots-Automat): die Mail selbst wird als PDF abgelegt.
+  const target = domain || email;
+  if (target) {
+    GmailApp.search('from:me to:' + target + ' subject:Angebot newer_than:18m', 0, 15).forEach(function (thread) {
+      thread.getMessages().forEach(function (message) {
+        const subject = message.getSubject();
+        if (!/angebot/i.test(subject) || /^\s*(re|aw|wg|fwd?)\s*:/i.test(subject)) return;
+        const date = Utilities.formatDate(message.getDate(), 'Europe/Berlin', 'dd.MM.yyyy');
+        offers.push({
+          messageId: message.getId(),
+          index: -1,
+          name: mailPdfName(subject, date),
+          date: date,
+          subject: 'Angebots-Mail, wird als PDF abgelegt',
+        });
+      });
+    });
+  }
   return offers.slice(0, 12);
+}
+
+function mailPdfName(subject, date) {
+  const cleaned = String(subject).replace(/[^A-Za-z0-9ÄÖÜäöüß .,()&+-]/g, ' ').replace(/\s+/g, ' ').trim();
+  return (cleaned.slice(0, 90) + ' ' + date + '.pdf').trim();
 }
 
 /* ───────────────────────── create ───────────────────────── */
@@ -204,7 +228,17 @@ function createCustomer(data) {
         files.push(bescheidFile.getName());
       }
       (data.offers || []).forEach(function (offer) {
-        const att = GmailApp.getMessageById(offer.messageId).getAttachments({ includeInlineImages: false })[offer.index];
+        const message = GmailApp.getMessageById(offer.messageId);
+        if (offer.index === -1) {
+          const name = mailPdfName(message.getSubject(), Utilities.formatDate(message.getDate(), 'Europe/Berlin', 'dd.MM.yyyy'));
+          if (!contracts.getFilesByName(name).hasNext()) {
+            const html = '<meta charset="utf-8">' + message.getBody();
+            contracts.createFile(Utilities.newBlob(html, 'text/html', name).getAs('application/pdf').setName(name));
+          }
+          files.push(name);
+          return;
+        }
+        const att = message.getAttachments({ includeInlineImages: false })[offer.index];
         if (!att || att.getName() !== offer.name) return;
         if (!contracts.getFilesByName(att.getName()).hasNext()) {
           contracts.createFile(att.copyBlob());
