@@ -297,7 +297,7 @@ export default function App() {
           <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 14 }}>
             <span style={{ fontSize: 20 }}>✨</span>
             <div>
-              <div style={{ fontSize: 15, fontWeight: 700 }}>Neukunde anlegen</div>
+              <h1 style={{ fontSize: 15, fontWeight: 700, margin: 0 }}>Neukunde anlegen</h1>
               <div style={{ fontSize: 11, opacity: 0.7 }}>Zuwendungsbescheid anhängen, Mail-Absender oder Impressum einfügen</div>
             </div>
           </div>
