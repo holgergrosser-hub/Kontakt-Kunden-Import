@@ -42,8 +42,8 @@ function localParseContactApi() {
         }
 
         try {
-          const { text = '' } = await readJson(req)
-          const parsed = await parseContactText(text, process.env.ANTHROPIC_API_KEY)
+          const { text = '', pdfBase64 = '' } = await readJson(req)
+          const parsed = await parseContactText(text, process.env.ANTHROPIC_API_KEY, pdfBase64)
           res.statusCode = 200
           res.setHeader('Content-Type', 'application/json')
           res.end(JSON.stringify(parsed))

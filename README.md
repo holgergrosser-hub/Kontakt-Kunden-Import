@@ -1,13 +1,15 @@
-# Kontakt Kunden Import
+# Neukunde anlegen (Kontakt Kunden Import)
 
-Kontaktdaten per KI-Texterkennung oder manuell erfassen und als neue Zeile in Google Sheets speichern.
+Eine Seite für den Neukunden: Zuwendungsbescheid (PDF) anhängen, Mail-Absender oder Impressum einfügen, prüfen, anlegen.
 
 ## Features
 
-- **KI-Import**: Signatur, Visitenkarte oder beliebigen Text einfügen → Claude erkennt die wichtigsten Felder automatisch
-- **Manuelles Formular**: Alle Felder einzeln bearbeitbar
-- **Projektleiter-Auswahl**: Direkte Zuordnung zu Eudys, Stephan, Nina oder Holger
-- **Google Sheets Export**: Schreibt jede Eingabe als neue Zeile in die Zieltabelle
+- **Erkennen**: Claude liest Firma, Anschrift, Vorlagefrist und Vorgang aus dem Bescheid und den Ansprechpartner aus dem Text
+- **Drei Schritte, einzeln abwählbar**: Kunde im CRM · Kalendertermin · Drive-Ablage
+- **Vorschau vor dem Anlegen**: Dubletten im CRM, vorhandener Kundenordner, gefundene Angebots-PDFs aus dem Postfach
+- **Kalender**: „[Firma] - wegen Fördergelder abrechnen“ in „QM-Office Termine“, einen Monat vor der Vorlagefrist, Bescheid als Anhang
+- **Drive**: Kundenordner unter „QM-Guru Holger“ mit `_Verträge` (Bescheid + Angebote), ohne Freigabe „jeder mit Link“
+- Ersetzt die frühere Kalender-App `netlify-calendar-creator`
 
 ## Setup
 
@@ -45,8 +47,9 @@ ANTHROPIC_API_KEY = sk-ant-...
 
 ### 3. Google Apps Script bereitstellen
 
-1. In `apps-script/Code.gs` den Code in ein neues Apps-Script-Projekt kopieren
-2. Web-App bereitstellen
+1. Den Code aus `apps-script/Code.gs` in das Apps-Script-Projekt kopieren
+2. Dienste → „Calendar API“ hinzufügen, Funktion `testNurLesen` einmal ausführen (Berechtigungen)
+3. Web-App bereitstellen (bestehende Bereitstellung → neue Version, URL bleibt gleich)
 3. Als Umgebungsvariablen setzen:
 
 ```env
@@ -66,7 +69,7 @@ Die Seite wird automatisch bei jedem Push gebaut und deployed.
 
 ## Tabellenzuordnung
 
-Die Apps-Script-Datei schreibt folgende Felder in die Zieltabelle:
+CRM Super Master (einzelne Zellen, Formelspalten bleiben unberührt):
 
 - Spalte A: Kundenname
 - Spalte C: Webseite
@@ -74,12 +77,16 @@ Die Apps-Script-Datei schreibt folgende Felder in die Zieltabelle:
 - Spalte I: Mail gesch.
 - Spalte J: Mail privat
 - Spalte L: Projektleiter
-- Spalte P: Nein
+- Spalte P: Ja
 - Spalte Q: Nein
 - Spalte BS: Straße
 - Spalte BW: Ort
 - Spalte CA: PLZ
-- Spalte DZ: aktuelles Datum minus 1 Monat
-- Spalte DS: WAHR
-- Spalte DE: Ja
-- Spalte DF: wie Spalte L
+- Spalte DE: Ja · Spalte DF: wie Spalte L · Spalte DS: WAHR (nur wenn die Zelle leer ist)
+- Spalte DZ: Termin „Fördergelder abrechnen“ (Vorlagefrist minus 1 Monat)
+
+Blatt „Kontakte“ (nach Spaltenüberschrift): Nachname, Organisation, Anrede, Vorname, Funktion, Telefonnummer, Handynummer, E-Mailadresse, QM = WAHR, PZ/DS = FALSCH, Status = Aktuell.
+
+## Prüfung
+
+Die Backend-Logik ist gegen nachgebaute Tabellen, Drive, Gmail und Kalender geprüft (CRM-Dublette, zweiter Lauf legt nichts doppelt an, nur ein Schritt, alter Formularaufruf).
